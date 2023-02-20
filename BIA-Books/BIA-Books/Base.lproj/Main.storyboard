@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BIA_Books" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jM3-Nu-kbe">
+                                <rect key="frame" x="32" y="186" width="103" height="39"/>
+                                <fontDescription key="fontDescription" name=".SFNS-Bold" family=".AppleSystemUIFont" pointSize="35"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2nc-9k-eeD">
+                                <rect key="frame" x="37" y="287" width="318" height="34"/>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3MR-rD-US0">
+                                <rect key="frame" x="37" y="353" width="318" height="34"/>
+                                <color key="backgroundColor" name="AuthorizationColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Row-Qx-QGh">
+                                <rect key="frame" x="99.666666666666686" y="449" width="194" height="33"/>
+                                <color key="backgroundColor" name="EntryButton"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aCB-e9-ZTZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byg-rf-WZE">
+                                <rect key="frame" x="49" y="388" width="269" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="LogInStatusText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3MR-rD-US0" firstAttribute="top" secondItem="2nc-9k-eeD" secondAttribute="bottom" constant="32" id="2OP-dk-Ymm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2nc-9k-eeD" secondAttribute="trailing" constant="38" id="BGc-zV-7sT"/>
+                            <constraint firstItem="Row-Qx-QGh" firstAttribute="top" secondItem="3MR-rD-US0" secondAttribute="bottom" constant="62" id="G4L-7o-X6w"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3MR-rD-US0" secondAttribute="trailing" constant="38" id="HLE-IN-dzs"/>
+                            <constraint firstItem="3MR-rD-US0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="Vk2-ea-Z8G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jM3-Nu-kbe" secondAttribute="trailing" constant="258" id="YRI-31-Xbu"/>
+                            <constraint firstItem="Byg-rf-WZE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="49" id="crZ-uq-Y0b"/>
+                            <constraint firstItem="Row-Qx-QGh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="99.5" id="fUa-aR-fUj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Row-Qx-QGh" secondAttribute="trailing" constant="99.5" id="hh4-Oh-acM"/>
+                            <constraint firstItem="jM3-Nu-kbe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="mzC-5e-aW2"/>
+                            <constraint firstItem="2nc-9k-eeD" firstAttribute="top" secondItem="jM3-Nu-kbe" secondAttribute="bottom" constant="62" id="nGr-8m-qLX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Byg-rf-WZE" secondAttribute="trailing" constant="75" id="oZ4-oY-8c8"/>
+                            <constraint firstItem="2nc-9k-eeD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="qbN-CU-eLy"/>
+                            <constraint firstItem="Byg-rf-WZE" firstAttribute="top" secondItem="3MR-rD-US0" secondAttribute="bottom" constant="1" id="whY-h7-gKM"/>
+                            <constraint firstItem="jM3-Nu-kbe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="127" id="xv0-2S-LH7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logInButton" destination="Row-Qx-QGh" id="8YU-xO-xIH"/>
+                        <outlet property="logInStatus" destination="Byg-rf-WZE" id="8sg-lu-cwd"/>
+                        <outlet property="loginTextField" destination="2nc-9k-eeD" id="Rpj-3D-mAr"/>
+                        <outlet property="passwordTextField" destination="3MR-rD-US0" id="XNe-Xi-fHr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="123" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AuthorizationColor">
+            <color red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="EntryButton">
+            <color red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LogInStatusText">
+            <color red="0.98039215686274506" green="0.21568627450980393" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
