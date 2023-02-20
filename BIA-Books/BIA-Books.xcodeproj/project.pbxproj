@@ -17,6 +17,8 @@
 		5E299E48299E7472002D9E6E /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E299E47299E7472002D9E6E /* Dynamic.swift */; };
 		5E299E4A299E758C002D9E6E /* User .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E299E49299E758C002D9E6E /* User .swift */; };
 		5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E299E4C299E824B002D9E6E /* AuthorizationViewModel.swift */; };
+		5E4840D729A37CE400A8C111 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D629A37CE400A8C111 /* Colors.swift */; };
+		5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D829A3CC5B00A8C111 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		5E299E47299E7472002D9E6E /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		5E299E49299E758C002D9E6E /* User .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User .swift"; sourceTree = "<group>"; };
 		5E299E4C299E824B002D9E6E /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
+		5E4840D629A37CE400A8C111 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5E4840D829A3CC5B00A8C111 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				5E299E42299E73B7002D9E6E /* Modules */,
 				5E299E2E299E73A3002D9E6E /* AppDelegate.swift */,
 				5E299E30299E73A3002D9E6E /* SceneDelegate.swift */,
+				5E4840D629A37CE400A8C111 /* Colors.swift */,
+				5E4840D829A3CC5B00A8C111 /* Extensions.swift */,
 				5E299E34299E73A3002D9E6E /* Main.storyboard */,
 				5E299E37299E73A4002D9E6E /* Assets.xcassets */,
 				5E299E39299E73A4002D9E6E /* LaunchScreen.storyboard */,
@@ -207,12 +213,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E1A04B7299FC7400026649C /* BooksAuthField.swift in Sources */,
+				5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */,
 				5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */,
 				5E299E33299E73A3002D9E6E /* AuthorizationViewController.swift in Sources */,
 				5E299E48299E7472002D9E6E /* Dynamic.swift in Sources */,
 				5E299E4A299E758C002D9E6E /* User .swift in Sources */,
 				5E299E2F299E73A3002D9E6E /* AppDelegate.swift in Sources */,
 				5E299E31299E73A3002D9E6E /* SceneDelegate.swift in Sources */,
+				5E4840D729A37CE400A8C111 /* Colors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
