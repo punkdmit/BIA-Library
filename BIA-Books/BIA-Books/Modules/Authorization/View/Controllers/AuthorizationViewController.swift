@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         }
         return button
     }
-    
+    //some comment for check
     @objc func pressedEyeButton(sender : AnyObject) {
         set(isSecureTextEntry: !passwordTextField.isSecureTextEntry)
     }
