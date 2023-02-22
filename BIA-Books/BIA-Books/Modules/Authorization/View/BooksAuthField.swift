@@ -371,5 +371,3 @@ private class Transform {
         self.frame = frame
     }
 }
-
-
