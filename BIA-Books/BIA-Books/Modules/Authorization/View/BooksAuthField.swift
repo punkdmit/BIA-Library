@@ -43,7 +43,7 @@ class BiaBooksTextField: UITextField {
                      bottom: textPadding.bottom,
                      right: rightViewMode == .never ? textPadding.right: textPadding.right + spacing)
     }
-
+//create border for textfield
     private var borderPath: CGPath {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: bounds.minX + max(textPadding.left - titleHorizontalPadding, titleHorizontalPadding), y: bounds.minY))
@@ -63,17 +63,19 @@ class BiaBooksTextField: UITextField {
     }()
 
     private var trimFrom: CGFloat {
-        let circleLength: CGFloat = 2 * .pi * borderCornerRadius
-        let arcLength: CGFloat = 2 * borderCornerRadius
-        let shapeLength: CGFloat = 2 * (bounds.width - arcLength) + 2 * (bounds.height - arcLength) + circleLength
-        let trimFrom: CGFloat = label.frame.width.isZero ? 0 : (label.frame.width + 2 * titleHorizontalPadding) / shapeLength
-        return trimFrom
+//        let circleLength: CGFloat = 2 * .pi * borderCornerRadius
+//        let arcLength: CGFloat = 2 * borderCornerRadius
+//        let shapeLength: CGFloat = 2 * (bounds.width - arcLength) + 2 * (bounds.height - arcLength) + circleLength
+//        let trimFrom: CGFloat = label.frame.width.isZero ? 0 : (label.frame.width + 2 * titleHorizontalPadding) / shapeLength
+//        let trimFrom = CGFloat()
+        return 0
     }
 
     private var labelTransform: CGAffineTransform {
         self.layoutIfNeeded()
         return Transform(frame: label.bounds, xScale: labelScale, yScale: labelScale, anchorPoint: .centerLeft).transform
-            .concatenating(CGAffineTransform(translationX: 0, y: -bounds.height / 2))
+//            .concatenating(CGAffineTransform(translationX: 0, y: -bounds.height / 2))
+            .concatenating(CGAffineTransform(translationX: 0, y: -bounds.height / 2 - label.bounds.height / 2 - 1))
     }
 
     private var fieldState: FieldState {
@@ -216,7 +218,7 @@ class BiaBooksTextField: UITextField {
 
             case .focusedEmpty:
                 self.label.transform = self.labelTransform
-                self.label.textColor = self.isError ? self.errorColor : self.activeColor
+                self.label.textColor = self.isError ? self.errorColor : self.secondaryTextColor
                 self.leadingAssistiveLabel.textColor = self.isError ? self.errorColor : self.secondaryTextColor
                 self.borderShapeLayer.strokeColor = self.isError ? self.errorColor.cgColor : self.activeColor.cgColor
                 self.textColor = self.primaryTextColor
@@ -230,7 +232,7 @@ class BiaBooksTextField: UITextField {
 
             case .focusedFilled:
                 self.label.transform = self.labelTransform
-                self.label.textColor = self.isError ? self.errorColor : self.activeColor
+                self.label.textColor = self.isError ? self.errorColor : self.secondaryTextColor
                 self.leadingAssistiveLabel.textColor = self.isError ? self.errorColor : self.secondaryTextColor
                 self.borderShapeLayer.strokeColor = self.isError ? self.errorColor.cgColor : self.activeColor.cgColor
                 self.textColor = BooksColor.textPrimary
