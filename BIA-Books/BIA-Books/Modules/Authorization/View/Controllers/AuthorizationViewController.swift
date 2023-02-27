@@ -24,11 +24,7 @@ class ViewController: UIViewController {
         return eyeButton
     }()
     @IBAction func CheckEmpty(_ sender: Any) {
-        if loginTextField.text != "" {
-            updateLogInButton()
-        } else {
-            defaultButton()
-        }
+        updateLogInButton(isEmpty: loginTextField.text == "")
     }
 
     @IBAction func logInButtonPressed(_ sender: Any) {
@@ -39,14 +35,17 @@ class ViewController: UIViewController {
         setUpView()
         bindViewModel()
     }
-    func defaultButton() {
-        logInButton.backgroundColor = BooksColor.entryButton
-        logInButton.titleLabel?.textColor = BooksColor.textSecondary
-    }
     
-    func updateLogInButton() {
+    func updateLogInButton(isEmpty: Bool) {
+        if isEmpty {
+            logInButton.backgroundColor = BooksColor.entryButton
+            logInButton.titleLabel?.textColor = BooksColor.textSecondary
+            logInButton.isEnabled = false
+        } else {
             logInButton.backgroundColor = BooksColor.brandPrimary
             logInButton.titleLabel?.textColor = BooksColor.brandTerteary
+            logInButton.isEnabled = true
+        }
     }
     //some comment for check
     @objc func pressedEyeButton(sender : AnyObject) {
