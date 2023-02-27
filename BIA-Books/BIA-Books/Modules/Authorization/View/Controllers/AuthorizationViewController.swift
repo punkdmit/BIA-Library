@@ -16,19 +16,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var logInStatus: UILabel!
     
-
     private lazy var eyeButton: UIButton =  {
         let eyeButton = UIButton()
         eyeButton.tintColor = BooksColor.textSecondary
         eyeButton.addTarget(self, action: #selector(pressedEyeButton(sender:)), for: .touchUpInside)
         return eyeButton
     }()
+    
     @IBAction func CheckEmpty(_ sender: Any) {
         updateLogInButton(isEmpty: loginTextField.text == "")
     }
-
+    
     @IBAction func logInButtonPressed(_ sender: Any) {
-        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
+        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "") 
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
             logInButton.isEnabled = true
         }
     }
-    //some comment for check
+    
     @objc func pressedEyeButton(sender : AnyObject) {
         set(isSecureTextEntry: !passwordTextField.isSecureTextEntry)
     }
@@ -57,9 +58,11 @@ class ViewController: UIViewController {
         passwordTextField.rightViewMode = .always
         passwordTextField.label.text = "Пароль"
     }
+    
     func setupLoginTextField() {
         loginTextField.label.text = "Логин"
     }
+    
     private func set(isSecureTextEntry: Bool) {
         passwordTextField.isSecureTextEntry = isSecureTextEntry
         eyeButton.setImage(image: (isSecureTextEntry ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")))
@@ -67,6 +70,7 @@ class ViewController: UIViewController {
     
     private func setUpView() {
         logInButton.layer.cornerRadius = 5
+        logInButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
         setupLoginTextField()
         setupPasswordTextField()
