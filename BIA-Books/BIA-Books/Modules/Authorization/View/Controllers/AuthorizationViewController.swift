@@ -16,13 +16,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var logInStatus: UILabel!
     
+
     private lazy var eyeButton: UIButton =  {
         let eyeButton = UIButton()
         eyeButton.tintColor = BooksColor.textSecondary
         eyeButton.addTarget(self, action: #selector(pressedEyeButton(sender:)), for: .touchUpInside)
         return eyeButton
     }()
-    
+    @IBAction func CheckEmpty(_ sender: Any) {
+        if loginTextField.text != "" {
+            updateLogInButton()
+        } else {
+            defaultButton()
+        }
+    }
+
     @IBAction func logInButtonPressed(_ sender: Any) {
         viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
     }
@@ -31,13 +39,14 @@ class ViewController: UIViewController {
         setUpView()
         bindViewModel()
     }
+    func defaultButton() {
+        logInButton.backgroundColor = BooksColor.entryButton
+        logInButton.titleLabel?.textColor = BooksColor.textSecondary
+    }
     
-    func updateLogInButton(button : UIButton) -> UIButton {
-        if loginTextField.text != "" && passwordTextField.text != "" {
-            button.backgroundColor = #colorLiteral(red: 0.2605186105, green: 0.2605186105, blue: 0.2605186105, alpha: 1)
-            button.titleLabel?.textColor = #colorLiteral(red: 1, green: 0.9999999404, blue: 0.9999999404, alpha: 1)
-        }
-        return button
+    func updateLogInButton() {
+            logInButton.backgroundColor = BooksColor.brandPrimary
+            logInButton.titleLabel?.textColor = BooksColor.brandTerteary
     }
     //some comment for check
     @objc func pressedEyeButton(sender : AnyObject) {
