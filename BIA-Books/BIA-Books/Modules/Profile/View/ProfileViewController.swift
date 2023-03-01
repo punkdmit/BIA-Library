@@ -55,11 +55,11 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupFullNameLabel(label fullNameLabel: UILabel) {
-        fullNameLabel.textColor = UIColor.black
+        fullNameLabel.textColor = BooksColor.textPrimary
     }
     
     private func setupMailLabel(label mailLabel: UILabel) {
-        mailLabel.textColor = UIColor.secondaryLabel
+        mailLabel.textColor = BooksColor.textSecondary
     }
     
     private func setupButtonsStacks(stacks buttonsStacks: [UIStackView]) {
@@ -74,19 +74,19 @@ class ProfileViewController: UIViewController {
     
     private func setupAboutAppButton(label aboutAppLabel: UILabel, image aboutAppArrowImage: UIImageView) {
         aboutAppLabel.text = "О приложении"
-        aboutAppLabel.textColor = .black
+        aboutAppLabel.textColor = BooksColor.textPrimary
         aboutAppArrowImage.image = UIImage(named: "arrow")
     }
     
     private func setupFaqButton(label faqLabel: UILabel, image faqArrowImage: UIImageView) {
         faqLabel.text = "FAQ"
-        faqLabel.textColor = .black
+        faqLabel.textColor = BooksColor.textPrimary
         faqArrowImage.image = UIImage(named: "arrow")
     }
     
     private func setupExitButton(label exitLabel: UILabel) {
         exitLabel.text = "Выйти"
-        exitLabel.textColor = .systemRed
+        exitLabel.textColor = BooksColor.RedText
     }
 }
 
