@@ -19,6 +19,10 @@
 		5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E299E4C299E824B002D9E6E /* AuthorizationViewModel.swift */; };
 		5E4840D729A37CE400A8C111 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D629A37CE400A8C111 /* Colors.swift */; };
 		5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D829A3CC5B00A8C111 /* Extensions.swift */; };
+		F87781B329AF826B00CE1EE4 /* Protocols in Resources */ = {isa = PBXBuildFile; fileRef = F87781AE29AF826B00CE1EE4 /* Protocols */; };
+		F87781B429AF826B00CE1EE4 /* Model in Resources */ = {isa = PBXBuildFile; fileRef = F87781AF29AF826B00CE1EE4 /* Model */; };
+		F87781B529AF826B00CE1EE4 /* ViewModel in Resources */ = {isa = PBXBuildFile; fileRef = F87781B029AF826B00CE1EE4 /* ViewModel */; };
+		F87781B729AF826B00CE1EE4 /* View in Resources */ = {isa = PBXBuildFile; fileRef = F87781B229AF826B00CE1EE4 /* View */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,11 @@
 		5E299E4C299E824B002D9E6E /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		5E4840D629A37CE400A8C111 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5E4840D829A3CC5B00A8C111 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F87781AE29AF826B00CE1EE4 /* Protocols */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Protocols; path = ../../../../../Developer/itmo/DiplomaLibraryOrig/DiplomaLibraryOrig/Protocols; sourceTree = "<group>"; };
+		F87781AF29AF826B00CE1EE4 /* Model */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Model; path = ../../../../../Developer/itmo/DiplomaLibraryOrig/DiplomaLibraryOrig/Model; sourceTree = "<group>"; };
+		F87781B029AF826B00CE1EE4 /* ViewModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ViewModel; path = ../../../../../Developer/itmo/DiplomaLibraryOrig/DiplomaLibraryOrig/ViewModel; sourceTree = "<group>"; };
+		F87781B229AF826B00CE1EE4 /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; name = View; path = ../../../../../Developer/itmo/DiplomaLibraryOrig/DiplomaLibraryOrig/View; sourceTree = "<group>"; };
+		F87781B929AF861500CE1EE4 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				5E299E42299E73B7002D9E6E /* Modules */,
+				F87781B829AF861500CE1EE4 /* fonts */,
 				5E299E2E299E73A3002D9E6E /* AppDelegate.swift */,
 				5E299E30299E73A3002D9E6E /* SceneDelegate.swift */,
 				5E4840D629A37CE400A8C111 /* Colors.swift */,
@@ -84,6 +94,7 @@
 		5E299E42299E73B7002D9E6E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F87781AD29AF820000CE1EE4 /* Profile */,
 				5E299E43299E73CE002D9E6E /* Authorization */,
 			);
 			path = Modules;
@@ -139,6 +150,25 @@
 				5E299E47299E7472002D9E6E /* Dynamic.swift */,
 			);
 			path = DataBinding;
+			sourceTree = "<group>";
+		};
+		F87781AD29AF820000CE1EE4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F87781B029AF826B00CE1EE4 /* ViewModel */,
+				F87781B229AF826B00CE1EE4 /* View */,
+				F87781AF29AF826B00CE1EE4 /* Model */,
+				F87781AE29AF826B00CE1EE4 /* Protocols */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F87781B829AF861500CE1EE4 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F87781B929AF861500CE1EE4 /* Inter.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +229,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F87781B429AF826B00CE1EE4 /* Model in Resources */,
 				5E299E3B299E73A4002D9E6E /* LaunchScreen.storyboard in Resources */,
 				5E299E38299E73A4002D9E6E /* Assets.xcassets in Resources */,
+				F87781B329AF826B00CE1EE4 /* Protocols in Resources */,
 				5E299E36299E73A3002D9E6E /* Main.storyboard in Resources */,
+				F87781B529AF826B00CE1EE4 /* ViewModel in Resources */,
+				F87781B729AF826B00CE1EE4 /* View in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
