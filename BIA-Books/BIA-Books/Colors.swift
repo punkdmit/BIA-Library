@@ -14,5 +14,8 @@ struct BooksColor {
     static let inactiveColor = UIColor(named: "EntryButtonText") ?? UIColor()
     static let activeColor = UIColor(named: "ActiveCell") ?? UIColor()
     static let textSecondary = UIColor(named: "TextSecondary") ?? UIColor()
+    static let brandPrimary = UIColor(named: "BrandPrimary") ?? UIColor()
+    static let brandTerteary = UIColor(named: "BrandTerteary") ?? UIColor()
+    static let entryButton = UIColor(named: "EntryButton") ?? UIColor()
 }
 

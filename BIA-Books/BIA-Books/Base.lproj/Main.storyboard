@@ -29,6 +29,9 @@
                                 <color key="backgroundColor" name="BackgroundSecondary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="CheckEmpty:" destination="BYZ-38-t0r" eventType="editingChanged" id="wiI-Ut-UHL"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3MR-rD-US0" customClass="BiaBooksTextField" customModule="BIA_Books" customModuleProvider="target">
                                 <rect key="frame" x="37" y="353" width="318" height="34"/>

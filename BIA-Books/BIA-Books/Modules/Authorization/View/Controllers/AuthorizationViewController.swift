@@ -23,8 +23,13 @@ class ViewController: UIViewController {
         return eyeButton
     }()
     
+    @IBAction func CheckEmpty(_ sender: Any) {
+        updateLogInButton(isEmpty: loginTextField.text == "")
+    }
+    
     @IBAction func logInButtonPressed(_ sender: Any) {
-        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
+        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "") 
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +37,18 @@ class ViewController: UIViewController {
         bindViewModel()
     }
     
-    func updateLogInButton(button : UIButton) -> UIButton {
-        if loginTextField.text != "" && passwordTextField.text != "" {
-            button.backgroundColor = #colorLiteral(red: 0.2605186105, green: 0.2605186105, blue: 0.2605186105, alpha: 1)
-            button.titleLabel?.textColor = #colorLiteral(red: 1, green: 0.9999999404, blue: 0.9999999404, alpha: 1)
+    func updateLogInButton(isEmpty: Bool) {
+        if isEmpty {
+            logInButton.backgroundColor = BooksColor.entryButton
+            logInButton.titleLabel?.textColor = BooksColor.textSecondary
+            logInButton.isEnabled = false
+        } else {
+            logInButton.backgroundColor = BooksColor.brandPrimary
+            logInButton.titleLabel?.textColor = BooksColor.brandTerteary
+            logInButton.isEnabled = true
         }
-        return button
     }
-    //some comment for check
+    
     @objc func pressedEyeButton(sender : AnyObject) {
         set(isSecureTextEntry: !passwordTextField.isSecureTextEntry)
     }
@@ -49,9 +58,11 @@ class ViewController: UIViewController {
         passwordTextField.rightViewMode = .always
         passwordTextField.label.text = "Пароль"
     }
+    
     func setupLoginTextField() {
         loginTextField.label.text = "Логин"
     }
+    
     private func set(isSecureTextEntry: Bool) {
         passwordTextField.isSecureTextEntry = isSecureTextEntry
         eyeButton.setImage(image: (isSecureTextEntry ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")))
@@ -59,6 +70,7 @@ class ViewController: UIViewController {
     
     private func setUpView() {
         logInButton.layer.cornerRadius = 5
+        logInButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
         setupLoginTextField()
         setupPasswordTextField()
