@@ -86,7 +86,7 @@ class ProfileViewController: UIViewController {
     
     private func setupExitButton(label exitLabel: UILabel) {
         exitLabel.text = "Выйти"
-        exitLabel.textColor = BooksColor.RedText
+        exitLabel.textColor = BooksColor.redText
     }
 }
 

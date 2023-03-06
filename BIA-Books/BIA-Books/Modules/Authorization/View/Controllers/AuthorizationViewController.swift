@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AuthorizationViewController: UIViewController {
     
     var viewModel = AthorizationViewModel()
     

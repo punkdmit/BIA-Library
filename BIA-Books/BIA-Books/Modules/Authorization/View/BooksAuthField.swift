@@ -29,7 +29,7 @@ class BiaBooksTextField: UITextField {
     
     public var activeColor: UIColor = BooksColor.activeColor
     public var inactiveColor: UIColor = UIColor.clear
-    public var errorColor: UIColor = BooksColor.logInStatusText
+    public var errorColor: UIColor = BooksColor.redText
     public var primaryTextColor: UIColor = BooksColor.textPrimary
     public var secondaryTextColor: UIColor = BooksColor.textSecondary
 
