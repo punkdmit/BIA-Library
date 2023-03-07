@@ -19,12 +19,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var faqArrowImage: UIImageView!
     @IBOutlet weak var exitLabel: UILabel!
     
-    @IBOutlet weak var firstCornerButtonsStack: UIStackView!
-    @IBOutlet weak var SecondCornerButtonStack: UIStackView!
+    @IBOutlet weak var AboutAndFaqButtonsCornerStack: UIStackView!
+    @IBOutlet weak var AboutButtonStack: UIStackView!
+    @IBOutlet weak var FaqButtonStack: UIStackView!
 
-    @IBAction func aboutAppButtonPressed(_ sender: Any) {
-        
-    }
+    @IBOutlet weak var ExitButtonCornerStack: UIStackView!
     
     private var viewModel: ProfileViewModel? {
         willSet(viewModel) {
@@ -38,13 +37,42 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         viewModel = ProfileViewModel(profile: Profile(profilePhoto: UIImage(named: "1"), name: "Dmitry", secondName: "Apenko", mail: "dima.gg2001@mail.ru"))
         setView()
+        initExitTabRecognizer()
+        initAboutTabRecognizer()
+    }
+    func initAboutTabRecognizer() {
+        let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.aboutPressed(tapGesture:)))
+        AboutButtonStack.addGestureRecognizer(aboutTapRecognizer)
+    }
+    
+    @objc func aboutPressed(tapGesture: UITapGestureRecognizer) {
+        let vc = UIViewController()
+        vc.view.backgroundColor = .white
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func initExitTabRecognizer() {
+        let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.exitPressed(tapGesture:)))
+        ExitButtonCornerStack.addGestureRecognizer(aboutTapRecognizer)
+    }
+    
+    @objc func exitPressed(tapGesture: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: "Вы уверены, что хотите выйти из учетной записи?", message: "", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Выйти", style: .destructive, handler: nil))
+        
+        self.present(alert, animated: true)
+//        delegate?.tapped()
     }
     
     private func setView() {
         setupUserPhoto(image: photoImage)
         setupFullNameLabel(label: fullNameLabel)
         setupMailLabel(label: mailLabel)
-        setupButtonsStacks(stacks: [firstCornerButtonsStack, SecondCornerButtonStack])
+        setupButtonsStacks(stacks: [AboutAndFaqButtonsCornerStack, ExitButtonCornerStack])
         setupAboutAppButton(label: aboutAppLabel, image: aboutAppArrowImage)
         setupFaqButton(label: faqLabel, image: faqArrowImage)
         setupExitButton(label: exitLabel)
@@ -90,3 +118,24 @@ class ProfileViewController: UIViewController {
     }
 }
 
+extension UIAlertAction {
+    static var propertyNames: [String] {
+        var outCount: UInt32 = 0
+        guard let ivars = class_copyIvarList(self, &outCount) else {
+            return []
+        }
+        var result = [String]()
+        let count = Int(outCount)
+        for i in 0..<count {
+            let pro: Ivar = ivars[i]
+            guard let ivarName = ivar_getName(pro) else {
+                continue
+            }
+            guard let name = String(utf8String: ivarName) else {
+                continue
+            }
+            result.append(name)
+        }
+        return result
+    }
+}

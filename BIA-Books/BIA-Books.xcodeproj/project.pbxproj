@@ -22,6 +22,8 @@
 		F8260CA629AF943A00AC3B9C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260CA529AF943A00AC3B9C /* ProfileViewModel.swift */; };
 		F8260CA829AF945C00AC3B9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260CA729AF945C00AC3B9C /* ProfileViewController.swift */; };
 		F8260CAA29AF946600AC3B9C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260CA929AF946600AC3B9C /* Profile.swift */; };
+		F88DC28429B75D5200FAA936 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88DC28329B75D5200FAA936 /* ViewController.swift */; };
+		F88DC28629B7764600FAA936 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F88DC28529B7764600FAA936 /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		F8260CA729AF945C00AC3B9C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F8260CA929AF946600AC3B9C /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F87781B929AF861500CE1EE4 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
+		F88DC28329B75D5200FAA936 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F88DC28529B7764600FAA936 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 		5E299E42299E73B7002D9E6E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F88DC27E29B75A8D00FAA936 /* TabBar */,
 				F8260C9B29AF939A00AC3B9C /* Profile */,
 				5E299E43299E73CE002D9E6E /* Authorization */,
 			);
@@ -164,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				F8260CA729AF945C00AC3B9C /* ProfileViewController.swift */,
+				F88DC28529B7764600FAA936 /* Profile.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +196,14 @@
 				F87781B929AF861500CE1EE4 /* Inter.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		F88DC27E29B75A8D00FAA936 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				F88DC28329B75D5200FAA936 /* ViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E299E3B299E73A4002D9E6E /* LaunchScreen.storyboard in Resources */,
+				F88DC28629B7764600FAA936 /* Profile.storyboard in Resources */,
 				5E299E38299E73A4002D9E6E /* Assets.xcassets in Resources */,
 				5E299E36299E73A3002D9E6E /* Main.storyboard in Resources */,
 			);
@@ -271,6 +286,7 @@
 				F8260CA829AF945C00AC3B9C /* ProfileViewController.swift in Sources */,
 				F8260CA629AF943A00AC3B9C /* ProfileViewModel.swift in Sources */,
 				5E299E48299E7472002D9E6E /* Dynamic.swift in Sources */,
+				F88DC28429B75D5200FAA936 /* ViewController.swift in Sources */,
 				5E299E4A299E758C002D9E6E /* User .swift in Sources */,
 				5E299E2F299E73A3002D9E6E /* AppDelegate.swift in Sources */,
 				5E299E31299E73A3002D9E6E /* SceneDelegate.swift in Sources */,
