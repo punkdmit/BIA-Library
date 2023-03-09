@@ -8,7 +8,6 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-//    var viewModel: ViewModel?
     
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
@@ -109,7 +108,7 @@ class ProfileViewController: UIViewController {
     private func setupFaqButton(label faqLabel: UILabel, image faqArrowImage: UIImageView) {
         faqLabel.text = "FAQ"
         faqLabel.textColor = BooksColor.textPrimary
-        faqArrowImage.image = UIImage(named: "arrow")
+        faqArrowImage.image = UIImage(named: "Arrow")
     }
     
     private func setupExitButton(label exitLabel: UILabel) {

@@ -11,15 +11,15 @@ import UIKit
 class ProfileViewModel {
     private var profile: Profile
     
-    var profilePhoto: UIImage {
-        return profile.profilePhoto!
+    var profilePhoto: UIImage? {
+        return profile.profilePhoto
     }
     
-    var fullName: String {
+    var fullName: String? {
             return profile.name + " " + profile.secondName
     }
     
-    var mail: String {
+    var mail: String? {
         return profile.mail
     }
     
