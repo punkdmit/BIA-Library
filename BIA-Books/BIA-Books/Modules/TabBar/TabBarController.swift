@@ -60,7 +60,7 @@ class TabBarController: UITabBarController {
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 let profileViewController = storyboard.instantiateViewController(withIdentifier: "profileViewController")
                 profileViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 2)
-                return profileViewController
+                return self.wrappedInNavigationController(with: profileViewController)
             }
         }, animated: false)
         

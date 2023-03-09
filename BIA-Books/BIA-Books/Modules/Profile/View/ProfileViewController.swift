@@ -8,7 +8,6 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var mailLabel: UILabel!
@@ -38,7 +37,9 @@ class ProfileViewController: UIViewController {
         setView()
         initExitTabRecognizer()
         initAboutTabRecognizer()
+        initFaqTabRecognizer()
     }
+    
     func initAboutTabRecognizer() {
         let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.aboutPressed(tapGesture:)))
         AboutButtonStack.addGestureRecognizer(aboutTapRecognizer)
@@ -51,9 +52,21 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func initFaqTabRecognizer() {
+            let faqTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.faqPressed(tapGesture:)))
+            FaqButtonStack.addGestureRecognizer(faqTapRecognizer)
+        }
+        
+        @objc func faqPressed(tapGesture: UITapGestureRecognizer) {
+            let vc = UIViewController()
+            vc.view.backgroundColor = .white
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    
     func initExitTabRecognizer() {
-        let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.exitPressed(tapGesture:)))
-        ExitButtonCornerStack.addGestureRecognizer(aboutTapRecognizer)
+        let exitTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.exitPressed(tapGesture:)))
+        ExitButtonCornerStack.addGestureRecognizer(exitTapRecognizer)
     }
     
     @objc func exitPressed(tapGesture: UITapGestureRecognizer) {
@@ -102,7 +115,7 @@ class ProfileViewController: UIViewController {
     private func setupAboutAppButton(label aboutAppLabel: UILabel, image aboutAppArrowImage: UIImageView) {
         aboutAppLabel.text = "О приложении"
         aboutAppLabel.textColor = BooksColor.textPrimary
-        aboutAppArrowImage.image = UIImage(named: "arrow")
+        aboutAppArrowImage.image = UIImage(named: "Arrow")
     }
     
     private func setupFaqButton(label faqLabel: UILabel, image faqArrowImage: UIImageView) {
