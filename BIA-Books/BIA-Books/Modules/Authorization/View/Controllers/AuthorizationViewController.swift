@@ -28,8 +28,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(_ sender: Any) {
-        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "") 
-        
+        if viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "") == true {
+            guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +72,6 @@ class ViewController: UIViewController {
     
     private func setUpView() {
         logInButton.layer.cornerRadius = 5
-        logInButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
         setupLoginTextField()
         setupPasswordTextField()
