@@ -50,13 +50,11 @@ class TabBarController: UITabBarController {
                 mainViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 0)
                 return self.wrappedInNavigationController(with: mainViewController)
             case .shelf:
-                let shelfViewController = UIViewController()
-                shelfViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 1)
-                return self.wrappedInNavigationController(with: shelfViewController)
+                let storyboard = UIStoryboard(name: "MyShelf", bundle: nil)
+                let myShelfTableViewController = storyboard.instantiateViewController(withIdentifier: "myShelfTableViewController")
+                myShelfTableViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 2)
+                return self.wrappedInNavigationController(with: myShelfTableViewController)
             case .profile:
-//                let profileViewController = ProfileViewController()
-////                return self.wrappedInNavigationController(with: profileViewController)
-//                return profileViewController
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 let profileViewController = storyboard.instantiateViewController(withIdentifier: "profileViewController")
                 profileViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 2)

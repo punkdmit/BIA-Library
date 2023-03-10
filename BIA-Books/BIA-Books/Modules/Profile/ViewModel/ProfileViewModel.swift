@@ -16,7 +16,7 @@ class ProfileViewModel {
     }
     
     var fullName: String? {
-            return profile.name + " " + profile.secondName
+        return profile.name + " " + profile.secondName
     }
     
     var mail: String? {
