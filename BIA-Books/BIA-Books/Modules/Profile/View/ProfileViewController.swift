@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var ExitButtonCornerStack: UIStackView!
     
-    private var viewModel: ProfileViewModel? {
+    var viewModel: ProfileViewModel? {
         willSet(viewModel) {
             fullNameLabel.text = viewModel?.fullName
             mailLabel.text = viewModel?.mail

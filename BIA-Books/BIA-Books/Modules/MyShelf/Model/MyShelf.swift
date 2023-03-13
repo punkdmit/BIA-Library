@@ -6,7 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct MyShelf {
-    
+    let bookImage: UIImage?
+    let bookName: String
+    let authorName: String
 }
