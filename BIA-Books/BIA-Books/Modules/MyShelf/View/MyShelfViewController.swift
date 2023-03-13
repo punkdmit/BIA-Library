@@ -11,10 +11,11 @@ class MyShelfViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: CardViewModel?
+    var viewModel: ViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = ViewModel()
         tableView.register(UINib(nibName: "BookCardCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -24,7 +25,7 @@ class MyShelfViewController: UIViewController {
 
 extension MyShelfViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.myShelfs?.count ?? 0
+        return viewModel?.myShelfs.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,7 +43,7 @@ extension MyShelfViewController: UITableViewDataSource {
 //        cell.authorLabel.text = a.authorName
 //        cell.bookImage.image = a.bookImage
         
-        cell.setup()
+//        cell.setup()
         return cell
     }
 }

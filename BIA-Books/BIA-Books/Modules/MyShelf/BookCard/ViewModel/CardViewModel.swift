@@ -9,24 +9,26 @@ import Foundation
 import UIKit
 
 class CardViewModel {
-    private var selectedIndexPath : IndexPath?
-
-    var myShelfs: [MyShelf]? = [
-        MyShelf(bookImage: UIImage(named: "1"), bookName: "Дежавю", authorName: "Кизару"),
-        MyShelf(bookImage: UIImage(named: "1"), bookName: "Букварь", authorName: "Микки Маус"),
-        MyShelf(bookImage: UIImage(named: "1"), bookName: "Язык программирования Swift", authorName: "Дима Апенько")
-        ]
     
     var myShelf: MyShelf
+    
+    var bookImage: UIImage? {
+        return myShelf.bookImage
+    }
+    
+    var bookName: String? {
+        return myShelf.bookName
+    }
+    
+    var authorname: String? {
+        return myShelf.authorName
+    }
     
     init(myShelf: MyShelf) {
         self.myShelf = myShelf
     }
     
-    func cellViewModel(indexPath: IndexPath) -> CardViewModel? {
-        guard let myShelf = myShelfs?[indexPath.row] else { return nil }
-        return CardViewModel(myShelf: myShelf)
-    }
+    
 }
 
 
