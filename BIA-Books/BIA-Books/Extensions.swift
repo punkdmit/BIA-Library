@@ -24,3 +24,8 @@ extension UIView {
         layer.shadowOffset = CGSize(width: 0, height: 2)
     }
 }
+extension UITableViewCell {
+    func noSelectionStyle () {
+        self.selectionStyle = .none
+    }
+}

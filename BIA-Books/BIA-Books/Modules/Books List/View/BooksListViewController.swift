@@ -9,8 +9,6 @@ import UIKit
 
 class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let cellHeight : CGFloat = 131
-    let cellSpacingHeight : CGFloat = 16
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTableView: UITableView!
     
@@ -35,7 +33,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {return UITableViewCell()}
-        
+        cell.noSelectionStyle()
         return cell
     }
     

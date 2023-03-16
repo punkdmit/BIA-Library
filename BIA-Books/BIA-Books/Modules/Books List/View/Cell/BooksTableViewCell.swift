@@ -12,6 +12,8 @@ class BooksTableViewCell: UITableViewCell {
     @IBOutlet weak var bookName: UILabel!
     @IBOutlet weak var cardView: UIView!
     
+    let selectedColorView = UIView()
+    
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var bookStatus: UILabel!
     override func awakeFromNib() {
