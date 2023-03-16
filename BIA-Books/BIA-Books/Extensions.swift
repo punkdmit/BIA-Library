@@ -14,14 +14,13 @@ extension UIButton {
         }
     }
 }
-
 extension UIView {
     func aplyShadow(cornerRadius: CGFloat) {
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = false
         layer.shadowRadius = 4.0
-        layer.shadowOpacity = 0.30
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOpacity = 0.12
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
     }
 }
