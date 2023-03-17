@@ -25,6 +25,8 @@
 		5E88DF0629BB52E300F346DB /* BooksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */; };
 		5E88DF0729BB52E300F346DB /* BooksTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */; };
 		5EA312DE29B9FF3A0004F02B /* BooksViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */; };
+		5EF50DAB29C479D100085757 /* BookDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */; };
+		5EF50DAD29C479E000085757 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF50DAC29C479E000085757 /* BookDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTableViewCell.swift; sourceTree = "<group>"; };
 		5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BooksTableViewCell.xib; sourceTree = "<group>"; };
 		5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BooksViewController.storyboard; sourceTree = "<group>"; };
+		5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetailViewController.storyboard; sourceTree = "<group>"; };
+		5EF50DAC29C479E000085757 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 		5E299E42299E73B7002D9E6E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5EF50D9F29C4756A00085757 /* Book Detail */,
 				5E2C260D29B6840F00C28830 /* Books List */,
 				5E299E43299E73CE002D9E6E /* Authorization */,
 			);
@@ -207,6 +212,31 @@
 			path = StoryBoards;
 			sourceTree = "<group>";
 		};
+		5EF50D9F29C4756A00085757 /* Book Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5EF50DA129C4758100085757 /* ViewModel */,
+				5EF50DA029C4757B00085757 /* View */,
+			);
+			path = "Book Detail";
+			sourceTree = "<group>";
+		};
+		5EF50DA029C4757B00085757 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */,
+				5EF50DAC29C479E000085757 /* BookDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5EF50DA129C4758100085757 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,6 +300,7 @@
 				5EA312DE29B9FF3A0004F02B /* BooksViewController.storyboard in Resources */,
 				5E299E36299E73A3002D9E6E /* Main.storyboard in Resources */,
 				5E88DF0729BB52E300F346DB /* BooksTableViewCell.xib in Resources */,
+				5EF50DAB29C479D100085757 /* BookDetailViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +315,7 @@
 				5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */,
 				5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */,
 				5E2C261129B6846100C28830 /* Book.swift in Sources */,
+				5EF50DAD29C479E000085757 /* BookDetailViewController.swift in Sources */,
 				5E299E33299E73A3002D9E6E /* AuthorizationViewController.swift in Sources */,
 				5E2C261329B6846D00C28830 /* BookViewModel.swift in Sources */,
 				5E299E48299E7472002D9E6E /* Dynamic.swift in Sources */,

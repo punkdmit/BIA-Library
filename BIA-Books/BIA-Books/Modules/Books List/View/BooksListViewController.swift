@@ -21,6 +21,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     private func setView() {
+        navigationItem.hidesBackButton = true
         searchBar.placeholder = "Поиск"
         booksTableView.delegate = self
         booksTableView.dataSource = self
@@ -35,5 +36,9 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {return UITableViewCell()}
         cell.noSelectionStyle()
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
