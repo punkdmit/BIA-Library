@@ -164,9 +164,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bookName" destination="Tjz-J6-YjR" id="wuZ-3K-JVs"/>
-                <outlet property="bookStatus" destination="hqs-59-PRV" id="d0o-kt-yhf"/>
+                <outlet property="bookStatus" destination="hqs-59-PRV" id="8pl-QK-Z9o"/>
                 <outlet property="cardView" destination="cuJ-CI-VhJ" id="a1A-nv-VCG"/>
+                <outlet property="dateStack" destination="8iP-39-Cnx" id="y49-vH-ywJ"/>
                 <outlet property="language" destination="Xe5-ND-s76" id="qza-ZR-Ydf"/>
+                <outlet property="languageStack" destination="H5G-8v-LrS" id="gPK-6V-lw8"/>
             </connections>
             <point key="canvasLocation" x="1087.7862595419847" y="175"/>
         </tableViewCell>
