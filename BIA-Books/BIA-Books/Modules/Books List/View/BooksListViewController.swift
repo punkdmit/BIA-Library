@@ -36,5 +36,4 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.noSelectionStyle()
         return cell
     }
-    
 }
