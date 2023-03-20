@@ -8,6 +8,7 @@
 import UIKit
 
 class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+    @IBOutlet weak var detailCardView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private func setView() {
         customBackButton()
-
+        detailCardView.aplyShadow(cornerRadius: 12)
     }
     private func customBackButton() {
         let backBTN = UIBarButtonItem(image: UIImage(named: "backButton"),
