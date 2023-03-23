@@ -26,13 +26,7 @@ class BooksTableViewCell: UITableViewCell {
     
     private func setUp() {
         cardView.aplyShadow(cornerRadius: 12)
-        roundCornersForUILabels(stack: dateStack)
-        roundCornersForUILabels(stack: languageStack)
-        
-    }
-    
-    private func roundCornersForUILabels(stack: UIStackView) {
-        stack.layer.cornerRadius = 6
-        stack.layer.cornerCurve = .continuous
+        dateStack.roundCornersForUILabels()
+        languageStack.roundCornersForUILabels()
     }
 }
