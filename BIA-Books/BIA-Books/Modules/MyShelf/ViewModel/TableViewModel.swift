@@ -10,9 +10,9 @@ import UIKit
 
 class ViewModel {
     var myShelfs = [
-        MyShelf(bookImage: UIImage(named: "Обложка"), bookName: "Дежавю", authorName: "Кизару"),
-        MyShelf(bookImage: UIImage(named: "Обложка"), bookName: "Букварь", authorName: "Микки Маус"),
-        MyShelf(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никитос Аликан")
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Дежавю", authorName: "Кизару"),
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Букварь", authorName: "Микки Маус"),
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никитос Аликан")
     ]
     
     func cellViewModel(indexPath: IndexPath) -> CardViewModel? {

@@ -113,6 +113,7 @@
                 <outlet property="authorLabel" destination="NwL-sg-fbw" id="Vbm-uq-gd9"/>
                 <outlet property="bookImage" destination="HLe-Qf-1Rs" id="VGF-pe-eTu"/>
                 <outlet property="bookNameLabel" destination="7lm-ML-ulm" id="KE2-CH-hgZ"/>
+                <outlet property="cancelRequestStack" destination="Dbt-FY-L3N" id="5i9-fK-Hl2"/>
                 <outlet property="view" destination="Ony-TQ-BD8" id="Pal-WH-qI1"/>
             </connections>
             <point key="canvasLocation" x="150" y="34"/>

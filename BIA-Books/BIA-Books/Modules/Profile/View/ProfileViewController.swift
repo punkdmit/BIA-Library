@@ -35,12 +35,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         viewModel = ProfileViewModel(profile: Profile(profilePhoto: UIImage(named: "1"), name: "Dmitry", secondName: "Apenko", mail: "dima.gg2001@mail.ru"))
         setView()
-        initExitTabRecognizer()
-        initAboutTabRecognizer()
-        initFaqTabRecognizer()
+        addExitGestureRecognizer()
+        addAboutGestureRecognizer()
+        addFaqGestureRecognizer()
     }
     
-    func initAboutTabRecognizer() {
+    func addAboutGestureRecognizer() {
         let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.aboutPressed(tapGesture:)))
         AboutButtonStack.addGestureRecognizer(aboutTapRecognizer)
     }
@@ -52,19 +52,18 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func initFaqTabRecognizer() {
+    func addFaqGestureRecognizer() {
             let faqTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.faqPressed(tapGesture:)))
             FaqButtonStack.addGestureRecognizer(faqTapRecognizer)
         }
         
-        @objc func faqPressed(tapGesture: UITapGestureRecognizer) {
-            let vc = UIViewController()
-            vc.view.backgroundColor = .white
-            
-            navigationController?.pushViewController(vc, animated: true)
-        }
+    @objc func faqPressed(tapGesture: UITapGestureRecognizer) {
+        let vc = UIViewController()
+        vc.view.backgroundColor = .white
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
-    func initExitTabRecognizer() {
+    func addExitGestureRecognizer() {
         let exitTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.exitPressed(tapGesture:)))
         ExitButtonCornerStack.addGestureRecognizer(exitTapRecognizer)
     }

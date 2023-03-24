@@ -10,25 +10,23 @@ import UIKit
 
 class CardViewModel {
     
-    var myShelf: MyShelf
+    var book: Book?
     
     var bookImage: UIImage? {
-        return myShelf.bookImage
+        return book?.bookImage
     }
     
     var bookName: String? {
-        return myShelf.bookName
+        return book?.bookName
     }
     
     var authorname: String? {
-        return myShelf.authorName
+        return book?.authorName
     }
     
-    init(myShelf: MyShelf) {
-        self.myShelf = myShelf
+    init(myShelf: Book) {
+        self.book = myShelf
     }
-    
-    
 }
 
 
