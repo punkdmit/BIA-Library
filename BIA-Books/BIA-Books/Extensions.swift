@@ -30,8 +30,14 @@ extension UITableViewCell {
     }
 }
 extension UIStackView {
-    func roundCornersForUILabels() {
-        self.layer.cornerRadius = 6
+    func roundCornersForUILabels(radius : CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = .continuous
+    }
+}
+extension UIButton  {
+    func roundedCornerButton(radius : CGFloat) {
+        self.layer.cornerRadius = radius
         self.layer.cornerCurve = .continuous
     }
 }
