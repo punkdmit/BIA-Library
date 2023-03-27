@@ -20,8 +20,12 @@ class CardViewModel {
         return book?.bookName
     }
     
-    var authorname: String? {
+    var authorName: String? {
         return book?.authorName
+    }
+    
+    var bookStatus: String? {
+        return book?.bookStatus
     }
     
     init(myShelf: Book) {

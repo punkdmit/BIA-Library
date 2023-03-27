@@ -16,7 +16,7 @@ class ResultViewCell: UITableViewCell {
         willSet(viewModel) {
             bookImage.image = viewModel?.bookImage
             bookNameLabel.text = viewModel?.bookName
-            authorLabel.text = viewModel?.authorname
+            authorLabel.text = viewModel?.authorName
         }
     }
     
@@ -25,5 +25,7 @@ class ResultViewCell: UITableViewCell {
         setup()
     }
     
-    func setup() {}
+    func setup() {
+        bookImage.layer.cornerRadius = 4
+    }
 }

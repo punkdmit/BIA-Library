@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,13 +44,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNJ-SK-QKY">
                                                         <rect key="frame" x="0.0" y="0.0" width="64" height="29.333333333333332"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Bold" family="Inter" pointSize="24"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="TextPrimary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPT-HI-QwU">
                                                         <rect key="frame" x="0.0" y="29.333333333333343" width="64" height="17"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="TextSecondary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -65,7 +66,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="О приложении" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hh-GC-BUa">
                                                         <rect key="frame" x="0.0" y="6" width="313" height="24"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="TextPrimary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="vhx-fp-FcM">
@@ -84,7 +85,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="FAQ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1O-it-R9B">
                                                         <rect key="frame" x="0.0" y="6" width="313" height="24"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="TextPrimary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="eRy-Hq-54c">
@@ -108,7 +109,7 @@
                                                 <rect key="frame" x="0.0" y="14.000000000000002" width="361" height="19.666666666666671"/>
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="16"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="redText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -138,11 +139,6 @@
                         <outlet property="AboutButtonStack" destination="rVV-0L-ye6" id="tTK-xn-AZV"/>
                         <outlet property="ExitButtonCornerStack" destination="duF-QA-It1" id="jKX-lK-5ld"/>
                         <outlet property="FaqButtonStack" destination="yvC-GH-0Nj" id="CIh-Fj-4pO"/>
-                        <outlet property="aboutAppArrowImage" destination="vhx-fp-FcM" id="37a-9v-9oJ"/>
-                        <outlet property="aboutAppLabel" destination="1hh-GC-BUa" id="XXf-KF-Lsh"/>
-                        <outlet property="exitLabel" destination="Ahg-iY-l5D" id="k4r-pR-JHy"/>
-                        <outlet property="faqArrowImage" destination="eRy-Hq-54c" id="QxM-1D-75J"/>
-                        <outlet property="faqLabel" destination="K1O-it-R9B" id="ElZ-Qj-T78"/>
                         <outlet property="fullNameLabel" destination="oNJ-SK-QKY" id="IqP-vN-mcd"/>
                         <outlet property="mailLabel" destination="FPT-HI-QwU" id="u7L-2D-VNi"/>
                         <outlet property="photoImage" destination="s4q-1f-aYH" id="6lb-6D-uv0"/>
@@ -155,6 +151,15 @@
     </scenes>
     <resources>
         <image name="Arrow" width="24" height="24"/>
+        <namedColor name="TextPrimary">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextSecondary">
+            <color red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="redText">
+            <color red="0.98000001907348633" green="0.21600000560283661" blue="0.21600000560283661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
