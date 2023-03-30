@@ -17,5 +17,6 @@ struct BooksColor {
     static let brandPrimary = UIColor(named: "BrandPrimary") ?? UIColor()
     static let brandTerteary = UIColor(named: "BrandTerteary") ?? UIColor()
     static let entryButton = UIColor(named: "EntryButton") ?? UIColor()
+    static let brandSecondary = UIColor(named: "brandSecondary") ?? UIColor()
 }
 

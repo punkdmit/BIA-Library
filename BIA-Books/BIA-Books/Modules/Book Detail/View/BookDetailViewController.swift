@@ -6,25 +6,35 @@
 //
 
 import UIKit
+import ReadMoreTextView
 
-class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+
+class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var viewModel : BookDetailViewModel?
+    
+    let reuseIdentifer = "Cell"
+    
     @IBOutlet weak var detailCardView: UIView!
     @IBOutlet weak var bookRequestButton: UIButton!
+    
+    @IBOutlet weak var descriptionTextView: ReadMoreTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-
-        // Do any additional setup after loading the view.
+        
     }
-    
-    
-
     private func setView() {
+        viewModel = BookDetailViewModel()
+        setUpCollectionView()
         customBackButton()
         detailCardView.aplyShadow(cornerRadius: 12)
         bookRequestButton.roundedCornerButton(radius: 6)
+        setTextView(textView: descriptionTextView)
     }
+    
     private func customBackButton() {
         let backBTN = UIBarButtonItem(image: UIImage(named: "backButton"),
                                       style: .plain,
@@ -34,15 +44,36 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.leftBarButtonItem = backBTN
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func setTextView(textView : ReadMoreTextView) {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: BooksColor.brandSecondary,
+            .font: UIFont.boldSystemFont(ofSize: 14)
+        ]
+        textView.shouldTrim = true
+        textView.maximumNumberOfLines = 4
+        textView.attributedReadMoreText = NSAttributedString(string: "... Подробнее ⌄" , attributes: attributes)
+        textView.attributedReadLessText = NSAttributedString(string: " Подробнее", attributes: attributes)
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel?.numberOfRows() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifer, for: indexPath) as? TagsCollectionViewCell else {return UICollectionViewCell()}
+        let label = viewModel?.labels[indexPath.row]
+        cell.label?.text = label
+        cell.roundedCornerForCollectionViewCell(radius: 6)
+        
+        return cell
+    }
+    private func setUpCollectionView() {
+        collectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifer)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.showsHorizontalScrollIndicator = false
 
+    }
+    
 }
