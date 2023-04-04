@@ -18,31 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="myShelfViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PcO-r0-Qq7">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="j0O-45-CmB">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eSG-op-eMa">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Запросил"/>
-                                        <segment title="Читаю"/>
-                                        <segment title="Прочёл"/>
-                                    </segments>
-                                    <color key="tintColor" name="TextPrimary"/>
-                                </segmentedControl>
-                            </tableView>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-op-eMa">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="32"/>
+                                        <segments>
+                                            <segment title="Запросил"/>
+                                            <segment title="Читаю"/>
+                                            <segment title="Прочёл"/>
+                                        </segments>
+                                        <color key="tintColor" name="TextPrimary"/>
+                                        <connections>
+                                            <action selector="changeSegment:" destination="clW-RW-93V" eventType="valueChanged" id="NpQ-DC-XmO"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="myShelfViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PcO-r0-Qq7">
+                                        <rect key="frame" x="0.0" y="47" width="393" height="712"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VEN-a0-0SY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PcO-r0-Qq7" firstAttribute="leading" secondItem="VEN-a0-0SY" secondAttribute="leading" id="2bP-Xx-pUz"/>
-                            <constraint firstItem="VEN-a0-0SY" firstAttribute="trailing" secondItem="PcO-r0-Qq7" secondAttribute="trailing" id="5s7-Kw-XA2"/>
-                            <constraint firstItem="VEN-a0-0SY" firstAttribute="bottom" secondItem="PcO-r0-Qq7" secondAttribute="bottom" id="7f5-r9-ZRz"/>
-                            <constraint firstItem="PcO-r0-Qq7" firstAttribute="top" secondItem="VEN-a0-0SY" secondAttribute="top" id="f41-q7-3ug"/>
+                            <constraint firstItem="j0O-45-CmB" firstAttribute="leading" secondItem="VEN-a0-0SY" secondAttribute="leading" id="5O2-bP-EzD"/>
+                            <constraint firstItem="j0O-45-CmB" firstAttribute="bottom" secondItem="VEN-a0-0SY" secondAttribute="bottom" id="Pyy-E2-yMW"/>
+                            <constraint firstItem="j0O-45-CmB" firstAttribute="trailing" secondItem="VEN-a0-0SY" secondAttribute="trailing" id="VGT-17-VVq"/>
+                            <constraint firstItem="j0O-45-CmB" firstAttribute="top" secondItem="VEN-a0-0SY" secondAttribute="top" id="bN0-jW-wqO"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mySegmentControl" destination="eSG-op-eMa" id="Be0-sk-0aX"/>
                         <outlet property="tableView" destination="PcO-r0-Qq7" id="jZy-8H-uW4"/>
                     </connections>
                 </viewController>

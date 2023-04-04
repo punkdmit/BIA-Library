@@ -8,9 +8,15 @@
 import Foundation
 import UIKit
 
+enum BooksStatuses {
+    case requested
+    case reading
+    case read
+}
+
 struct Book {
     let bookImage: UIImage?
     let bookName: String
     let authorName: String
-    let bookStatus: String
+    let bookStatus: BooksStatuses
 }

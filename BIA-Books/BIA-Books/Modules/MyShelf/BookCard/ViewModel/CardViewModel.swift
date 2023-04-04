@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class CardViewModel {
+    enum CellType {
+        case requested
+        case reading
+        case read
+    }
     
     var book: Book?
     
@@ -24,12 +29,15 @@ class CardViewModel {
         return book?.authorName
     }
     
-    var bookStatus: String? {
-        return book?.bookStatus
-    }
+    var cellType: CellType
     
-    init(myShelf: Book) {
+//    var bookStatus: String? {
+//        return book?.bookStatus
+//    }
+    
+    init(myShelf: Book, cellType: CellType) {
         self.book = myShelf
+        self.cellType = cellType
     }
 }
 

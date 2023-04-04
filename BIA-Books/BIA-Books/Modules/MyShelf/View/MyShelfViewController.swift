@@ -11,27 +11,38 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var mySegmentControl: UISegmentedControl!
+    
+//    private enum SegmentedControlItems: String, CaseIterable {
+//        case case1 = "Case1"
+//        case case2 = "Case2"
+//        case case3 = "Case3"
+//    }
+//    private let cases = [SegmentedControlItems.case1, SegmentedControlItems.case2, SegmentedControlItems.case3]
+
+    
+    
+    
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            
+            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .requested } ?? []
         } else if sender.selectedSegmentIndex == 1 {
-            
+            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .reading } ?? []
         } else if sender.selectedSegmentIndex == 2 {
-            
+            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .read } ?? []
         }
+        tableView.reloadData()
     }
     
     private let searchController = UISearchController(searchResultsController: nil)
-    
-    private let t = UISegmentedControl()
-    
+
     var viewModel: ViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = ViewModel()
-        tableView.register(UINib(nibName: "BookCardCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        tableView.register(UINib(nibName: "ResultTableViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
+        tableView.register(UINib(nibName: "RequestedBookCardCell", bundle: nil), forCellReuseIdentifier: "RequestedBookCardCell")
+        tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -66,12 +77,29 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
 
 extension MyShelfViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.myShelfs.count ?? 0
+        return viewModel?.dataSource.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestedBookCardCell", for: indexPath) as? RequestedBookCardCell else { return UITableViewCell() }
-        let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath)
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestedBookCardCell", for: indexPath) as? RequestedBookCardCell else { return UITableViewCell() }
+//        let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath)
+//        cell.viewModel = cellViewModel
+//        return cell
+        var cellType: CardViewModel.CellType?
+        
+        switch(mySegmentControl.selectedSegmentIndex) {
+        case 0:
+            cellType = .requested
+        case 1:
+            cellType = .reading
+        case 2:
+            cellType = .read
+        default:
+            cellType = nil
+        }
+        
+        guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "RequestedBookCardCell", for: indexPath) as? RequestedBookCardCell else { return UITableViewCell() }
+        let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
         cell.viewModel = cellViewModel
         return cell
     }

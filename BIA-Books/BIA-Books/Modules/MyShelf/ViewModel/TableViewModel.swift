@@ -9,20 +9,16 @@ import Foundation
 import UIKit
 
 class ViewModel {
-    enum BooksStatuses: String {
-        case requested
-        case reading
-        case read
-    }
-    
-    var myShelfs = [
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Дежавю", authorName: "Кизару", bookStatus: BooksStatuses.requested.rawValue),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Букварь", authorName: "Микки Маус", bookStatus: BooksStatuses.reading.rawValue),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никитос Аликан", bookStatus: BooksStatuses.read.rawValue)
+    var booksPreset = [
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Дежавю", authorName: "Кизару", bookStatus: BooksStatuses.requested),
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Букварь", authorName: "Микки Маус", bookStatus: BooksStatuses.reading),
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никитос Аликан", bookStatus: BooksStatuses.read)
     ]
     
-    func cellViewModel(indexPath: IndexPath) -> CardViewModel? {
-        let myShelf = myShelfs[indexPath.row] 
-        return CardViewModel(myShelf: myShelf)
+    var dataSource = [Book]()
+    
+    func cellViewModel(indexPath: IndexPath, type: CardViewModel.CellType) -> CardViewModel? {
+        let book = dataSource[indexPath.row] 
+        return CardViewModel(myShelf: book, cellType: type)
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 protocol BookCardCellDelegate: AnyObject {
     func cancelReservation(book: Book?)
+    func returnBook(book: Book?)
+    func requestBook(book: Book?)
 }
 
 class RequestedBookCardCell: UITableViewCell {
@@ -17,6 +19,9 @@ class RequestedBookCardCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     
     @IBOutlet weak var cancelRequestStack: UIStackView!
+    @IBOutlet weak var buttonLabel: UILabel!
+    @IBOutlet weak var buttonImage: UIImageView!
+    
     @IBOutlet weak var view: UIView!
     
     weak var delegate: BookCardCellDelegate?
@@ -32,6 +37,7 @@ class RequestedBookCardCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+        setupButtonView()
     }
     
     func setup() {
@@ -46,6 +52,27 @@ class RequestedBookCardCell: UITableViewCell {
         view.layer.cornerRadius = 12
             
         addCancelRequestGestureRecognizer()
+    }
+    
+    func setupButtonView() {
+        switch viewModel?.cellType {
+            case .requested:
+                buttonLabel.text = "Отменить запрос"
+                buttonLabel.tintColor = BooksColor.redText
+                buttonImage.image = UIImage(named: "Delite")
+            case .reading:
+                buttonLabel.text = "Сдать"
+                buttonLabel.tintColor = BooksColor.activeColor
+                buttonImage.image = UIImage(named: "Add new")
+            case .read:
+                buttonLabel.text = "Запросить"
+                buttonLabel.tintColor = BooksColor.activeColor
+                buttonImage.image = UIImage(named: "Add new")
+            default:
+                buttonLabel.text = ""
+                buttonLabel.tintColor = .white
+                buttonImage.image = UIImage(named: "")
+        }
     }
     
     private func addCancelRequestGestureRecognizer()  {
