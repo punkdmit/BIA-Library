@@ -18,7 +18,7 @@ class RequestedBookCardCell: UITableViewCell {
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     
-    @IBOutlet weak var cancelRequestStack: UIStackView!
+    @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var buttonLabel: UILabel!
     @IBOutlet weak var buttonImage: UIImageView!
     
@@ -26,17 +26,35 @@ class RequestedBookCardCell: UITableViewCell {
     
     weak var delegate: BookCardCellDelegate?
     
-    var viewModel: CardViewModel? {
-        willSet(viewModel) {
+    var viewModel: CardViewModel?
+    /*
+    {
+        didSet(viewModel) {
             bookImage.image = viewModel?.bookImage
             bookNameLabel.text = viewModel?.bookName
             authorLabel.text = viewModel?.authorName
+            setupButtonView()
         }
     }
+    */
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+    }
+    
+    /*
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setup()
+    }
+    */
+    
+    func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+        bookImage.image = viewModel.bookImage
+        bookNameLabel.text = viewModel.bookName
+        authorLabel.text = viewModel.authorName
         setupButtonView()
     }
     
@@ -52,42 +70,64 @@ class RequestedBookCardCell: UITableViewCell {
         view.layer.cornerRadius = 12
             
         addCancelRequestGestureRecognizer()
+        //setupButtonView()
     }
     
     func setupButtonView() {
-        switch viewModel?.cellType {
+        guard let viewModel = viewModel else { return }
+        
+        switch viewModel.cellType {
             case .requested:
                 buttonLabel.text = "Отменить запрос"
                 buttonLabel.tintColor = BooksColor.redText
-                buttonImage.image = UIImage(named: "Delite")
+                buttonImage.image = UIImage(named: "Delete")
+            
             case .reading:
                 buttonLabel.text = "Сдать"
                 buttonLabel.tintColor = BooksColor.activeColor
                 buttonImage.image = UIImage(named: "Add new")
+            
             case .read:
                 buttonLabel.text = "Запросить"
                 buttonLabel.tintColor = BooksColor.activeColor
                 buttonImage.image = UIImage(named: "Add new")
-            default:
-                buttonLabel.text = ""
-                buttonLabel.tintColor = .white
-                buttonImage.image = UIImage(named: "")
         }
     }
     
     private func addCancelRequestGestureRecognizer()  {
         let cancelRequestStack = UITapGestureRecognizer(target: self, action: #selector(self.cancelReservationPressed(tapGesture:)))
-        self.cancelRequestStack.addGestureRecognizer(cancelRequestStack)
+        self.buttonStack.addGestureRecognizer(cancelRequestStack)
     }
     
     @objc func cancelReservationPressed(tapGesture: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: viewModel?.bookName, message: "Хотите отменить запрос?", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
-            self?.delegate?.cancelReservation(book: self?.viewModel?.book)
-        })
-        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        guard let viewModel = viewModel else { return }
+    
+        switch viewModel.cellType {
+        case .requested:
+            let alert = UIAlertController(title: viewModel.bookName, message: "Хотите отменить запрос?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
+                self?.delegate?.cancelReservation(book: self?.viewModel?.book)
+            })
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        case .reading:
+            let alert = UIAlertController(title: viewModel.bookName, message: "Хотите сдать книгу?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
+                self?.delegate?.returnBook(book: self?.viewModel?.book)
+            })
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        case .read:
+            let alert = UIAlertController(title: viewModel.bookName, message: "Хотите запросить книгу?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
+                self?.delegate?.requestBook(book: self?.viewModel?.book)
+            })
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
     }
 }
+

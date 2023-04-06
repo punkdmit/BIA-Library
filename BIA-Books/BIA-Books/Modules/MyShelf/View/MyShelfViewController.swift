@@ -13,25 +13,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var mySegmentControl: UISegmentedControl!
     
-//    private enum SegmentedControlItems: String, CaseIterable {
-//        case case1 = "Case1"
-//        case case2 = "Case2"
-//        case case3 = "Case3"
-//    }
-//    private let cases = [SegmentedControlItems.case1, SegmentedControlItems.case2, SegmentedControlItems.case3]
-
-    
-    
-    
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .requested } ?? []
-        } else if sender.selectedSegmentIndex == 1 {
-            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .reading } ?? []
-        } else if sender.selectedSegmentIndex == 2 {
-            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .read } ?? []
-        }
-        tableView.reloadData()
+        setSegment(index: sender.selectedSegmentIndex)
     }
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -49,6 +32,7 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         setupNavigationControllerTitle()
         setupSearchController()
         setupNavigationControllerSortImage()
+        setSegment(index: 0)
     }
     
     func setupNavigationControllerTitle() {
@@ -73,6 +57,20 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         definesPresentationContext = true
     }
     
+    private func setSegment(index: Int) {
+        switch index {
+        case 0:
+            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .requested } ?? []
+        case 1:
+            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .reading } ?? []
+        case 2:
+            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .read } ?? []
+        default:
+            viewModel?.dataSource = []
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 extension MyShelfViewController: UITableViewDataSource {
@@ -81,10 +79,6 @@ extension MyShelfViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestedBookCardCell", for: indexPath) as? RequestedBookCardCell else { return UITableViewCell() }
-//        let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath)
-//        cell.viewModel = cellViewModel
-//        return cell
         var cellType: CardViewModel.CellType?
         
         switch(mySegmentControl.selectedSegmentIndex) {
@@ -101,6 +95,7 @@ extension MyShelfViewController: UITableViewDataSource {
         guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "RequestedBookCardCell", for: indexPath) as? RequestedBookCardCell else { return UITableViewCell() }
         let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
         cell.viewModel = cellViewModel
+        cell.bindViewModel()
         return cell
     }
 }
@@ -110,6 +105,7 @@ extension MyShelfViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
     }
+    
 }
 
 extension MyShelfViewController: UITableViewDelegate {
@@ -117,7 +113,16 @@ extension MyShelfViewController: UITableViewDelegate {
 }
 
 extension MyShelfViewController: BookCardCellDelegate {
+    func returnBook(book: Book?) {
+        print("Returned")
+    }
+    
+    func requestBook(book: Book?) {
+        print("Requested")
+
+    }
+    
     func cancelReservation(book: Book?) {
-        print("Salam")
+        print("Canceled")
     }
 }

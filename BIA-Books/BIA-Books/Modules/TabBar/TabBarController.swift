@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
                 case .main:
                     return "Book_Open"
                 case .shelf:
-                    return "Shelve"
+                    return "Shelf"
                 case .profile:
                     return "UserCircle"
             }
@@ -49,14 +49,13 @@ class TabBarController: UITabBarController {
                 let mainViewController = UIViewController()
                 mainViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 0)
                 return self.wrappedInNavigationController(with: mainViewController)
-            case .shelf:
                 
+            case .shelf:
                 let storyboard = UIStoryboard(name: "MyShelf", bundle: nil)
                 let myShelfViewController = storyboard.instantiateViewController(withIdentifier: "myShelfViewController")
                 myShelfViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 1)
                 return self.wrappedInNavigationController(with: myShelfViewController)
                 
-//                return UINavigationController()
             case .profile:
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 let profileViewController = storyboard.instantiateViewController(withIdentifier: "profileViewController")
