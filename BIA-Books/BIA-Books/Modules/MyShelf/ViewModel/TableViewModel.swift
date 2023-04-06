@@ -29,9 +29,13 @@ class ViewModel {
     ]
     
     var dataSource = [Book]()
-    
+
+    var isSearching: Bool = false
+    var searchText: String?
+
     func cellViewModel(indexPath: IndexPath, type: CardViewModel.CellType) -> CardViewModel? {
         let book = dataSource[indexPath.row] 
         return CardViewModel(myShelf: book, cellType: type)
     }
 }
+
