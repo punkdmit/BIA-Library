@@ -16,8 +16,6 @@ class TagsCollectionViewCell: UICollectionViewCell {
         // Initialization code
         self.layer.cornerRadius = 6
         self.layer.masksToBounds = true
-  
-
     }
 
 }

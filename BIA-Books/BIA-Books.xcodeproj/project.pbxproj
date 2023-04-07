@@ -27,6 +27,8 @@
 		5E9CD6A229CDE99900CBED35 /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9CD6A029CDE99900CBED35 /* TagsCollectionViewCell.swift */; };
 		5E9CD6A329CDE99900CBED35 /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CD6A129CDE99900CBED35 /* TagsCollectionViewCell.xib */; };
 		5EA312DE29B9FF3A0004F02B /* BooksViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */; };
+		5EA9F6B729DC70EA003ECCDE /* BookListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F6B529DC70EA003ECCDE /* BookListCollectionViewCell.swift */; };
+		5EA9F6B829DC70EA003ECCDE /* BookListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA9F6B629DC70EA003ECCDE /* BookListCollectionViewCell.xib */; };
 		5EF3F4D529D5D44F007B0600 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF3F4D429D5D44F007B0600 /* BookDetailViewModel.swift */; };
 		5EF3F4D729D5D576007B0600 /* DetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF3F4D629D5D576007B0600 /* DetailViewModelProtocol.swift */; };
 		5EF50DAB29C479D100085757 /* BookDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */; };
@@ -58,6 +60,8 @@
 		5E9CD6A029CDE99900CBED35 /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E9CD6A129CDE99900CBED35 /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BooksViewController.storyboard; sourceTree = "<group>"; };
+		5EA9F6B529DC70EA003ECCDE /* BookListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA9F6B629DC70EA003ECCDE /* BookListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookListCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EF3F4D429D5D44F007B0600 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		5EF3F4D629D5D576007B0600 /* DetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 			children = (
 				5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */,
 				5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */,
+				5EA9F6B529DC70EA003ECCDE /* BookListCollectionViewCell.swift */,
+				5EA9F6B629DC70EA003ECCDE /* BookListCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				5E299E38299E73A4002D9E6E /* Assets.xcassets in Resources */,
 				5EA312DE29B9FF3A0004F02B /* BooksViewController.storyboard in Resources */,
 				5E299E36299E73A3002D9E6E /* Main.storyboard in Resources */,
+				5EA9F6B829DC70EA003ECCDE /* BookListCollectionViewCell.xib in Resources */,
 				5E88DF0729BB52E300F346DB /* BooksTableViewCell.xib in Resources */,
 				5EF50DAB29C479D100085757 /* BookDetailViewController.storyboard in Resources */,
 			);
@@ -420,6 +427,7 @@
 				5E299E4A299E758C002D9E6E /* User .swift in Sources */,
 				5E299E2F299E73A3002D9E6E /* AppDelegate.swift in Sources */,
 				5E2C260F29B6843000C28830 /* BooksListViewController.swift in Sources */,
+				5EA9F6B729DC70EA003ECCDE /* BookListCollectionViewCell.swift in Sources */,
 				5E88DF0629BB52E300F346DB /* BooksTableViewCell.swift in Sources */,
 				5E299E31299E73A3002D9E6E /* SceneDelegate.swift in Sources */,
 				5EF3F4D529D5D44F007B0600 /* BookDetailViewModel.swift in Sources */,

@@ -27,8 +27,22 @@
                                             <outlet property="delegate" destination="Y6W-OH-hqX" id="ep5-f7-XV9"/>
                                         </connections>
                                     </searchBar>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uhb-wa-JlE">
+                                        <rect key="frame" x="16" y="80" width="361" height="26"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="pbI-2W-yts"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="12" minimumInteritemSpacing="12" id="9hH-wi-2Oz">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uP1-HO-UtO">
-                                        <rect key="frame" x="16" y="80" width="361" height="635"/>
+                                        <rect key="frame" x="16" y="130" width="361" height="585"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -47,6 +61,7 @@
                     <navigationItem key="navigationItem" id="HYG-We-eoX"/>
                     <connections>
                         <outlet property="booksTableView" destination="uP1-HO-UtO" id="ilD-wC-J1l"/>
+                        <outlet property="collectionView" destination="uhb-wa-JlE" id="jL3-RY-WMG"/>
                         <outlet property="searchBar" destination="37J-Cp-TdS" id="HSf-95-9sp"/>
                     </connections>
                 </viewController>

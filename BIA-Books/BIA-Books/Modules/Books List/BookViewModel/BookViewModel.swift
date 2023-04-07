@@ -8,5 +8,6 @@
 import Foundation
 
 class BooksViewModel  {
+    let bookListTags = ["Дизайн", "1C", "Разработка", "Тестирование", "Системный анализ", "Управление проектами", "Бухгалтерия"]
     
 }

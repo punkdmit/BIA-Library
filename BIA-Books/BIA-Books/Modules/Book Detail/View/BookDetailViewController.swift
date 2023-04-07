@@ -64,7 +64,6 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifer, for: indexPath) as? TagsCollectionViewCell else {return UICollectionViewCell()}
         let label = viewModel?.labels[indexPath.row]
         cell.label?.text = label
-        cell.roundedCornerForCollectionViewCell(radius: 6)
         
         return cell
     }
@@ -73,7 +72,22 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
-
     }
     
+    @IBAction func requsetBok(_ sender: Any) {
+        let alertController = UIAlertController(title: "Запрос книги", message: "Хотите запросить книгу?", preferredStyle: .alert)
+
+        let yesAction = UIAlertAction(title: "Да", style: .default) { (action:UIAlertAction!) in
+            // Действия, которые нужно выполнить при выборе "Да"
+        }
+
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (action:UIAlertAction!) in
+            // Действия, которые нужно выполнить при выборе "Отменить"
+        }
+
+        alertController.addAction(yesAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion:nil)
+    }
 }

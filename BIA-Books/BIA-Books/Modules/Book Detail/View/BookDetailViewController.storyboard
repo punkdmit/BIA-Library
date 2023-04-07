@@ -24,10 +24,10 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rDA-Q0-O32">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="697"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="l34-cK-IQe">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="l34-cK-IQe">
                                                 <rect key="frame" x="8" y="9" width="345" height="335"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="imo-rG-v35">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="imo-rG-v35">
                                                         <rect key="frame" x="26" y="0.0" width="293" height="241"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookImage2" translatesAutoresizingMaskIntoConstraints="NO" id="pcJ-Do-scT">
@@ -37,10 +37,10 @@
                                                                     <constraint firstAttribute="width" constant="108" id="i7p-5G-i73"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eje-Ei-TVW">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eje-Ei-TVW">
                                                                 <rect key="frame" x="0.0" y="157" width="293" height="84"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KI-bO-bxu" userLabel="bookName">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KI-bO-bxu" userLabel="bookName">
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="64.666666666666671"/>
                                                                         <string key="text">Сторителлинг в проектировании 
 интерфейсов. Как создавать истории,улучшающие дизайн.</string>
@@ -48,7 +48,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Алан Купер, Роберт Рейман" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uz-Fi-rGL" userLabel="author">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Алан Купер, Роберт Рейман" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uz-Fi-rGL" userLabel="author">
                                                                         <rect key="frame" x="40.333333333333329" y="64.666666666666686" width="212.33333333333337" height="19.333333333333329"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" name="TextSecondary"/>
@@ -58,7 +58,7 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lfS-pD-c6l">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lfS-pD-c6l">
                                                         <rect key="frame" x="5.6666666666666572" y="265" width="334" height="70"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4k-tY-42f">
@@ -175,7 +175,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3gh-9h-g1N">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3gh-9h-g1N">
                                                 <rect key="frame" x="8" y="368" width="345" height="26"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -189,7 +189,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eqY-lB-gbA">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eqY-lB-gbA">
                                                 <rect key="frame" x="8" y="418" width="345" height="203"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIk-eg-Pna">
@@ -198,8 +198,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cC4-4p-hwu" customClass="ReadMoreTextView" customModule="ReadMoreTextView">
-                                                        <rect key="frame" x="0.0" y="20.333333333333371" width="345" height="182.66666666666669"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cC4-4p-hwu" customClass="ReadMoreTextView" customModule="ReadMoreTextView">
+                                                        <rect key="frame" x="0.0" y="20.333333333333371" width="345" height="182.66666666666666"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -223,10 +223,16 @@
                                                         <state key="normal" title="Запросить">
                                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="requsetBok:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="v6g-bz-3Y4"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="eqY-lB-gbA" firstAttribute="top" secondItem="rDA-Q0-O32" secondAttribute="top" constant="418" id="lyf-VI-4Xt"/>
+                                        </constraints>
                                         <edgeInsets key="layoutMargins" top="9" left="8" bottom="9" right="8"/>
                                     </stackView>
                                 </subviews>
@@ -250,7 +256,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="H1i-9c-R3p"/>
                     <connections>
-                        <outlet property="bookRequestButton" destination="yg7-Rw-jDP" id="MZM-QZ-VXR"/>
+                        <outlet property="bookRequestButton" destination="yg7-Rw-jDP" id="dJI-zr-6hp"/>
                         <outlet property="collectionView" destination="3gh-9h-g1N" id="FgP-p0-Lz4"/>
                         <outlet property="descriptionTextView" destination="cC4-4p-hwu" id="gQc-UU-EQu"/>
                         <outlet property="detailCardView" destination="Z4k-tY-42f" id="vzC-Q0-Cff"/>

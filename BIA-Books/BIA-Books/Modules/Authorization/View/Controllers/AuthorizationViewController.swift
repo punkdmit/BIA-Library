@@ -46,7 +46,7 @@ class ViewController: UIViewController {
             logInButton.isEnabled = false
         } else {
             logInButton.backgroundColor = BooksColor.brandPrimary
-            logInButton.titleLabel?.textColor = BooksColor.brandTerteary
+            logInButton.titleLabel?.textColor = BooksColor.brandTertiary
             logInButton.isEnabled = true
         }
     }
