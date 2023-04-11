@@ -13,7 +13,7 @@ protocol BookCardCellDelegate: AnyObject {
     func requestBook(book: Book?)
 }
 
-class RequestedBookCardCell: UITableViewCell {
+class BookCardCell: UITableViewCell {
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!

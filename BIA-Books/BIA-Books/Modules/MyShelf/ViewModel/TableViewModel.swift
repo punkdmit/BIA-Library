@@ -20,12 +20,7 @@ class ViewModel {
         
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык Swift", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
-        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
+        Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read)
     ]
     
     var dataSource = [Book]()
@@ -34,7 +29,7 @@ class ViewModel {
     var searchText: String?
 
     func cellViewModel(indexPath: IndexPath, type: CardViewModel.CellType) -> CardViewModel? {
-        let book = dataSource[indexPath.row] 
+        let book = dataSource[indexPath.row]
         return CardViewModel(myShelf: book, cellType: type)
     }
 }

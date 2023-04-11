@@ -24,7 +24,7 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = ViewModel()
-        tableView.register(UINib(nibName: "RequestedBookCardCell", bundle: nil), forCellReuseIdentifier: "RequestedBookCardCell")
+        tableView.register(UINib(nibName: "RequestedBookCardCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -33,6 +33,7 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         setupSearchController()
         setupNavigationControllerSortImage()
         setSegment(index: 0)
+//        setupWhenSearching()
     }
     
     func setupNavigationControllerTitle() {
@@ -55,7 +56,19 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+//        updateSearchResults(for: searchController)
     }
+    
+//    func setupWhenSearching() {
+//        switch viewModel?.isSearching {
+//        case true:
+//            mySegmentControl.isHidden = true
+//        case false:
+//            mySegmentControl.isHidden = false
+//        default: break
+//        }
+//    }
     
     private func setSegment(index: Int) {
         switch index {
@@ -92,20 +105,53 @@ extension MyShelfViewController: UITableViewDataSource {
             cellType = nil
         }
         
-        guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "RequestedBookCardCell", for: indexPath) as? RequestedBookCardCell else { return UITableViewCell() }
-        let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
-        cell.viewModel = cellViewModel
-        cell.bindViewModel()
-        return cell
+        switch viewModel?.isSearching {
+        case false:
+            guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? BookCardCell else { return UITableViewCell() }
+            
+            let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
+            cell.viewModel = cellViewModel
+            cell.bindViewModel()
+            return cell
+            
+        case true:
+            guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultViewCell else { return UITableViewCell() }
+            
+            let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
+            cell.viewModel = cellViewModel
+            cell.bindViewModel()
+            return cell
+            
+        default:
+            return UITableViewCell() //МОЖНО СДЕЛАТЬ ЕНАМ СО СВОИМ ПЕРЕЧИСЛЕНИЕМ ТРУ ФОЛС И ТОГДА НЕ БУДЕТ ДЕФОЛТА
+        }
     }
 }
 
 // МЕТОД ДЛЯ СЕРЧ КОНТРЛОЛЛЕРА КОТОРЫЙ СМОТРИТ НА ВВЕДЕННЫЙ ТЕКСТ В СТРОКУ
 extension MyShelfViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
+        if searchController.searchBar.text != viewModel?.searchText {
+            viewModel?.searchText = searchController.searchBar.text
+        }
+        
+        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true)
+        
+        if viewModel?.isSearching == true {
+            mySegmentControl.isHidden = true
+        } else {
+            mySegmentControl.isHidden = false
+        }
+        
+//        switch viewModel?.isSearching {
+//        case true:
+//            mySegmentControl.isHidden = true
+//        case false:
+//            mySegmentControl.isHidden = false
+//        default: break
+//        }
+        tableView.reloadData()
     }
-    
 }
 
 extension MyShelfViewController: UITableViewDelegate {
@@ -119,7 +165,6 @@ extension MyShelfViewController: BookCardCellDelegate {
     
     func requestBook(book: Book?) {
         print("Requested")
-
     }
     
     func cancelReservation(book: Book?) {

@@ -48,6 +48,7 @@ class TabBarController: UITabBarController {
             case .main:
                 let mainViewController = UIViewController()
                 mainViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 0)
+//                mainViewController.tabBarItem = UIFont.boldSystemFont(ofSize: 24)
                 return self.wrappedInNavigationController(with: mainViewController)
                 
             case .shelf:
@@ -69,5 +70,22 @@ class TabBarController: UITabBarController {
     
     private func wrappedInNavigationController(with: UIViewController) -> UINavigationController {
         return UINavigationController(rootViewController: with)
+    }
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+            
+        guard let _ = (scene as? UIWindowScene) else { return }
+            
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+                   
+            appearance.backgroundColor = UIColor.clear
+            appearance.shadowImage = nil
+            appearance.shadowColor = nil
+
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
+        }
     }
 }

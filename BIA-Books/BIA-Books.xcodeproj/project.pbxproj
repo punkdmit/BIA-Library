@@ -274,7 +274,8 @@
 		F8E4140A29BB5C5900477727 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F8E9AA0D29D1C5CA007A9242 /* RequestedBookCardCell */,
+				F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */,
+				F8E4140729BB5C5500477727 /* RequestedBookCardCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -311,15 +312,6 @@
 				F8E4141129BB671F00477727 /* Book.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F8E9AA0D29D1C5CA007A9242 /* RequestedBookCardCell */ = {
-			isa = PBXGroup;
-			children = (
-				F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */,
-				F8E4140729BB5C5500477727 /* RequestedBookCardCell.xib */,
-			);
-			path = RequestedBookCardCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
