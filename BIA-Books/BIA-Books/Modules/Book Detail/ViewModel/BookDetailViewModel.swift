@@ -13,6 +13,7 @@ class BookDetailViewModel  :ViewModelDetailType  {
         return labels.count
     }
     
+    
     var labels = ["Дизайн",  "Разработка", "1С"]
     
 
