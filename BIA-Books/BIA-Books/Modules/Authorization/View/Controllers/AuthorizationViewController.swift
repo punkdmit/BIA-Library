@@ -28,10 +28,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(_ sender: Any) {
-        if viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "") == true {
-            guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+         viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +81,12 @@ class ViewController: UIViewController {
                 self.logInStatus.text = statusText
             }
         })
+        viewModel.loginSuccess.bind { value in
+            if value {
+              guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
+              self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
 

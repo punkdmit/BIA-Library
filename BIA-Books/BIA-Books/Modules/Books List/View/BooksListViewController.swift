@@ -9,7 +9,7 @@ import UIKit
 
 class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    private var bookList = [BookList]()
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
     private var selectedCellText: String?
@@ -24,7 +24,8 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        
+        viewModel?.loadBookList()
+        bindViewModel()
     }
     
     private func setView() {
@@ -87,5 +88,11 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         selectedCell = cell
         selectedCellText = cell.tagName.text
         
+    }
+    func bindViewModel() {
+        viewModel?.bookList.bind { [weak self] bookList in
+            self?.bookList = bookList
+            self?.booksTableView.reloadData()
+        }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Book {
-    var id : UUID?
+    var id : String?
     var status : Bool
     var name : String?
     var author : String?
