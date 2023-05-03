@@ -28,8 +28,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(_ sender: Any) {
-        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "") 
-        
+         viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +43,7 @@ class ViewController: UIViewController {
             logInButton.isEnabled = false
         } else {
             logInButton.backgroundColor = BooksColor.brandPrimary
-            logInButton.titleLabel?.textColor = BooksColor.brandTerteary
+            logInButton.titleLabel?.textColor = BooksColor.brandTertiary
             logInButton.isEnabled = true
         }
     }
@@ -70,7 +69,6 @@ class ViewController: UIViewController {
     
     private func setUpView() {
         logInButton.layer.cornerRadius = 5
-        logInButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
         setupLoginTextField()
         setupPasswordTextField()
@@ -83,6 +81,12 @@ class ViewController: UIViewController {
                 self.logInStatus.text = statusText
             }
         })
+        viewModel.loginSuccess.bind { value in
+            if value {
+              guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
+              self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
 

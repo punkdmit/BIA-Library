@@ -14,3 +14,30 @@ extension UIButton {
         }
     }
 }
+extension UIView {
+    func aplyShadow(cornerRadius: CGFloat) {
+        layer.cornerRadius = cornerRadius
+        layer.masksToBounds = false
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 0.12
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+    }
+}
+extension UITableViewCell {
+    func noSelectionStyle () {
+        self.selectionStyle = .none
+    }
+}
+extension UIStackView {
+    func roundCornersForUILabels(radius : CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = .continuous
+    }
+}
+extension UIButton  {
+    func roundedCornerButton(radius : CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = .continuous
+    }
+}
