@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookListTags" id="lzS-MY-a81" customClass="BookListCollectionViewCell" customModule="BIA_Books" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="87" height="36"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="87" height="36"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="San-3V-27d">
+                        <rect key="frame" x="6" y="5" width="75" height="26"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="1Uh-2v-oaD"/>
+            <color key="backgroundColor" name="BackgroundSecondary"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="San-3V-27d" secondAttribute="trailing" constant="6" id="Kk5-Zh-62Q"/>
+                <constraint firstItem="San-3V-27d" firstAttribute="top" secondItem="lzS-MY-a81" secondAttribute="top" constant="5" id="YyD-oH-M2k"/>
+                <constraint firstItem="San-3V-27d" firstAttribute="leading" secondItem="lzS-MY-a81" secondAttribute="leading" constant="6" id="ZBv-sh-kWT"/>
+                <constraint firstAttribute="bottom" secondItem="San-3V-27d" secondAttribute="bottom" constant="5" id="obL-vM-GrE"/>
+            </constraints>
+            <size key="customSize" width="87" height="36"/>
+            <connections>
+                <outlet property="tagName" destination="San-3V-27d" id="UEe-4b-OZI"/>
+            </connections>
+            <point key="canvasLocation" x="47" y="4"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BackgroundSecondary">
+            <color red="0.9529411792755127" green="0.9529411792755127" blue="0.9529411792755127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextPrimary">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
