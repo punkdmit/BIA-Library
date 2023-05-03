@@ -24,7 +24,13 @@ class ViewModel {
     ]
     
     var dataSource = [Book]()
-
+    
+    enum BookSection {
+        case myShelf(books: [Book])
+        case other(books: [Book])
+    }
+//    var searchDataSource = BookSection
+    
     var isSearching: Bool = false
     var searchText: String?
 

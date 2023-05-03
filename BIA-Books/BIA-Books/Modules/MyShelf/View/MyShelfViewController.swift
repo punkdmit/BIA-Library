@@ -33,7 +33,6 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         setupSearchController()
         setupNavigationControllerSortImage()
         setSegment(index: 0)
-//        setupWhenSearching()
     }
     
     func setupNavigationControllerTitle() {
@@ -53,22 +52,10 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-//        updateSearchResults(for: searchController)
     }
-    
-//    func setupWhenSearching() {
-//        switch viewModel?.isSearching {
-//        case true:
-//            mySegmentControl.isHidden = true
-//        case false:
-//            mySegmentControl.isHidden = false
-//        default: break
-//        }
-//    }
     
     private func setSegment(index: Int) {
         switch index {
@@ -88,6 +75,9 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
 
 extension MyShelfViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if ((viewModel?.isSearching) != false) {
+//            return
+//        }
         return viewModel?.dataSource.count ?? 0
     }
     
@@ -133,6 +123,7 @@ extension MyShelfViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.searchBar.text != viewModel?.searchText {
             viewModel?.searchText = searchController.searchBar.text
+            filterContentForSearchText(searchController.searchBar.text ?? "")
         }
         
         viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true)
@@ -143,14 +134,13 @@ extension MyShelfViewController: UISearchResultsUpdating {
             mySegmentControl.isHidden = false
         }
         
-//        switch viewModel?.isSearching {
-//        case true:
-//            mySegmentControl.isHidden = true
-//        case false:
-//            mySegmentControl.isHidden = false
-//        default: break
-//        }
         tableView.reloadData()
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        viewModel?.dataSource = viewModel?.booksPreset.filter({ (book: Book) -> Bool in
+            return book.bookName.lowercased().contains(searchText.lowercased())
+        }) ?? []
     }
 }
 
