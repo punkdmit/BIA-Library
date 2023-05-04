@@ -8,7 +8,8 @@
 import Foundation
 
 
-class BookDetailViewModel  :ViewModelDetailType  {
+class BookDetailViewModel  : ViewModelDetailType  {
+    
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
 
     func numberOfRows() -> Int {

@@ -9,4 +9,5 @@ import Foundation
 
 protocol ViewModelDetailType {
     func numberOfRows() -> Int
+    
 }
