@@ -9,7 +9,19 @@ import Foundation
 import UIKit
 
 class ViewModel {
-    var booksPreset = [
+    private let dataFetcher = NetworkDataFetcher(networking: NetworkService())
+    
+    var dataSource: Dynamic<[Book]?> = Dynamic(nil)
+    
+    enum BookSection {
+        case myShelf(books: [Book])
+        case other(books: [Book])
+    }
+    
+    var isSearching: Bool = false
+    var searchText: String?
+    
+    var booksPreset: Dynamic<[Book]?> = Dynamic([
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Дежавю", authorName: "Кизару", bookStatus: BooksStatuses.requested),
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Разработка по кайфу", authorName: "Программист обычный", bookStatus: BooksStatuses.requested),
         Book(bookImage: UIImage(named: "Обложка"), bookName: "iOS приложения бомбовые", authorName: "Кизару", bookStatus: BooksStatuses.requested),
@@ -21,22 +33,23 @@ class ViewModel {
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык Swift", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read),
         Book(bookImage: UIImage(named: "Обложка"), bookName: "Язык программирования Swift для чайников", authorName: "Дима Апенько, Попов Павел, Никита Аликан", bookStatus: BooksStatuses.read)
-    ]
-    
-    var dataSource = [Book]()
-    
-    enum BookSection {
-        case myShelf(books: [Book])
-        case other(books: [Book])
-    }
-//    var searchDataSource = BookSection
-    
-    var isSearching: Bool = false
-    var searchText: String?
-
-    func cellViewModel(indexPath: IndexPath, type: CardViewModel.CellType) -> CardViewModel? {
-        let book = dataSource[indexPath.row]
-        return CardViewModel(myShelf: book, cellType: type)
+    ])
+        
+    func getRequestedBooksList() {
+        dataFetcher.getRequestedBooksList { [weak self] bookList in
+            let newBookList = bookList.compactMap {
+                var decodedImage: UIImage?
+                
+                if let imageData = $0?.image {
+                    let dataDecoded: Data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters)!
+                    decodedImage = UIImage(data: dataDecoded)
+                }
+                
+                return Book(bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)
+            }
+            
+            self?.dataSource.value = newBookList
+        }
     }
 }
 

@@ -17,6 +17,6 @@ enum BooksStatuses {
 struct Book {
     let bookImage: UIImage?
     let bookName: String
-    let authorName: String
-    let bookStatus: BooksStatuses
+    let authorName: String?
+    let bookStatus: BooksStatuses?
 }

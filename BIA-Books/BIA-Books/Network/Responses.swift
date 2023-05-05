@@ -1,13 +1,23 @@
 import Foundation
 
 public struct BookList : Codable {
-    let _id : String?
+    let id : String?
     let name : String?
     let author : String?
     let language : String?
     let description : String?
     let status : String?
     let image : String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case name = "name"
+        case author = "author"
+        case language = "language"
+        case description = "description"
+        case status = "status"
+        case image = "image"
+    }
 }
 
 public struct BookInfo : Codable {
@@ -41,3 +51,5 @@ public struct Fault: Decodable {
         case message = "NS4:message"
     }
 }
+
+

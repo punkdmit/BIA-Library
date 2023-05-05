@@ -23,7 +23,10 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewModel = ViewModel()
+        bindViewModel()
+        
         tableView.register(UINib(nibName: "RequestedBookCardCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
         tableView.dataSource = self
@@ -33,6 +36,12 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         setupSearchController()
         setupNavigationControllerSortImage()
         setSegment(index: 0)
+    }
+    
+    func bindViewModel() {
+        viewModel?.dataSource.bind { [weak self] _ in
+            self?.tableView.reloadData()
+        }
     }
     
     func setupNavigationControllerTitle() {
@@ -60,16 +69,16 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
     private func setSegment(index: Int) {
         switch index {
         case 0:
-            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .requested } ?? []
+            viewModel?.getRequestedBooksList()
         case 1:
-            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .reading } ?? []
+            viewModel?.dataSource.value = viewModel?.booksPreset.value?.filter{ $0.bookStatus == .reading } ?? []
         case 2:
-            viewModel?.dataSource = viewModel?.booksPreset.filter{ $0.bookStatus == .read } ?? []
+            viewModel?.dataSource.value = viewModel?.booksPreset.value?.filter{ $0.bookStatus == .read } ?? []
         default:
-            viewModel?.dataSource = []
+            viewModel?.dataSource.value = []
         }
         
-        tableView.reloadData()
+//        tableView.reloadData()
     }
 }
 
@@ -78,7 +87,7 @@ extension MyShelfViewController: UITableViewDataSource {
 //        if ((viewModel?.isSearching) != false) {
 //            return
 //        }
-        return viewModel?.dataSource.count ?? 0
+        return viewModel?.dataSource.value?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,17 +108,24 @@ extension MyShelfViewController: UITableViewDataSource {
         case false:
             guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? BookCardCell else { return UITableViewCell() }
             
-            let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
-            cell.viewModel = cellViewModel
+            guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
+            let book = dataSource[indexPath.row]
+            cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
             cell.bindViewModel()
             return cell
             
         case true:
             guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultViewCell else { return UITableViewCell() }
             
+            guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
+            let book = dataSource[indexPath.row]
+            cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
+            cell.bindViewModel()
+            /*
             let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
             cell.viewModel = cellViewModel
             cell.bindViewModel()
+            */
             return cell
             
         default:
@@ -138,9 +154,9 @@ extension MyShelfViewController: UISearchResultsUpdating {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        viewModel?.dataSource = viewModel?.booksPreset.filter({ (book: Book) -> Bool in
+        viewModel?.dataSource = Dynamic(viewModel?.booksPreset.value?.filter { (book: Book) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())
-        }) ?? []
+        })
     }
 }
 

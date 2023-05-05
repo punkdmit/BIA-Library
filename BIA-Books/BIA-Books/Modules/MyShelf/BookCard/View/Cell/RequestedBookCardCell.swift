@@ -37,18 +37,10 @@ class BookCardCell: UITableViewCell {
         }
     }
     */
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
-    
-    /*
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        setup()
-    }
-    */
     
     func bindViewModel() {
         guard let viewModel = viewModel else { return }
@@ -79,7 +71,7 @@ class BookCardCell: UITableViewCell {
         switch viewModel.cellType {
             case .requested:
                 buttonLabel.text = "Отменить запрос"
-                buttonLabel.tintColor = BooksColor.redText
+            buttonLabel.tintColor = BooksColor.redText
                 buttonImage.image = UIImage(named: "Delete")
             
             case .reading:
