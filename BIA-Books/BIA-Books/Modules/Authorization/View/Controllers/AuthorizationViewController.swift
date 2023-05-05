@@ -34,6 +34,7 @@ class AuthorizationViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         bindViewModel()
+        viewModel.checkAccessToken()
     }
     
     func updateLogInButton(isEmpty: Bool) {
@@ -83,8 +84,10 @@ class AuthorizationViewController: UIViewController {
         })
         viewModel.loginSuccess.bind { value in
             if value {
-              guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
-              self.navigationController?.pushViewController(vc, animated: true)
+//              guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
+//              self.navigationController?.pushViewController(vc, animated: true)
+               let vc = TabBarController()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

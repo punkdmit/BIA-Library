@@ -73,7 +73,10 @@ class ProfileViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Выйти", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "Выйти", style: .destructive, handler: { [weak self] _ in
+            UserDefaults.standard.removeObject(forKey: "accessToken")
+            self?.navigationController?.navigationController?.popViewController(animated: true)
+        }))
         
         self.present(alert, animated: true)
     }

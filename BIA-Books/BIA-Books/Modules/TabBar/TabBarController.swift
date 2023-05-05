@@ -46,10 +46,10 @@ class TabBarController: UITabBarController {
         setViewControllers(dataSource.map {
             switch $0 {
             case .main:
-                let mainViewController = UIViewController()
-                mainViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 0)
-//                mainViewController.tabBarItem = UIFont.boldSystemFont(ofSize: 24)
-                return self.wrappedInNavigationController(with: mainViewController)
+                let storyboard = UIStoryboard(name: "BooksViewController", bundle: nil)
+                let booksListViewController = storyboard.instantiateViewController(withIdentifier: "BooksListViewController")
+                booksListViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 1)
+                return self.wrappedInNavigationController(with: booksListViewController)
                 
             case .shelf:
                 let storyboard = UIStoryboard(name: "MyShelf", bundle: nil)
