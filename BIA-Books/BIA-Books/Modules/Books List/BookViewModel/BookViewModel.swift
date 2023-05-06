@@ -7,10 +7,15 @@
 
 import Foundation
 
-class BooksViewModel  {
-    var bookList = Dynamic([BookList]())
+class BooksViewModel : BookListModelType {
+    private var selectedIndexPath : IndexPath?
+    var bookList: Dynamic<[BookList]?> = Dynamic(nil)
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
     let bookListTags = ["Дизайн", "1C", "Разработка", "Тестирование", "Системный анализ", "Управление проектами", "Бухгалтерия"]
+    
+    func numberOfTags() -> Int {
+        return bookListTags.count
+    }
     
     func loadBookList() {
         fetcher.getBookList(params: [:]) { [weak self] response in
@@ -22,5 +27,13 @@ class BooksViewModel  {
                 print("Не удалось загрузить список книг")
             }
         }
+    }
+    
+    func viewModelForSelectedRow() -> ViewModelDetailType? {
+        
+    }
+    
+    func selectRow(indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
     }
 }

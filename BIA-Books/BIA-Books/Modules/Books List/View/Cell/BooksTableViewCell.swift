@@ -18,6 +18,12 @@ class BooksTableViewCell: UITableViewCell {
     @IBOutlet weak var dateStack: UIStackView!
     @IBOutlet weak var languageStack: UIStackView!
     
+     var viewModel : BookListCellViewModel? {
+        willSet(viewModel) {
+            bookName.text = viewModel?.name
+            language.text = viewModel?.language
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +34,6 @@ class BooksTableViewCell: UITableViewCell {
         cardView.aplyShadow(cornerRadius: 12)
         dateStack.roundCornersForUILabels(radius: 6)
         languageStack.roundCornersForUILabels(radius: 6)
+        self.noSelectionStyle()
     }
 }

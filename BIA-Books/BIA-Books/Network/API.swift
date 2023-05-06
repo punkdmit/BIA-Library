@@ -6,6 +6,7 @@ enum Operation: String {
     case ping = ""
     case login = "auth"
     case bookList = "books"
+    case bookInfo = "books/details"
 }
 
 struct API {

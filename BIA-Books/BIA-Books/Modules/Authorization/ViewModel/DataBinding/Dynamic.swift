@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Dynamic <T>{
+class Dynamic <T> {
     typealias Listener = (T) -> Void
     private var listener : Listener?
     func bind(_ listener : Listener?) {
