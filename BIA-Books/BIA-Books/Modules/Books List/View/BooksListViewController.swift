@@ -61,10 +61,11 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let book = bookList[indexPath.row]
         cell.viewModel = BookListCellViewModel(book : book)
-        cell.noSelectionStyle()
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else {return}
+        viewModel.selectRow(indexPath: indexPath)
         guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
         self.navigationController?.pushViewController(vc, animated: true)
     }

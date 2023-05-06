@@ -34,5 +34,6 @@ class BooksTableViewCell: UITableViewCell {
         cardView.aplyShadow(cornerRadius: 12)
         dateStack.roundCornersForUILabels(radius: 6)
         languageStack.roundCornersForUILabels(radius: 6)
+        self.noSelectionStyle()
     }
 }
