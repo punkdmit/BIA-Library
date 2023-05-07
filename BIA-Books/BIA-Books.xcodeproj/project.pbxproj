@@ -21,10 +21,6 @@
 		5E299E4A299E758C002D9E6E /* User .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E299E49299E758C002D9E6E /* User .swift */; };
 		5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E299E4C299E824B002D9E6E /* AuthorizationViewModel.swift */; };
 		5E2C260F29B6843000C28830 /* BooksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C260E29B6843000C28830 /* BooksListViewController.swift */; };
-<<<<<<< HEAD
-		5E2C261129B6846100C28830 /* Book_OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C261029B6846100C28830 /* Book_OLD.swift */; };
-=======
->>>>>>> network-layer
 		5E2C261329B6846D00C28830 /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C261229B6846D00C28830 /* BookViewModel.swift */; };
 		5E4840D729A37CE400A8C111 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D629A37CE400A8C111 /* Colors.swift */; };
 		5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D829A3CC5B00A8C111 /* Extensions.swift */; };
@@ -79,10 +75,6 @@
 		5E299E49299E758C002D9E6E /* User .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User .swift"; sourceTree = "<group>"; };
 		5E299E4C299E824B002D9E6E /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		5E2C260E29B6843000C28830 /* BooksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListViewController.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		5E2C261029B6846100C28830 /* Book_OLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_OLD.swift; sourceTree = "<group>"; };
-=======
->>>>>>> network-layer
 		5E2C261229B6846D00C28830 /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
 		5E4840D629A37CE400A8C111 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5E4840D829A3CC5B00A8C111 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -269,17 +261,6 @@
 			path = "Books List";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		5E2C261429B684BA00C28830 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5E2C261029B6846100C28830 /* Book_OLD.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-=======
->>>>>>> network-layer
 		5E2C261529B684C300C28830 /* BookViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,10 +630,6 @@
 				F8E4140529BB5BD200477727 /* MyShelfViewController.swift in Sources */,
 				F8E4140F29BB664A00477727 /* CardViewModel.swift in Sources */,
 				5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */,
-<<<<<<< HEAD
-				5E2C261129B6846100C28830 /* Book_OLD.swift in Sources */,
-=======
->>>>>>> network-layer
 				5EF50DAD29C479E000085757 /* BookDetailViewController.swift in Sources */,
 				5E0ABC862A03DE6600BEBF9A /* BookListCellViewModel.swift in Sources */,
 				5E299E33299E73A3002D9E6E /* AuthorizationViewController.swift in Sources */,

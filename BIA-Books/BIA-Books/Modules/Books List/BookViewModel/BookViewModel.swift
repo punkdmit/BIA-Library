@@ -30,7 +30,7 @@ class BooksViewModel : BookListModelType {
     }
     
     func viewModelForSelectedRow() -> ViewModelDetailType? {
-        
+        return nil
     }
     
     func selectRow(indexPath: IndexPath) {
