@@ -102,7 +102,7 @@ class BookCardCell: UITableViewCell {
                 self?.delegate?.cancelReservation(book: self?.viewModel?.book)
             })
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
-//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+            
         case .reading:
             let alert = UIAlertController(title: viewModel.bookName, message: "Хотите сдать книгу?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
@@ -110,7 +110,7 @@ class BookCardCell: UITableViewCell {
                 self?.delegate?.returnBook(book: self?.viewModel?.book)
             })
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
-//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+            
         case .read:
             let alert = UIAlertController(title: viewModel.bookName, message: "Хотите запросить книгу?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
@@ -118,7 +118,6 @@ class BookCardCell: UITableViewCell {
                 self?.delegate?.requestBook(book: self?.viewModel?.book)
             })
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
-//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
 }

@@ -1,5 +1,3 @@
-
-
 enum Operation: String {
     case getNearbyVehicles = "getNearbyVehicles"
     case getVehicleData = "getVehicleData"
@@ -7,6 +5,8 @@ enum Operation: String {
     case login = "auth"
     case bookList = "books"
     case requestedBookList = "requestedBooks"
+    case rentedBookList = "rentedBooks"
+    case cancelBookRequest = "cancelRequest"
 }
 
 struct API {

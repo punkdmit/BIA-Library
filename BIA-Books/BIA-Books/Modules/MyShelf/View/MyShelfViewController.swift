@@ -71,7 +71,7 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         case 0:
             viewModel?.getRequestedBooksList()
         case 1:
-            viewModel?.dataSource.value = viewModel?.booksPreset.value?.filter{ $0.bookStatus == .reading } ?? []
+            viewModel?.getRentedBooksList()
         case 2:
             viewModel?.dataSource.value = viewModel?.booksPreset.value?.filter{ $0.bookStatus == .read } ?? []
         default:
