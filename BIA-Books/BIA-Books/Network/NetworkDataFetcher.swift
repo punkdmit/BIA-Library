@@ -9,7 +9,7 @@ enum fetcherErrors: Error {
 protocol DataFetcher {
     
     func getBookList(params : [String : String], response : @escaping (([BookList?]) -> Void))
-    func getBookInfo(response : @escaping (BookInfo?) -> Void)
+    func getBookInfo(params: [String: String], response : @escaping (BookInfo?) -> Void)
     
     func login(params: [String: String], body: String?, response: @escaping (Login?) -> Void)
     
@@ -57,8 +57,20 @@ struct NetworkDataFetcher: DataFetcher {
             response(decoded)
         }
     }
-    func getBookInfo(response: @escaping (BookInfo?) -> Void) {
-//        networking.request(path: API.path, method: .get, operation: <#T##Operation#>, headers: <#T##[String : String]#>, params: <#T##[String : String]#>, body: <#T##String?#>, completion: <#T##(Data?, Int, Error?) -> Void#>)
+    
+    func getBookInfo(params: [String : String], response: @escaping (BookInfo?) -> Void) {
+        guard let bearerToken =  UserDefaults.standard.string(forKey: "accessToken") else { return }
+        
+        networking.request(path: API.path, method: .get, operation: .bookInfo, headers: ["Authorization" : "Bearer " + bearerToken], params: params, body: nil) { data, statusCode, error in
+            if error != nil {
+                response(nil)
+            }
+            guard let JSONData = data else {response(nil); return}
+            
+            guard let decoded = self.decodeJSON(type: BookInfo.self, from: JSONData) else {return }
+            
+            response(decoded)
+        }
     }
     
     func getRequestedBooksList(response: @escaping (([BookList?]) -> Void)) {

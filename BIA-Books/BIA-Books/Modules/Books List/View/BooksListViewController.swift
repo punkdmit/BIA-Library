@@ -9,7 +9,6 @@ import UIKit
 
 class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    private var bookList = [BookList]()
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
     private var selectedCellText: String?
@@ -52,15 +51,21 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return viewModel?.bookList.value?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {return UITableViewCell()}
-        cell.noSelectionStyle()
+        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else { return UITableViewCell() }
+        guard let viewModel = viewModel else { return UITableViewCell() }
+        guard let bookList = viewModel.bookList.value else { return UITableViewCell() }
+        
+        let book = bookList[indexPath.row]
+        cell.viewModel = BookListCellViewModel(book : book)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else {return}
+        viewModel.selectRow(indexPath: indexPath)
         guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -91,7 +96,6 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func bindViewModel() {
         viewModel?.bookList.bind { [weak self] bookList in
-            self?.bookList = bookList
             self?.booksTableView.reloadData()
         }
     }

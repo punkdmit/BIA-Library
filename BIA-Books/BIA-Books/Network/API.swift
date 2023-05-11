@@ -9,6 +9,7 @@ enum Operation: String {
     case cancelBookRequest = "cancelRequest"
     case cancelBookRent = "cancelRent"
     case reserveBook = "reserve"
+    case bookInfo = "books/details"
 }
 
 struct API {

@@ -28,6 +28,7 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
     }
     private func setView() {
         viewModel = BookDetailViewModel()
+        viewModel?.loadBookInfo()
         setUpCollectionView()
         customBackButton()
         detailCardView.aplyShadow(cornerRadius: 12)
