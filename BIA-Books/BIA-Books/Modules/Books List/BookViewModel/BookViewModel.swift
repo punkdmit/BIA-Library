@@ -32,7 +32,4 @@ class BooksViewModel : BookListModelType {
             }
         }
     }
-    func selectRow(indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
-    }
 }
