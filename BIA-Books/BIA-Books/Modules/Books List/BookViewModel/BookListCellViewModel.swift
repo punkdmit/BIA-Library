@@ -14,7 +14,7 @@ class BookListCellViewModel {
     //var searchContent : Dynamic<Stung?> = Dynamic(nil)
     
     var _id: String {
-        return book._id ?? ""
+        return book.id ?? ""
     }
     
     var name: String {

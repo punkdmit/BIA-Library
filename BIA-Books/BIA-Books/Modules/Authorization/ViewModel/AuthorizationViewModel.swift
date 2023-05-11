@@ -12,6 +12,10 @@ class AthorizationViewModel {
     var statusText = Dynamic("")
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
     
+    func checkAccessToken() {
+        loginSuccess.value = UserDefaults.standard.string(forKey: "accessToken") != nil
+    }
+    
     func userLogInButtonPressed(login: String, password: String) {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .withoutEscapingSlashes

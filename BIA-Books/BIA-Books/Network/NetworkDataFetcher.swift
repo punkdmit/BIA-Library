@@ -12,10 +12,21 @@ protocol DataFetcher {
     func getBookInfo(params: [String: String], response : @escaping (BookInfo?) -> Void)
     
     func login(params: [String: String], body: String?, response: @escaping (Login?) -> Void)
+    
+    func getRequestedBooksList(response: @escaping (([BookList?]) -> Void))
+    func getRentedBooksList(response: @escaping (([BookList?]) -> Void))
+    func cancelBookRequest(params : [String : String], response: @escaping ((Int) -> Void))
+    func cancelBookRent(params : [String : String], response: @escaping ((Int) -> Void))
+    func reserve(params: [String : String], response: @escaping ((Int) -> Void))
 }
 
 struct NetworkDataFetcher: DataFetcher {
+    let networking: Networking
     
+    init(networking: Networking) {
+        self.networking = networking
+    }
+
     func login(params: [String : String], body: String?, response: @escaping (Login?) -> Void) {
         networking.request(path: API.path, method: .post, operation: .login, headers: [:], params: params, body: body) { (data, statusCode, error) in
             if error != nil {
@@ -64,11 +75,69 @@ struct NetworkDataFetcher: DataFetcher {
         }
     }
     
-    let networking: Networking
-    
-    init(networking: Networking) {
-        self.networking = networking
+    func getRequestedBooksList(response: @escaping (([BookList?]) -> Void)) {
+        guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        networking.request(path: API.path, method: .get, operation: .requestedBookList, headers: ["Authorization" : "Bearer " + bearerToken], params: [:] , body: nil) { data, statusCode, error in
+            if error != nil {
+                response([nil])
+            }
+            guard let JSONData = data else { response([nil]); return }
+            guard let decoded = self.decodeJSON(type: [BookList].self, from: JSONData) else { return }
+            response(decoded)
+        }
     }
+    
+    func getRentedBooksList(response: @escaping (([BookList?]) -> Void)) {
+        guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        networking.request(path: API.path, method: .get, operation: .rentedBookList, headers: ["Authorization" : "Bearer " + bearerToken], params: [:] , body: nil) { data, statusCode, error in
+            if error != nil {
+                response([nil])
+            }
+            guard let JSONData = data else { response([nil]); return }
+            guard let decoded = self.decodeJSON(type: [BookList].self, from: JSONData) else { return }
+            response(decoded)
+        }
+    }
+    
+    func cancelBookRequest(params: [String : String], response: @escaping ((Int) -> Void)) {
+        guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        networking.request(path: API.path, method: .get, operation: .cancelBookRequest, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
+            if error == nil {
+                response(statusCode)
+            } else {
+                response(500)
+            }
+        }
+    }
+    
+    func cancelBookRent(params: [String : String], response: @escaping ((Int) -> Void)) {
+        guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        networking.request(path: API.path, method: .get, operation: .cancelBookRent, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
+            if error == nil {
+                response(statusCode)
+            } else {
+                response(500)
+            }
+        }
+    }
+    
+    func reserve(params: [String : String], response: @escaping ((Int) -> Void)) {
+        guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        networking.request(path: API.path, method: .get, operation: .reserveBook, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
+            if error == nil {
+                response(statusCode)
+            } else {
+                response(500)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
