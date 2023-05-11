@@ -26,6 +26,7 @@
 		5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4840D829A3CC5B00A8C111 /* Extensions.swift */; };
 		5E88DF0629BB52E300F346DB /* BooksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */; };
 		5E88DF0729BB52E300F346DB /* BooksTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */; };
+		5E99A21D2A0CFD8F00EF725B /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E99A21C2A0CFD8F00EF725B /* CheckboxButton.swift */; };
 		5E9CD6A229CDE99900CBED35 /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9CD6A029CDE99900CBED35 /* TagsCollectionViewCell.swift */; };
 		5E9CD6A329CDE99900CBED35 /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CD6A129CDE99900CBED35 /* TagsCollectionViewCell.xib */; };
 		5EA17ED729FBDA97003DB6AD /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA17ED329FBDA97003DB6AD /* Responses.swift */; };
@@ -35,6 +36,8 @@
 		5EA312DE29B9FF3A0004F02B /* BooksViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */; };
 		5EA9F6B729DC70EA003ECCDE /* BookListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F6B529DC70EA003ECCDE /* BookListCollectionViewCell.swift */; };
 		5EA9F6B829DC70EA003ECCDE /* BookListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA9F6B629DC70EA003ECCDE /* BookListCollectionViewCell.xib */; };
+		5EF269A62A0AD9AE0033046D /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF269A52A0AD9AE0033046D /* SliderViewController.swift */; };
+		5EF269A82A0AD9C60033046D /* SliderViewControler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF269A72A0AD9C60033046D /* SliderViewControler.storyboard */; };
 		5EF3F4D529D5D44F007B0600 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF3F4D429D5D44F007B0600 /* BookDetailViewModel.swift */; };
 		5EF3F4D729D5D576007B0600 /* DetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF3F4D629D5D576007B0600 /* DetailViewModelProtocol.swift */; };
 		5EF50DAB29C479D100085757 /* BookDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */; };
@@ -65,6 +68,7 @@
 		5E4840D829A3CC5B00A8C111 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTableViewCell.swift; sourceTree = "<group>"; };
 		5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BooksTableViewCell.xib; sourceTree = "<group>"; };
+		5E99A21C2A0CFD8F00EF725B /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		5E9CD6A029CDE99900CBED35 /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E9CD6A129CDE99900CBED35 /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EA17ED329FBDA97003DB6AD /* Responses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BooksViewController.storyboard; sourceTree = "<group>"; };
 		5EA9F6B529DC70EA003ECCDE /* BookListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EA9F6B629DC70EA003ECCDE /* BookListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookListCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EF269A52A0AD9AE0033046D /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
+		5EF269A72A0AD9C60033046D /* SliderViewControler.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SliderViewControler.storyboard; sourceTree = "<group>"; };
 		5EF3F4D429D5D44F007B0600 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		5EF3F4D629D5D576007B0600 /* DetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		5EF50DAA29C479D100085757 /* BookDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -109,6 +115,15 @@
 				D7C956A4B851C13461FE1F4C /* Pods-BIA-Books.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5E00C04A2A0CF29900FAE6FE /* BooksTableView */ = {
+			isa = PBXGroup;
+			children = (
+				5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */,
+				5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */,
+			);
+			path = BooksTableView;
 			sourceTree = "<group>";
 		};
 		5E0ABC802A03C6A600BEBF9A /* Protocols */ = {
@@ -239,9 +254,10 @@
 		5E2C261629B684D300C28830 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5E2C260E29B6843000C28830 /* BooksListViewController.swift */,
+				5E99A21B2A0CFCB200EF725B /* Controllers */,
 				5EF42F8B29B9FCD0006F72B8 /* StoryBoards */,
 				5E88DF0329BB4B7F00F346DB /* Cell */,
+				5E99A21C2A0CFD8F00EF725B /* CheckboxButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,12 +265,28 @@
 		5E88DF0329BB4B7F00F346DB /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5E88DF0429BB52E300F346DB /* BooksTableViewCell.swift */,
-				5E88DF0529BB52E300F346DB /* BooksTableViewCell.xib */,
+				5E00C04A2A0CF29900FAE6FE /* BooksTableView */,
+				5E99A21A2A0CF73F00EF725B /* BooksCollectionView */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5E99A21A2A0CF73F00EF725B /* BooksCollectionView */ = {
+			isa = PBXGroup;
+			children = (
 				5EA9F6B529DC70EA003ECCDE /* BookListCollectionViewCell.swift */,
 				5EA9F6B629DC70EA003ECCDE /* BookListCollectionViewCell.xib */,
 			);
-			path = Cell;
+			path = BooksCollectionView;
+			sourceTree = "<group>";
+		};
+		5E99A21B2A0CFCB200EF725B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E2C260E29B6843000C28830 /* BooksListViewController.swift */,
+				5EF269A52A0AD9AE0033046D /* SliderViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		5E9CD6A629CDE9C700CBED35 /* TagsCollectionViewController */ = {
@@ -289,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				5EA312DD29B9FF3A0004F02B /* BooksViewController.storyboard */,
+				5EF269A72A0AD9C60033046D /* SliderViewControler.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -383,6 +416,7 @@
 			files = (
 				5E9CD6A329CDE99900CBED35 /* TagsCollectionViewCell.xib in Resources */,
 				5E299E3B299E73A4002D9E6E /* LaunchScreen.storyboard in Resources */,
+				5EF269A82A0AD9C60033046D /* SliderViewControler.storyboard in Resources */,
 				5E299E38299E73A4002D9E6E /* Assets.xcassets in Resources */,
 				5EA312DE29B9FF3A0004F02B /* BooksViewController.storyboard in Resources */,
 				5E299E36299E73A3002D9E6E /* Main.storyboard in Resources */,
@@ -452,8 +486,10 @@
 				5EF50DAD29C479E000085757 /* BookDetailViewController.swift in Sources */,
 				5E0ABC862A03DE6600BEBF9A /* BookListCellViewModel.swift in Sources */,
 				5E299E33299E73A3002D9E6E /* AuthorizationViewController.swift in Sources */,
+				5EF269A62A0AD9AE0033046D /* SliderViewController.swift in Sources */,
 				5E2C261329B6846D00C28830 /* BookViewModel.swift in Sources */,
 				5E299E48299E7472002D9E6E /* Dynamic.swift in Sources */,
+				5E99A21D2A0CFD8F00EF725B /* CheckboxButton.swift in Sources */,
 				5EA17ED829FBDA97003DB6AD /* NetworkService.swift in Sources */,
 				5E299E4A299E758C002D9E6E /* User .swift in Sources */,
 				5E0ABC842A03DA1700BEBF9A /* BookListCellViewModelType.swift in Sources */,
@@ -620,7 +656,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -650,7 +686,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

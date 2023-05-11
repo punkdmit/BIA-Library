@@ -17,6 +17,10 @@ class BooksViewModel : BookListModelType {
         return bookListTags.count
     }
     
+    func numberOfRows() -> Int {
+        return self.bookList.value?.count ?? 0
+    }
+    
     func loadBookList() {
         fetcher.getBookList(params: [:]) { [weak self] response in
             
@@ -28,11 +32,6 @@ class BooksViewModel : BookListModelType {
             }
         }
     }
-    
-    func viewModelForSelectedRow() -> ViewModelDetailType? {
-        
-    }
-    
     func selectRow(indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
     }

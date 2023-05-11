@@ -10,14 +10,26 @@ import ReadMoreTextView
 
 
 class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    @IBOutlet weak var bookDescription: ReadMoreTextView!
+    @IBOutlet weak var bookName: UILabel!
+    @IBOutlet weak var author: UILabel!
+    @IBOutlet weak var pages: UILabel!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var rate: UILabel!
+    @IBOutlet weak var language: UILabel!
+    @IBOutlet weak var bookCover: UIImageView!
+    
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    private var viewModel : BookDetailViewModel?
-    
+    var bookDetailId : String?
+    var viewModel : BookDetailViewModel?
+    private var bookList : BooksListViewController!
     let reuseIdentifer = "Cell"
     
     @IBOutlet weak var detailCardView: UIView!
     @IBOutlet weak var bookRequestButton: UIButton!
+    
+    
     
     @IBOutlet weak var descriptionTextView: ReadMoreTextView!
     
@@ -27,15 +39,13 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
         
     }
     private func setView() {
-        viewModel = BookDetailViewModel()
-        viewModel?.loadBookInfo()
         setUpCollectionView()
         customBackButton()
         detailCardView.aplyShadow(cornerRadius: 12)
         bookRequestButton.roundedCornerButton(radius: 6)
         setTextView(textView: descriptionTextView)
     }
-    
+ 
     private func customBackButton() {
         let backBTN = UIBarButtonItem(image: UIImage(named: "backButton"),
                                       style: .plain,
@@ -74,12 +84,20 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
     }
+     func bindViewModel() {
+        viewModel?.pickedBook.bind({ [weak self] bookInfo in
+            self?.bookName.text = bookInfo?.name
+            self?.author.text = bookInfo?.author
+            self?.bookDescription.text = bookInfo?.description
+        })
+    }
     
     @IBAction func requsetBok(_ sender: Any) {
         let alertController = UIAlertController(title: "Запрос книги", message: "Хотите запросить книгу?", preferredStyle: .alert)
 
         let yesAction = UIAlertAction(title: "Да", style: .default) { (action:UIAlertAction!) in
             // Действия, которые нужно выполнить при выборе "Да"
+            //request на аренду книги
         }
 
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (action:UIAlertAction!) in

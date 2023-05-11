@@ -48,10 +48,12 @@ struct NetworkDataFetcher: DataFetcher {
     }
     
     func getBookInfo(params: [String : String], response: @escaping (BookInfo?) -> Void) {
-        guard let bearerToken =  UserDefaults.standard.string(forKey: "accessToken") else { return }
+        guard let bearerToken =  UserDefaults.standard.string(forKey: "accessToken") else { print("Error: bearerToken is nil")
+            return}
         
         networking.request(path: API.path, method: .get, operation: .bookInfo, headers: ["Authorization" : "Bearer " + bearerToken], params: params, body: nil) { data, statusCode, error in
             if error != nil {
+                print("Error in networking request: \(error!)")
                 response(nil)
             }
             guard let JSONData = data else {response(nil); return}
