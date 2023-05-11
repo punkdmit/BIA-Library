@@ -96,7 +96,6 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {return}
-        viewModel.selectRow(indexPath: indexPath)
         guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
         guard let bookId = viewModel.bookList.value?[indexPath.row]._id else {return}
         vc.viewModel = BookDetailViewModel(bookId: bookId)

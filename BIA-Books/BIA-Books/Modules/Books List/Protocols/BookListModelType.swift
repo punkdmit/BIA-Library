@@ -10,7 +10,4 @@ import Foundation
 protocol BookListModelType {
     func numberOfTags() -> Int
     var bookList: Dynamic<[BookList]?> {get set}
-    
-//    func viewModelForSelectedRow() -> ViewModelDetailType?
-    func selectRow(indexPath: IndexPath)
 }
