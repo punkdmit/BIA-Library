@@ -10,21 +10,22 @@ import UIKit
 class MyShelfViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var mySegmentControlStack: UIStackView!
+    @IBOutlet weak var onMyShelfLabelStack: UIStackView!
     @IBOutlet weak var mySegmentControl: UISegmentedControl!
     
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         setSegment(index: sender.selectedSegmentIndex)
     }
-    
+            
     private let searchController = UISearchController(searchResultsController: nil)
-
-    var viewModel: ViewModel?
+    
+    var viewModel: MyShelfViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = ViewModel()
+        viewModel = MyShelfViewModel()
         bindViewModel()
         
         tableView.register(UINib(nibName: "RequestedBookCardCell", bundle: nil), forCellReuseIdentifier: "Cell")
@@ -64,6 +65,7 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+//        headerLabelStack.isHidden = true
     }
     
     private func setSegment(index: Int) {
@@ -94,86 +96,80 @@ extension MyShelfViewController: UITableViewDataSource {
         var cellType: CardViewModel.CellType?
         
         switch(mySegmentControl.selectedSegmentIndex) {
-        case 0:
-            cellType = .requested
-        case 1:
-            cellType = .reading
-        case 2:
-            cellType = .read
-        default:
-            cellType = nil
+            case 0:
+                cellType = .requested
+            case 1:
+                cellType = .reading
+            case 2:
+                cellType = .returned
+            default:
+                cellType = nil
         }
         
-        switch viewModel?.isSearching {
-        case false:
-            guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? BookCardCell else { return UITableViewCell() }
+        switch searchController.isActive || /*&&*/ searchController.searchBar.text != "" {
+            case false:
+                guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? BookCardCell else { return UITableViewCell() }
+                
+                guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
+                let book = dataSource[indexPath.row]
+                cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
+                cell.bindViewModel()
+                cell.delegate = self
+                return cell
             
-            guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
-            let book = dataSource[indexPath.row]
-            cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
-            cell.bindViewModel()
-            return cell
-            
-        case true:
-            guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultViewCell else { return UITableViewCell() }
-            
-            guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
-            let book = dataSource[indexPath.row]
-            cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
-            cell.bindViewModel()
-            /*
-            let cellViewModel = viewModel?.cellViewModel(indexPath: indexPath, type: cellType)
-            cell.viewModel = cellViewModel
-            cell.bindViewModel()
-            */
-            return cell
-            
-        default:
-            return UITableViewCell() //МОЖНО СДЕЛАТЬ ЕНАМ СО СВОИМ ПЕРЕЧИСЛЕНИЕМ ТРУ ФОЛС И ТОГДА НЕ БУДЕТ ДЕФОЛТА
+            case true:
+                guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultViewCell else { return UITableViewCell() }
+                
+                guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
+                let book = dataSource[indexPath.row]
+                cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
+                cell.bindViewModel()
+                return cell
         }
     }
 }
 
-// МЕТОД ДЛЯ СЕРЧ КОНТРЛОЛЛЕРА КОТОРЫЙ СМОТРИТ НА ВВЕДЕННЫЙ ТЕКСТ В СТРОКУ
 extension MyShelfViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        if searchController.searchBar.text != viewModel?.searchText {
+        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true) || searchController.isActive
+        
+        if searchController.searchBar.text != viewModel?.searchText  {
             viewModel?.searchText = searchController.searchBar.text
             filterContentForSearchText(searchController.searchBar.text ?? "")
         }
         
-        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true)
-        
-        if viewModel?.isSearching == true {
-            mySegmentControl.isHidden = true
-        } else {
-            mySegmentControl.isHidden = false
+        switch (viewModel?.isSearching != false) {
+            case true:
+                mySegmentControlStack.isHidden = true
+                onMyShelfLabelStack.isHidden = false
+                tableView.reloadData()
+            case false:
+                mySegmentControlStack.isHidden = false
+                onMyShelfLabelStack.isHidden = true
+                viewModel?.dataSource.value = viewModel?.allBooksDataSource.value
+                tableView.reloadData()
         }
-        
-        tableView.reloadData()
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        viewModel?.dataSource = Dynamic(viewModel?.booksPreset.value?.filter { (book: Book) -> Bool in
+        viewModel?.dataSource.value = viewModel?.allBooksDataSource.value?.filter { (book: Book) -> Bool in
             return book.bookName.lowercased().contains(searchText.lowercased())
-        })
+        }
     }
 }
 
-extension MyShelfViewController: UITableViewDelegate {
-    
-}
+extension MyShelfViewController: UITableViewDelegate {}
 
 extension MyShelfViewController: BookCardCellDelegate {
     func returnBook(book: Book?) {
-        print("Returned")
+        viewModel?.cancelBookRent(bookId: book?.bookId ?? "")
     }
     
-    func requestBook(book: Book?) {
-        print("Requested")
+    func reserveBook(book: Book?) {
+        viewModel?.reserve(bookId: book?.bookId ?? "")
     }
     
     func cancelReservation(book: Book?) {
-        print("Canceled")
+        viewModel?.cancelBookRequest(bookId: book?.bookId ?? "")
     }
 }

@@ -12,7 +12,7 @@ class CardViewModel {
     enum CellType {
         case requested
         case reading
-        case read
+        case returned
     }
     
     var book: Book?

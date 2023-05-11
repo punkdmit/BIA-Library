@@ -10,7 +10,7 @@ import UIKit
 protocol BookCardCellDelegate: AnyObject {
     func cancelReservation(book: Book?)
     func returnBook(book: Book?)
-    func requestBook(book: Book?)
+    func reserveBook(book: Book?)
 }
 
 class BookCardCell: UITableViewCell {
@@ -79,7 +79,7 @@ class BookCardCell: UITableViewCell {
                 buttonLabel.tintColor = BooksColor.activeColor
                 buttonImage.image = UIImage(named: "Add new")
             
-            case .read:
+            case .returned:
                 buttonLabel.text = "Запросить"
                 buttonLabel.tintColor = BooksColor.activeColor
                 buttonImage.image = UIImage(named: "Add new")
@@ -87,37 +87,38 @@ class BookCardCell: UITableViewCell {
     }
     
     private func addCancelRequestGestureRecognizer()  {
-        let cancelRequestStack = UITapGestureRecognizer(target: self, action: #selector(self.cancelReservationPressed(tapGesture:)))
+        let cancelRequestStack = UITapGestureRecognizer(target: self, action: #selector(self.bookCardButtonPressed(tapGesture:)))
         self.buttonStack.addGestureRecognizer(cancelRequestStack)
     }
     
-    @objc func cancelReservationPressed(tapGesture: UITapGestureRecognizer) {
+    @objc func bookCardButtonPressed(tapGesture: UITapGestureRecognizer) {
         guard let viewModel = viewModel else { return }
     
         switch viewModel.cellType {
-        case .requested:
-            let alert = UIAlertController(title: viewModel.bookName, message: "Хотите отменить запрос?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
-                self?.delegate?.cancelReservation(book: self?.viewModel?.book)
-            })
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
-            
-        case .reading:
-            let alert = UIAlertController(title: viewModel.bookName, message: "Хотите сдать книгу?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
-                self?.delegate?.returnBook(book: self?.viewModel?.book)
-            })
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
-            
-        case .read:
-            let alert = UIAlertController(title: viewModel.bookName, message: "Хотите запросить книгу?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
-                self?.delegate?.requestBook(book: self?.viewModel?.book)
-            })
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+            case .requested:
+                let alert = UIAlertController(title: viewModel.bookName, message: "Хотите отменить запрос?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
+                    self?.delegate?.cancelReservation(book: viewModel.book)
+                    
+                })
+                UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                
+            case .reading:
+                let alert = UIAlertController(title: viewModel.bookName, message: "Хотите сдать книгу?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
+                    self?.delegate?.returnBook(book: viewModel.book)
+                })
+                UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                
+            case .returned:
+                let alert = UIAlertController(title: viewModel.bookName, message: "Хотите запросить книгу?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
+                    self?.delegate?.reserveBook(book: viewModel.book)
+                })
+                UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
 }

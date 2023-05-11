@@ -46,8 +46,7 @@
 		F85B785F29C4823200A875EA /* ResultViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F85B785D29C4823200A875EA /* ResultViewCell.xib */; };
 		F88DC28429B75D5200FAA936 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88DC28329B75D5200FAA936 /* TabBarController.swift */; };
 		F88DC28629B7764600FAA936 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F88DC28529B7764600FAA936 /* Profile.storyboard */; };
-		F8B760FE29BF63F8004811B4 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B760FD29BF63F8004811B4 /* TableViewModel.swift */; };
-		F8D8BD802A040E3D002BE8D4 /* DynamicSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8BD7F2A040E3D002BE8D4 /* DynamicSecond.swift */; };
+		F8B760FE29BF63F8004811B4 /* MyShelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B760FD29BF63F8004811B4 /* MyShelfViewModel.swift */; };
 		F8E413F929BB2E5C00477727 /* MyShelf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E413F829BB2E5C00477727 /* MyShelf.storyboard */; };
 		F8E4140529BB5BD200477727 /* MyShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4140429BB5BD200477727 /* MyShelfViewController.swift */; };
 		F8E4140829BB5C5500477727 /* RequestedBookCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */; };
@@ -100,8 +99,7 @@
 		F87781B929AF861500CE1EE4 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		F88DC28329B75D5200FAA936 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F88DC28529B7764600FAA936 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		F8B760FD29BF63F8004811B4 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
-		F8D8BD7F2A040E3D002BE8D4 /* DynamicSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSecond.swift; sourceTree = "<group>"; };
+		F8B760FD29BF63F8004811B4 /* MyShelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelfViewModel.swift; sourceTree = "<group>"; };
 		F8E413F829BB2E5C00477727 /* MyShelf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyShelf.storyboard; sourceTree = "<group>"; };
 		F8E4140429BB5BD200477727 /* MyShelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelfViewController.swift; sourceTree = "<group>"; };
 		F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedBookCardCell.swift; sourceTree = "<group>"; };
@@ -419,14 +417,6 @@
 			path = SearchBar;
 			sourceTree = "<group>";
 		};
-		F8D8BD7E2A03FF41002BE8D4 /* DataBinding */ = {
-			isa = PBXGroup;
-			children = (
-				F8D8BD7F2A040E3D002BE8D4 /* DynamicSecond.swift */,
-			);
-			path = DataBinding;
-			sourceTree = "<group>";
-		};
 		F8E413F529BB2DE800477727 /* MyShelf */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,8 +440,7 @@
 		F8E4140329BB3CCE00477727 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F8D8BD7E2A03FF41002BE8D4 /* DataBinding */,
-				F8B760FD29BF63F8004811B4 /* TableViewModel.swift */,
+				F8B760FD29BF63F8004811B4 /* MyShelfViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -640,12 +629,11 @@
 				F8E4140829BB5C5500477727 /* RequestedBookCardCell.swift in Sources */,
 				F8260CA829AF945C00AC3B9C /* ProfileViewController.swift in Sources */,
 				F8260CA629AF943A00AC3B9C /* ProfileViewModel.swift in Sources */,
-				F8D8BD802A040E3D002BE8D4 /* DynamicSecond.swift in Sources */,
 				5E299E48299E7472002D9E6E /* Dynamic.swift in Sources */,
 				F88DC28429B75D5200FAA936 /* TabBarController.swift in Sources */,
 				5E299E4A299E758C002D9E6E /* User .swift in Sources */,
 				5E299E2F299E73A3002D9E6E /* AppDelegate.swift in Sources */,
-				F8B760FE29BF63F8004811B4 /* TableViewModel.swift in Sources */,
+				F8B760FE29BF63F8004811B4 /* MyShelfViewModel.swift in Sources */,
 				5E299E31299E73A3002D9E6E /* SceneDelegate.swift in Sources */,
 				F8E4141229BB671F00477727 /* Book.swift in Sources */,
 				F85B785E29C4823200A875EA /* ResultViewCell.swift in Sources */,
