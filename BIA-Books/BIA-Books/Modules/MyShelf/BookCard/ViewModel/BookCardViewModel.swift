@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CardViewModel {
+class BookCardViewModel {
     enum CellType {
         case requested
         case reading

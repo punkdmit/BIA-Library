@@ -53,7 +53,7 @@
 		F8E4140529BB5BD200477727 /* MyShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4140429BB5BD200477727 /* MyShelfViewController.swift */; };
 		F8E4140829BB5C5500477727 /* RequestedBookCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */; };
 		F8E4140929BB5C5500477727 /* RequestedBookCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E4140729BB5C5500477727 /* RequestedBookCardCell.xib */; };
-		F8E4140F29BB664A00477727 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4140E29BB664A00477727 /* CardViewModel.swift */; };
+		F8E4140F29BB664A00477727 /* BookCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4140E29BB664A00477727 /* BookCardViewModel.swift */; };
 		F8E4141229BB671F00477727 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4141129BB671F00477727 /* Book.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +108,7 @@
 		F8E4140429BB5BD200477727 /* MyShelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelfViewController.swift; sourceTree = "<group>"; };
 		F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedBookCardCell.swift; sourceTree = "<group>"; };
 		F8E4140729BB5C5500477727 /* RequestedBookCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestedBookCardCell.xib; sourceTree = "<group>"; };
-		F8E4140E29BB664A00477727 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		F8E4140E29BB664A00477727 /* BookCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardViewModel.swift; sourceTree = "<group>"; };
 		F8E4141129BB671F00477727 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -358,9 +358,9 @@
 		F8260C9B29AF939A00AC3B9C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F8260CA029AF93C900AC3B9C /* ViewModel */,
 				F8260C9E29AF93BB00AC3B9C /* Model */,
 				F8260C9C29AF93AA00AC3B9C /* View */,
+				F8260CA029AF93C900AC3B9C /* ViewModel */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -481,7 +481,7 @@
 		F8E4140D29BB660F00477727 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F8E4140E29BB664A00477727 /* CardViewModel.swift */,
+				F8E4140E29BB664A00477727 /* BookCardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -628,7 +628,7 @@
 				5E9CD6A229CDE99900CBED35 /* TagsCollectionViewCell.swift in Sources */,
 				5E4840D929A3CC5B00A8C111 /* Extensions.swift in Sources */,
 				F8E4140529BB5BD200477727 /* MyShelfViewController.swift in Sources */,
-				F8E4140F29BB664A00477727 /* CardViewModel.swift in Sources */,
+				F8E4140F29BB664A00477727 /* BookCardViewModel.swift in Sources */,
 				5E299E4D299E824B002D9E6E /* AuthorizationViewModel.swift in Sources */,
 				5EF50DAD29C479E000085757 /* BookDetailViewController.swift in Sources */,
 				5E0ABC862A03DE6600BEBF9A /* BookListCellViewModel.swift in Sources */,

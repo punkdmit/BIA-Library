@@ -23,21 +23,27 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var ExitButtonCornerStack: UIStackView!
     
-    var viewModel: ProfileViewModel? {
+    var viewModel: ProfileViewModel? /*{
         willSet(viewModel) {
             fullNameLabel.text = viewModel?.fullName
             mailLabel.text = viewModel?.mail
             photoImage.image = viewModel?.profilePhoto
         }
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ProfileViewModel(profile: Profile(profilePhoto: UIImage(named: "1"), name: "Dmitry", secondName: "Apenko", mail: "dima.gg2001@mail.ru"))
+        viewModel = ProfileViewModel() /*ProfileViewModel(profile: Profile(profilePhoto: UIImage(named: "1"), name: "Dmitry", secondName: "Apenko", mail: "dima.gg2001@mail.ru"))*/
         setView()
         addExitGestureRecognizer()
         addAboutGestureRecognizer()
         addFaqGestureRecognizer()
+    }
+    
+    func bindViewModel() {
+        viewModel?.dataSource.bind({ [weak self] Book in
+            photoImage.image = 
+        })
     }
     
     func addAboutGestureRecognizer() {

@@ -12,7 +12,7 @@ class ResultViewCell: UITableViewCell {
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     
-    var viewModel: CardViewModel?
+    var viewModel: BookCardViewModel?
     
     func bindViewModel() {
         guard let viewModel = viewModel else { return }

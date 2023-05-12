@@ -36,22 +36,29 @@ public struct BookInfo : Codable {
 //    let tags : [String]?
 }
 
+public struct UserInfo: Codable {
+    let id: String?
+    let firstName: String?
+    let lastName: String?
+    let email: String?
+    let password: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case firstName = "firstName"
+        case lastName = "lastName"
+        case email = "email"
+        case password = "password"
+    }
+}
+
 
 
 public struct Login: Codable {
     let accessToken: String
 }
 
-public struct Fault: Decodable {
-    let code: String
-    let description: String
-    let message: String?
-    
-    private enum CodingKeys: String, CodingKey {
-        case code = "NS2:code"
-        case description = "NS3:description"
-        case message = "NS4:message"
-    }
+public struct Fault: Codable {
+    let error: String
 }
-
 

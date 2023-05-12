@@ -26,7 +26,7 @@ class BookCardCell: UITableViewCell {
     
     weak var delegate: BookCardCellDelegate?
     
-    var viewModel: CardViewModel?
+    var viewModel: BookCardViewModel?
     /*
     {
         didSet(viewModel) {

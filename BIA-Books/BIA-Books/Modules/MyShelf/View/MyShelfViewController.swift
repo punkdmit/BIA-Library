@@ -11,8 +11,9 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mySegmentControlStack: UIStackView!
-    @IBOutlet weak var onMyShelfLabelStack: UIStackView!
     @IBOutlet weak var mySegmentControl: UISegmentedControl!
+    @IBOutlet weak var whenSearchingLabelStack: UIStackView!
+    @IBOutlet weak var whenSearchingLabel: UILabel!
     
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         setSegment(index: sender.selectedSegmentIndex)
@@ -21,6 +22,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
     private let searchController = UISearchController(searchResultsController: nil)
     
     var viewModel: MyShelfViewModel?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,13 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         viewModel?.dataSource.bind { [weak self] _ in
             self?.tableView.reloadData()
         }
+        viewModel?.reserveError.bind({ [weak self] message in
+            guard let message = message else { return }
+             //презентация алерта с текстом ошибки
+            let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+        })
     }
     
     func setupNavigationControllerTitle() {
@@ -72,15 +82,16 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         switch index {
         case 0:
             viewModel?.getRequestedBooksList()
+            whenSearchingLabel.text = "Запрошенные книги:"
         case 1:
             viewModel?.getRentedBooksList()
+            whenSearchingLabel.text = "Арендованные книги:"
         case 2:
-            viewModel?.dataSource.value = viewModel?.booksPreset.value?.filter{ $0.bookStatus == .read } ?? []
+            viewModel?.getReturnedBooksList()
+            whenSearchingLabel.text = "Прочитанные книги:"
         default:
             viewModel?.dataSource.value = []
         }
-        
-//        tableView.reloadData()
     }
 }
 
@@ -93,7 +104,7 @@ extension MyShelfViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cellType: CardViewModel.CellType?
+        var cellType: BookCardViewModel.CellType?
         
         switch(mySegmentControl.selectedSegmentIndex) {
             case 0:
@@ -106,13 +117,13 @@ extension MyShelfViewController: UITableViewDataSource {
                 cellType = nil
         }
         
-        switch searchController.isActive || /*&&*/ searchController.searchBar.text != "" {
+        switch /*searchController.isActive ||*/ /*&&*/ viewModel?.isSearching != false {
             case false:
                 guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? BookCardCell else { return UITableViewCell() }
                 
                 guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
                 let book = dataSource[indexPath.row]
-                cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
+                cell.viewModel = BookCardViewModel(myShelf: book, cellType: cellType)
                 cell.bindViewModel()
                 cell.delegate = self
                 return cell
@@ -122,7 +133,7 @@ extension MyShelfViewController: UITableViewDataSource {
                 
                 guard let dataSource = viewModel?.dataSource.value else { return UITableViewCell() }
                 let book = dataSource[indexPath.row]
-                cell.viewModel = CardViewModel(myShelf: book, cellType: cellType)
+                cell.viewModel = BookCardViewModel(myShelf: book, cellType: cellType)
                 cell.bindViewModel()
                 return cell
         }
@@ -131,7 +142,7 @@ extension MyShelfViewController: UITableViewDataSource {
 
 extension MyShelfViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true) || searchController.isActive
+        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true) /*|| searchController.isActive*/
         
         if searchController.searchBar.text != viewModel?.searchText  {
             viewModel?.searchText = searchController.searchBar.text
@@ -141,13 +152,13 @@ extension MyShelfViewController: UISearchResultsUpdating {
         switch (viewModel?.isSearching != false) {
             case true:
                 mySegmentControlStack.isHidden = true
-                onMyShelfLabelStack.isHidden = false
-                tableView.reloadData()
+                whenSearchingLabelStack.isHidden = false
+//                tableView.reloadData()
             case false:
                 mySegmentControlStack.isHidden = false
-                onMyShelfLabelStack.isHidden = true
+                whenSearchingLabelStack.isHidden = true
                 viewModel?.dataSource.value = viewModel?.allBooksDataSource.value
-                tableView.reloadData()
+//                tableView.reloadData()
         }
     }
     

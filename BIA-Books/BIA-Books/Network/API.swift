@@ -6,10 +6,12 @@ enum Operation: String {
     case bookList = "books"
     case requestedBookList = "requestedBooks"
     case rentedBookList = "rentedBooks"
+    case returnedBookList = "returnedBooks"
     case cancelBookRequest = "cancelRequest"
     case cancelBookRent = "cancelRent"
     case reserveBook = "reserve"
     case bookInfo = "books/details"
+    case userInfo = "users"
 }
 
 struct API {

@@ -9,21 +9,29 @@ import Foundation
 import UIKit
 
 class ProfileViewModel {
-    private var profile: Profile
+//    private var profile: Profile
+//
+//    var profilePhoto: UIImage? {
+//        return profile.profilePhoto
+//    }
+//
+//    var fullName: String? {
+//        return profile.name + " " + profile.secondName
+//    }
+//
+//    var mail: String? {
+//        return profile.mail
+//    }
+//
+//    init(profile: Profile) {
+//        self.profile = profile
+//    }
     
-    var profilePhoto: UIImage? {
-        return profile.profilePhoto
-    }
     
-    var fullName: String? {
-        return profile.name + " " + profile.secondName
-    }
+    private let dataFetcher = NetworkDataFetcher(networking: NetworkService())
+    var dataSource: Dynamic<Profile?> = Dynamic(nil)
     
-    var mail: String? {
-        return profile.mail
-    }
-    
-    init(profile: Profile) {
-        self.profile = profile
+    func getUserData() {
+        
     }
 }
