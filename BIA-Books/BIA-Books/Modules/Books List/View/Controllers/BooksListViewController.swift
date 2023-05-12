@@ -7,8 +7,9 @@
 
 import UIKit
 
-class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAdaptivePresentationControllerDelegate, UISheetPresentationControllerDelegate {
+class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAdaptivePresentationControllerDelegate, UISheetPresentationControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
+    let searchController = UISearchController()
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
     private var selectedCellText: String?
@@ -32,10 +33,22 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         viewModel = BooksViewModel()
         viewModel?.loadBookList()
         bindViewModel()
-        searchBar.placeholder = "Поиск"
         setTableView()
         setUpCollectionView()
+        setUpSearchController()
     }
+    
+    private func setUpSearchController() {
+        searchController.searchBar.delegate = self
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+    }
+
     private func setUpNavBarItems() {
         let label = UILabel()
         label.text = "Главная"
@@ -56,8 +69,6 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func tapSlidersButton() {
-        print("Button tapped!")
-        
         let storyboard = UIStoryboard(name: "SliderViewControler", bundle: nil)
          let popUpviewController = storyboard.instantiateViewController(withIdentifier: "SliderViewControler")
         let nav = UINavigationController(rootViewController: popUpviewController)
@@ -79,6 +90,9 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
+    }
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

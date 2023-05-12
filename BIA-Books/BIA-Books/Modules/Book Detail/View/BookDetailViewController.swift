@@ -78,32 +78,43 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
         
         return cell
     }
+    
     private func setUpCollectionView() {
         collectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifer)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
     }
+    
      func bindViewModel() {
         viewModel?.pickedBook.bind({ [weak self] bookInfo in
             self?.bookName.text = bookInfo?.name
             self?.author.text = bookInfo?.author
             self?.bookDescription.text = bookInfo?.description
         })
+         viewModel?.reservationError.bind({ message in
+             guard let message = message else { return }
+             let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+             alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+             
+             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let keyWindow = windowScene.windows.filter({ $0.isKeyWindow }).first {
+                 keyWindow.rootViewController?.present(alert, animated: true, completion: nil)
+             }
+         })
     }
     
     @IBAction func requsetBok(_ sender: Any) {
         let alertController = UIAlertController(title: "Запрос книги", message: "Хотите запросить книгу?", preferredStyle: .alert)
 
         let yesAction = UIAlertAction(title: "Да", style: .default) { (action:UIAlertAction!) in
-            // Действия, которые нужно выполнить при выборе "Да"
-            //request на аренду книги
+            self.viewModel?.reserveBook()
         }
 
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (action:UIAlertAction!) in
-            // Действия, которые нужно выполнить при выборе "Отменить"
+            
         }
-
+        
         alertController.addAction(yesAction)
         alertController.addAction(cancelAction)
 
