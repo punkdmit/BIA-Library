@@ -10,18 +10,31 @@ import Foundation
 
 class BookDetailViewModel  : ViewModelDetailType  {
     
+    var pickedBook : Dynamic<BookInfo?> = Dynamic(nil)
+    var bookId: String
+    
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
     var labels = ["Дизайн",  "Разработка", "1С"]
     
+    init(bookId: String) {
+        self.bookId = bookId
+        loadBookInfo(bookId: bookId)
+    }
     
     func numberOfRows() -> Int {
         return labels.count
     }
     
-    func loadBookInfo() {
-        fetcher.getBookInfo(params: ["bookId" : "6450fdf9f2393509a5d29c1b"]) { response in
-            
+    private func loadBookInfo(bookId : String) {
+        fetcher.getBookInfo(params: ["bookId" : bookId]) { [weak self] bookDetail in
+            if let book = bookDetail {
+                self?.pickedBook.value = book
+            }
         }
+    }
+    
+    func reserveBook(bookId : String) {
+        //request for reserve
     }
 }
 

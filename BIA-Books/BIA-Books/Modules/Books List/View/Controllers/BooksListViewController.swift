@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAdaptivePresentationControllerDelegate, UISheetPresentationControllerDelegate {
     
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
@@ -23,18 +23,51 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        viewModel?.loadBookList()
-        bindViewModel()
     }
+    
     
     private func setView() {
         navigationItem.hidesBackButton = true
+        setUpNavBarItems()
         viewModel = BooksViewModel()
+        viewModel?.loadBookList()
+        bindViewModel()
         searchBar.placeholder = "Поиск"
         setTableView()
         setUpCollectionView()
     }
+    private func setUpNavBarItems() {
+        let label = UILabel()
+        label.text = "Главная"
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.sizeToFit()
+
+        let item = UIBarButtonItem(customView: label)
+
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = 16 // Set the width of the spacer to create an indent
+
+        navigationItem.leftBarButtonItems = [spacer, item]
+        
+        let button = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(tapSlidersButton))
+        button.tintColor = BooksColor.textPrimary
+
+        navigationItem.rightBarButtonItem = button
+    }
     
+    @objc func tapSlidersButton() {
+        print("Button tapped!")
+        
+        let storyboard = UIStoryboard(name: "SliderViewControler", bundle: nil)
+         let popUpviewController = storyboard.instantiateViewController(withIdentifier: "SliderViewControler")
+        let nav = UINavigationController(rootViewController: popUpviewController)
+        nav.modalPresentationStyle = .pageSheet
+
+         if let sheet = nav.presentationController as? UISheetPresentationController {
+             sheet.detents = [.medium()]
+         }
+         self.present(nav, animated: true)
+    }
     private func setTableView() {
         booksTableView.delegate = self
         booksTableView.dataSource = self
@@ -48,10 +81,8 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         collectionView.showsHorizontalScrollIndicator = false
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.bookList.value?.count ?? 0
+        return viewModel?.numberOfRows() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,8 +96,10 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {return}
-        viewModel.selectRow(indexPath: indexPath)
         guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
+        guard let bookId = viewModel.bookList.value?[indexPath.row].id else {return}
+        vc.viewModel = BookDetailViewModel(bookId: bookId)
+        vc.bindViewModel()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

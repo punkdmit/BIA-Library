@@ -8,10 +8,12 @@
 import UIKit
 
 class BooksTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var bookName: UILabel!
     @IBOutlet weak var cardView: UIView!
-    
+    @IBOutlet weak var author: UILabel!
+    @IBOutlet weak var amountOfRates: UILabel!
+    @IBOutlet weak var bookCover: UIImageView!
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var bookStatus: UILabel!
     
@@ -22,6 +24,7 @@ class BooksTableViewCell: UITableViewCell {
         willSet(viewModel) {
             bookName.text = viewModel?.name
             language.text = viewModel?.language
+            author.text = viewModel?.author
         }
     }
     
@@ -35,5 +38,6 @@ class BooksTableViewCell: UITableViewCell {
         dateStack.roundCornersForUILabels(radius: 6)
         languageStack.roundCornersForUILabels(radius: 6)
         self.noSelectionStyle()
+        
     }
 }

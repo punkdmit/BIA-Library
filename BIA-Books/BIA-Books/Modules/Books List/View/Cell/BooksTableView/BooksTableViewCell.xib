@@ -163,6 +163,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="author" destination="qoM-n3-6gU" id="ned-WA-Wo4"/>
                 <outlet property="bookName" destination="Tjz-J6-YjR" id="wuZ-3K-JVs"/>
                 <outlet property="bookStatus" destination="hqs-59-PRV" id="8pl-QK-Z9o"/>
                 <outlet property="cardView" destination="cuJ-CI-VhJ" id="a1A-nv-VCG"/>
