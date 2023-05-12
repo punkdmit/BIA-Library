@@ -40,11 +40,11 @@ class ProfileViewController: UIViewController {
         addFaqGestureRecognizer()
     }
     
-    func bindViewModel() {
-        viewModel?.dataSource.bind({ [weak self] Book in
-            photoImage.image = 
-        })
-    }
+//    func bindViewModel() {
+//        viewModel?.dataSource.bind({ [weak self] Book in
+//            photoImage.image =
+//        })
+//    }
     
     func addAboutGestureRecognizer() {
         let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.aboutPressed(tapGesture:)))

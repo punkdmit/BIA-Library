@@ -159,7 +159,7 @@ struct NetworkDataFetcher: DataFetcher {
     }
     
     func getUserInfo(params: [String : String], response: @escaping (UserInfo?) -> Void) {
-        <#code#>
+        
     }
     
     
