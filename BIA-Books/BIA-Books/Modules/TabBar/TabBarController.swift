@@ -43,23 +43,26 @@ class TabBarController: UITabBarController {
     private func setupTabBar() {
         let dataSource: [TabBarItem] = [.main, .shelf, .profile]
         
-        setViewControllers(dataSource.map {
+        setViewControllers(dataSource.compactMap {
             switch $0 {
             case .main:
                 let storyboard = UIStoryboard(name: "BooksViewController", bundle: nil)
-                let booksListViewController = storyboard.instantiateViewController(withIdentifier: "BooksListViewController")
+                guard let booksListViewController = storyboard.instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else { return nil }
+                booksListViewController.viewModel = BooksViewModel()
                 booksListViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 1)
                 return self.wrappedInNavigationController(with: booksListViewController)
                 
             case .shelf:
                 let storyboard = UIStoryboard(name: "MyShelf", bundle: nil)
-                let myShelfViewController = storyboard.instantiateViewController(withIdentifier: "myShelfViewController")
+                guard let myShelfViewController = storyboard.instantiateViewController(withIdentifier: "myShelfViewController") as? MyShelfViewController else { return nil }
+                myShelfViewController.viewModel = MyShelfViewModel()
                 myShelfViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 1)
                 return self.wrappedInNavigationController(with: myShelfViewController)
                 
             case .profile:
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-                let profileViewController = storyboard.instantiateViewController(withIdentifier: "profileViewController")
+                guard let profileViewController = storyboard.instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController else { return nil }
+                profileViewController.viewModel = ProfileViewModel()
                 profileViewController.tabBarItem = UITabBarItem(title: $0.title, image: UIImage(named: $0.iconName), tag: 2)
                 return self.wrappedInNavigationController(with: profileViewController)
             }

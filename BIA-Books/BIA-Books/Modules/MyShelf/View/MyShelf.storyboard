@@ -27,10 +27,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aSE-hE-zce">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="51"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-op-eMa">
-                                                <rect key="frame" x="16" y="0.0" width="361" height="32"/>
+                                                <rect key="frame" x="16" y="4" width="361" height="32"/>
                                                 <segments>
                                                     <segment title="Запросил"/>
                                                     <segment title="Читаю"/>
@@ -42,10 +42,10 @@
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
-                                        <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
+                                        <edgeInsets key="layoutMargins" top="4" left="16" bottom="16" right="16"/>
                                     </stackView>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JiO-qY-gyB">
-                                        <rect key="frame" x="0.0" y="31" width="393" height="24"/>
+                                        <rect key="frame" x="0.0" y="51" width="393" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64s-Zl-mMv">
                                                 <rect key="frame" x="16" y="24" width="361" height="0.0"/>
@@ -57,7 +57,7 @@
                                         <edgeInsets key="layoutMargins" top="24" left="16" bottom="0.0" right="16"/>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1" verticalCompressionResistancePriority="1" restorationIdentifier="myShelfViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PcO-r0-Qq7">
-                                        <rect key="frame" x="0.0" y="31" width="393" height="728"/>
+                                        <rect key="frame" x="0.0" y="51" width="393" height="708"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>

@@ -30,7 +30,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     private func setView() {
         navigationItem.hidesBackButton = true
         setUpNavBarItems()
-        viewModel = BooksViewModel()
+//        viewModel = BooksViewModel()
         viewModel?.loadBookList()
         bindViewModel()
         setTableView()

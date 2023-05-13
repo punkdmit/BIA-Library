@@ -29,8 +29,10 @@ class MyShelfViewModel {
                 var decodedImage: UIImage?
                 
                 if let imageData = $0?.image {
-                    let dataDecoded: Data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters)!
-                    decodedImage = UIImage(data: dataDecoded)
+                    if let dataDecoded = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+                        let dataDecoded: Data = dataDecoded
+                        decodedImage = UIImage(data: dataDecoded)
+                    }
                 }
                 
                 return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)
@@ -46,8 +48,10 @@ class MyShelfViewModel {
                 var decodedImage: UIImage?
                 
                 if let imageData = $0?.image {
-                    let dataDecoded: Data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters)!
-                    decodedImage = UIImage(data: dataDecoded)
+                    if let dataDecoded = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+                        let dataDecoded: Data = dataDecoded
+                        decodedImage = UIImage(data: dataDecoded)
+                    }
                 }
                 
                 return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)
@@ -63,8 +67,10 @@ class MyShelfViewModel {
                 var decodedImage: UIImage?
                 
                 if let imageData = $0?.image {
-                    let dataDecoded: Data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters)!
-                    decodedImage = UIImage(data: dataDecoded)
+                    if let dataDecoded = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+                        let dataDecoded: Data = dataDecoded
+                        decodedImage = UIImage(data: dataDecoded)
+                    }
                 }
                 
                 return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)

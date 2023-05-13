@@ -23,28 +23,26 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var ExitButtonCornerStack: UIStackView!
     
-    var viewModel: ProfileViewModel? /*{
-        willSet(viewModel) {
-            fullNameLabel.text = viewModel?.fullName
-            mailLabel.text = viewModel?.mail
-            photoImage.image = viewModel?.profilePhoto
-        }
-    }*/
+    var viewModel: ProfileViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ProfileViewModel() /*ProfileViewModel(profile: Profile(profilePhoto: UIImage(named: "1"), name: "Dmitry", secondName: "Apenko", mail: "dima.gg2001@mail.ru"))*/
+        viewModel?.getUserData()
+        bindViewModel()
         setView()
         addExitGestureRecognizer()
         addAboutGestureRecognizer()
         addFaqGestureRecognizer()
     }
     
-//    func bindViewModel() {
-//        viewModel?.dataSource.bind({ [weak self] Book in
-//            photoImage.image =
-//        })
-//    }
+    func bindViewModel() {
+        viewModel?.dataSource.bind({ [weak self] profileInfo in
+            guard let name = profileInfo?.name, let secondName = profileInfo?.secondName else { return }
+            self?.fullNameLabel.text = "\(name) \(secondName)"
+            self?.photoImage.image = profileInfo?.profilePhoto
+            self?.mailLabel.text = profileInfo?.mail
+        })
+    }
     
     func addAboutGestureRecognizer() {
         let aboutTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.aboutPressed(tapGesture:)))
