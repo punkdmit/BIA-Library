@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyShelfViewController: UIViewController, UISearchBarDelegate {
+class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mySegmentControlStack: UIStackView!
@@ -23,14 +23,9 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
     
     var viewModel: MyShelfViewModel?
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel = MyShelfViewModel()
         bindViewModel()
-        
         tableView.register(UINib(nibName: "RequestedBookCardCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
         tableView.dataSource = self
@@ -75,7 +70,6 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-//        headerLabelStack.isHidden = true
     }
     
     private func setSegment(index: Int) {
@@ -169,7 +163,16 @@ extension MyShelfViewController: UISearchResultsUpdating {
     }
 }
 
-extension MyShelfViewController: UITableViewDelegate {}
+extension MyShelfViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+        guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else { return }
+        guard let bookId = viewModel.dataSource.value?[indexPath.row].bookId else { return }
+        vc.viewModel = BookDetailViewModel(bookId: bookId)
+        vc.bindViewModel()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
 extension MyShelfViewController: BookCardCellDelegate {
     func returnBook(book: Book?) {

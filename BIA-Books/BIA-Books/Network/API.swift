@@ -11,7 +11,7 @@ enum Operation: String {
     case cancelBookRent = "cancelRent"
     case reserveBook = "reserve"
     case bookInfo = "books/details"
-    case userInfo = "users"
+    case userInfo = "userInfo"
 }
 
 struct API {

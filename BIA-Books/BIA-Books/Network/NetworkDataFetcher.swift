@@ -18,7 +18,7 @@ protocol DataFetcher {
     func cancelBookRequest(params : [String : String], response: @escaping ((Int) -> Void))
     func cancelBookRent(params : [String : String], response: @escaping ((Int) -> Void))
     func reserve(params: [String : String], response: @escaping ((Int, String?) -> Void))
-    func getUserInfo(params: [String: String], response : @escaping (UserInfo?) -> Void)
+    func getUserInfo(response : @escaping (UserInfo?) -> Void)
 
 }
 
@@ -158,8 +158,22 @@ struct NetworkDataFetcher: DataFetcher {
         }
     }
     
-    func getUserInfo(params: [String : String], response: @escaping (UserInfo?) -> Void) {
+    func getUserInfo(response: @escaping (UserInfo?) -> Void) {
+        guard let bearerToken =  UserDefaults.standard.string(forKey: "accessToken") else { print("Error: bearerToken is nil")
+            return}
         
+        networking.request(path: API.path, method: .get, operation: .userInfo, headers: ["Authorization" : "Bearer " + bearerToken], params: [:], body: nil) { data, statusCode, error in
+            if error != nil {
+                response(nil)
+            }
+            guard let JSONData = data else {response(nil); return}
+            
+            guard let decoded = self.decodeJSON(type: UserInfo.self, from: JSONData) else {
+                return
+            }
+            
+            response(decoded)
+        }
     }
     
     

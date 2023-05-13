@@ -10,7 +10,7 @@ import UIKit
 
 struct Profile {
     let profilePhoto: UIImage?
-    let name: String
-    let secondName: String
-    let mail: String
+    let name: String?
+    let secondName: String?
+    let mail: String?
 }

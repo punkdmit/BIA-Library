@@ -41,14 +41,12 @@ public struct UserInfo: Codable {
     let firstName: String?
     let lastName: String?
     let email: String?
-    let password: String?
 
     private enum CodingKeys: String, CodingKey {
-        case id = "_id"
+        case id = "id"
         case firstName = "firstName"
         case lastName = "lastName"
         case email = "email"
-        case password = "password"
     }
 }
 
