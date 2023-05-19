@@ -30,7 +30,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="imo-rG-v35">
                                                         <rect key="frame" x="26" y="0.0" width="293" height="241"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookImage2" translatesAutoresizingMaskIntoConstraints="NO" id="pcJ-Do-scT">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookImage" translatesAutoresizingMaskIntoConstraints="NO" id="pcJ-Do-scT">
                                                                 <rect key="frame" x="92.666666666666657" y="0.0" width="108" height="145"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="145" id="YD8-Vd-2PQ"/>
@@ -201,7 +201,7 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cC4-4p-hwu" customClass="ReadMoreTextView" customModule="ReadMoreTextView">
                                                         <rect key="frame" x="0.0" y="20.333333333333371" width="345" height="182.66666666666666"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -299,7 +299,7 @@
         </designable>
     </designables>
     <resources>
-        <image name="bookImage2" width="133" height="169"/>
+        <image name="bookImage" width="75" height="114"/>
         <namedColor name="BrandPrimary">
             <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

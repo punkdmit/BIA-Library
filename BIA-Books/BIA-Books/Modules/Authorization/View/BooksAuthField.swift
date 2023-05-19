@@ -313,7 +313,6 @@ extension BiaBooksTextField : UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return isTouchEnabled
     }
-
 }
 
 private enum AnchorPoint {

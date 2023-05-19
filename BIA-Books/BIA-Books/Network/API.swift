@@ -1,6 +1,4 @@
 enum Operation: String {
-    case getNearbyVehicles = "getNearbyVehicles"
-    case getVehicleData = "getVehicleData"
     case ping = ""
     case login = "auth"
     case bookList = "books"
