@@ -27,16 +27,7 @@ class BookCardCell: UITableViewCell {
     weak var delegate: BookCardCellDelegate?
     
     var viewModel: BookCardViewModel?
-    /*
-    {
-        didSet(viewModel) {
-            bookImage.image = viewModel?.bookImage
-            bookNameLabel.text = viewModel?.bookName
-            authorLabel.text = viewModel?.authorName
-            setupButtonView()
-        }
-    }
-    */
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
@@ -62,9 +53,7 @@ class BookCardCell: UITableViewCell {
         view.layer.cornerRadius = 12
         
         selectionStyle = .none
-            
         addCancelRequestGestureRecognizer()
-        //setupButtonView()
     }
     
     func setupButtonView() {
@@ -72,16 +61,15 @@ class BookCardCell: UITableViewCell {
         
         switch viewModel.cellType {
             case .requested:
+            buttonStack.isHidden = false
                 buttonLabel.text = "Отменить запрос"
-            buttonLabel.tintColor = BooksColor.redText
+                buttonLabel.tintColor = BooksColor.redText
                 buttonImage.image = UIImage(named: "Delete")
             
             case .reading:
-                buttonLabel.text = "Сдать"
-                buttonLabel.tintColor = BooksColor.activeColor
-                buttonImage.image = UIImage(named: "Add new")
-            
+                buttonStack.isHidden = true
             case .returned:
+                buttonStack.isHidden = false
                 buttonLabel.text = "Запросить"
                 buttonLabel.tintColor = BooksColor.activeColor
                 buttonImage.image = UIImage(named: "Add new")
@@ -106,14 +94,6 @@ class BookCardCell: UITableViewCell {
                 })
                 UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
                 
-            case .reading:
-                let alert = UIAlertController(title: viewModel.bookName, message: "Хотите сдать книгу?", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
-                alert.addAction(UIAlertAction(title: "Да", style: .destructive) { [weak self] _ in
-                    self?.delegate?.returnBook(book: viewModel.book)
-                })
-                UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
-                
             case .returned:
                 let alert = UIAlertController(title: viewModel.bookName, message: "Хотите запросить книгу?", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: nil))
@@ -121,6 +101,9 @@ class BookCardCell: UITableViewCell {
                     self?.delegate?.reserveBook(book: viewModel.book)
                 })
                 UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
+            
+            default:
+                ()
         }
     }
 }

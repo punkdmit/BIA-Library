@@ -31,6 +31,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
         tableView.dataSource = self
         tableView.delegate = self
         
+//        self.view.addSubview(searchController.searchBar)
+
         setupNavigationControllerTitle()
         setupSearchController()
         setupNavigationControllerSortImage()
@@ -41,9 +43,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
         viewModel?.dataSource.bind { [weak self] _ in
             self?.tableView.reloadData()
         }
-        viewModel?.reserveError.bind({ [weak self] message in
+        viewModel?.reserveError.bind({ message in
             guard let message = message else { return }
-             //презентация алерта с текстом ошибки
             let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(alert, animated: true, completion: nil)
@@ -51,9 +52,14 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
     }
     
     func setupNavigationControllerTitle() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Моя полка"
-//        navigationController?.navigationBar.tintColor = BooksColor.textPrimary ??????????????
+        let label = UILabel()
+        label.text = "Моя полка"
+        label.font = UIFont(name: "Inter-Regular_Bold", size: 32)
+        label.sizeToFit()
+
+        let item = UIBarButtonItem(customView: label)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        navigationItem.leftBarButtonItems = [spacer, item]
     }
     
     func setupNavigationControllerSortImage() {
@@ -63,13 +69,22 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
     }
     
     func setupSearchController() {
+//        self.view.addSubview(searchController.searchBar)
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchController.searchBar.delegate = self
-        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+
+//        searchController.searchBar.frame = CGRect(x: 0, y: view.bounds.height - searchController.searchBar.bounds.height, width: view.bounds.width, height: searchController.searchBar.bounds.height)
+//
+//        if #available(iOS 11.0, *) {
+//            searchController.searchBar.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+//        } else {
+//            searchController.searchBar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+//        }
     }
     
     private func setSegment(index: Int) {
@@ -91,9 +106,6 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
 
 extension MyShelfViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if ((viewModel?.isSearching) != false) {
-//            return
-//        }
         return viewModel?.dataSource.value?.count ?? 0
     }
     
@@ -111,7 +123,7 @@ extension MyShelfViewController: UITableViewDataSource {
                 cellType = nil
         }
         
-        switch /*searchController.isActive ||*/ /*&&*/ viewModel?.isSearching != false {
+        switch viewModel?.isSearching != false {
             case false:
                 guard let cellType = cellType, let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? BookCardCell else { return UITableViewCell() }
                 
@@ -136,7 +148,7 @@ extension MyShelfViewController: UITableViewDataSource {
 
 extension MyShelfViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true) /*|| searchController.isActive*/
+        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true)
         
         if searchController.searchBar.text != viewModel?.searchText  {
             viewModel?.searchText = searchController.searchBar.text
@@ -147,12 +159,10 @@ extension MyShelfViewController: UISearchResultsUpdating {
             case true:
                 mySegmentControlStack.isHidden = true
                 whenSearchingLabelStack.isHidden = false
-//                tableView.reloadData()
             case false:
                 mySegmentControlStack.isHidden = false
                 whenSearchingLabelStack.isHidden = true
                 viewModel?.dataSource.value = viewModel?.allBooksDataSource.value
-//                tableView.reloadData()
         }
     }
     

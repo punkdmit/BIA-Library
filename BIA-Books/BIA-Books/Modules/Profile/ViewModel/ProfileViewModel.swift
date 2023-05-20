@@ -15,7 +15,7 @@ class ProfileViewModel {
     func getUserData() {
         dataFetcher.getUserInfo { [weak self] userInfo in
             guard let userInfo else { return }
-            let domainUserInfo = Profile(profilePhoto: nil, name: userInfo.firstName, secondName: userInfo.lastName, mail: userInfo.email)
+            let domainUserInfo = Profile(profilePhoto: UIImage(named: "2"), name: userInfo.firstName, secondName: userInfo.lastName, mail: userInfo.email)
             
             self?.dataSource.value = domainUserInfo
         }
