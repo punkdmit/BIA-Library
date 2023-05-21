@@ -43,7 +43,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func setUpNavBarItems() {
