@@ -20,12 +20,10 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let reuseIdentifer = "BookListTags"
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
     }
-    
     
     private func setView() {
         navigationItem.hidesBackButton = true
@@ -41,42 +39,42 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         searchController.searchBar.delegate = self
         
         searchController.searchResultsUpdater = self
-//        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
-//        definesPresentationContext = true
+        definesPresentationContext = true
         
     }
-
+    
     private func setUpNavBarItems() {
         let label = UILabel()
         label.text = "Главная"
         label.font = UIFont.boldSystemFont(ofSize: 32)
         label.sizeToFit()
-
+        
         let item = UIBarButtonItem(customView: label)
-
+        
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = 16 // Set the width of the spacer to create an indent
-
+        
         navigationItem.leftBarButtonItems = [spacer, item]
         
         let button = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(tapSlidersButton))
         button.tintColor = BooksColor.textPrimary
-
+        
         navigationItem.rightBarButtonItem = button
     }
     
     @objc func tapSlidersButton() {
         let storyboard = UIStoryboard(name: "SliderViewControler", bundle: nil)
-         let popUpviewController = storyboard.instantiateViewController(withIdentifier: "SliderViewControler")
+        let popUpviewController = storyboard.instantiateViewController(withIdentifier: "SliderViewControler")
         let nav = UINavigationController(rootViewController: popUpviewController)
         nav.modalPresentationStyle = .pageSheet
-
-         if let sheet = nav.presentationController as? UISheetPresentationController {
-             sheet.detents = [.medium()]
-         }
-         self.present(nav, animated: true)
+        
+        if let sheet = nav.presentationController as? UISheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        self.present(nav, animated: true)
     }
     private func setTableView() {
         booksTableView.delegate = self
@@ -97,7 +95,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             return viewModel?.bookList.value?.count ?? 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
             return UITableViewCell()
@@ -117,19 +115,19 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         return cell
     }
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel?.numberOfRows() ?? 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else { return UITableViewCell() }
-//        guard let viewModel = viewModel else { return UITableViewCell() }
-//        guard let bookList = viewModel.bookList.value else { return UITableViewCell() }
-//
-//        let book = bookList[indexPath.row]
-//        cell.viewModel = BookListCellViewModel(book : book)
-//        return cell
-//    }
+    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //        return viewModel?.numberOfRows() ?? 0
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else { return UITableViewCell() }
+    //        guard let viewModel = viewModel else { return UITableViewCell() }
+    //        guard let bookList = viewModel.bookList.value else { return UITableViewCell() }
+    //
+    //        let book = bookList[indexPath.row]
+    //        cell.viewModel = BookListCellViewModel(book : book)
+    //        return cell
+    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {return}
@@ -177,10 +175,10 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
 extension BooksListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel?.isSearching = !(searchController.searchBar.text?.isEmpty ?? true)
+        viewModel?.isSearching.value = !(searchController.searchBar.text?.isEmpty ?? true)
         
-        if searchController.searchBar.text != viewModel?.searchText {
-            viewModel?.searchText = searchController.searchBar.text
+        if searchController.searchBar.text != viewModel?.searchText.value {
+            viewModel?.searchText.value = searchController.searchBar.text
             filterContentForSearchText(searchController.searchBar.text ?? "")
         }
     }
@@ -195,11 +193,4 @@ extension BooksListViewController: UISearchResultsUpdating {
         }
         booksTableView.reloadData()
     }
-//    private func filterContentForSearchText(_ searchText: String) {
-//        viewModel?.dataSource.value = viewModel?.bookList.value?.filter{ (book: BookList) -> Bool in
-//            return book.name?.lowercased().contains(searchText.lowercased()) ?? false
-//        }
-//        booksTableView.reloadData()
-//    }
 }
-

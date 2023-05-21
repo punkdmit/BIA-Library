@@ -16,10 +16,10 @@ class BooksViewModel : BookListModelType {
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
     let bookListTags = ["Дизайн", "1C", "Разработка", "Тестирование", "Системный анализ", "Управление проектами", "Бухгалтерия"]
     
-//    var isSearching: Dynamic<Bool?> = Dynamic(false)
-//    var searchText: Dynamic<String?> = Dynamic(nil)
-    var isSearching = false
-    var searchText: String?
+    var isSearching: Dynamic<Bool?> = Dynamic(false)
+    var searchText: Dynamic<String?> = Dynamic(nil)
+//    var isSearching = false
+//    var searchText: String?
     
     func numberOfTags() -> Int {
         return bookListTags.count
