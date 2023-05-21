@@ -28,5 +28,6 @@ class ResultViewCell: UITableViewCell {
     
     func setup() {
         bookImage.layer.cornerRadius = 4
+        selectionStyle = .none
     }
 }

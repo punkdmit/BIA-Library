@@ -60,6 +60,8 @@ class BookCardCell: UITableViewCell {
         view.layer.shadowOpacity = 0.12
         view.layer.shadowRadius = 4
         view.layer.cornerRadius = 12
+        
+        selectionStyle = .none
             
         addCancelRequestGestureRecognizer()
         //setupButtonView()
