@@ -8,6 +8,7 @@
 import Foundation
 
 class BooksViewModel : BookListModelType {
+    
     private var selectedIndexPath : IndexPath?
     
     var bookList: Dynamic<[BookList]?> = Dynamic(nil)
@@ -18,8 +19,6 @@ class BooksViewModel : BookListModelType {
     
     var isSearching: Dynamic<Bool?> = Dynamic(false)
     var searchText: Dynamic<String?> = Dynamic(nil)
-//    var isSearching = false
-//    var searchText: String?
     
     func numberOfTags() -> Int {
         return bookListTags.count

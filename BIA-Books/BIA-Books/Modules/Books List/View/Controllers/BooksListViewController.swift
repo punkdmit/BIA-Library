@@ -115,19 +115,6 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         return cell
     }
-    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        return viewModel?.numberOfRows() ?? 0
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else { return UITableViewCell() }
-    //        guard let viewModel = viewModel else { return UITableViewCell() }
-    //        guard let bookList = viewModel.bookList.value else { return UITableViewCell() }
-    //
-    //        let book = bookList[indexPath.row]
-    //        cell.viewModel = BookListCellViewModel(book : book)
-    //        return cell
-    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {return}

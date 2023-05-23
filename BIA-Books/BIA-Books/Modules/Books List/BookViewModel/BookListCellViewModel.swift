@@ -9,10 +9,6 @@ import Foundation
 
 class BookListCellViewModel {
     
-    //добавить несколько Dynamic переменных для отслеживания вводится ли что-то в поисковую строку и что вводится в эту строку
-    //var isSearching = Dynamic(false)
-    //var searchContent : Dynamic<Stung?> = Dynamic(nil)
-    
     var _id: String {
         return book.id ?? ""
     }
