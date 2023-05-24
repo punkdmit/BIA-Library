@@ -5,13 +5,9 @@
 //  Created by Alikin Nikita Romanovich on 04.05.2023.
 //
 
-import Foundation
+import UIKit
 
 class BookListCellViewModel {
-    
-    //добавить несколько Dynamic переменных для отслеживания вводится ли что-то в поисковую строку и что вводится в эту строку
-    //var isSearching = Dynamic(false)
-    //var searchContent : Dynamic<Stung?> = Dynamic(nil)
     
     var _id: String {
         return book.id ?? ""
@@ -33,17 +29,24 @@ class BookListCellViewModel {
         return book.description ?? ""
     }
     
-    var status: String {
-        return book.status ?? ""
+    var status: Bool {
+        return book.status ?? false
     }
     
-    var image: String {
-        return book.image ?? ""
+    var image: UIImage? {
+        guard let imageData = book.image,
+        let dataDecoded = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) else { return nil }
+        
+        return UIImage(data: dataDecoded)
+    }
+    
+    var rate: String {
+        return book.rate ?? ""
     }
     
     private var book : BookList
     
-    init(book : BookList) {
+    init(book: BookList) {
         self.book = book
     }
 }

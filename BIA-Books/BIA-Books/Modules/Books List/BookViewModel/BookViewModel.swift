@@ -8,10 +8,17 @@
 import Foundation
 
 class BooksViewModel : BookListModelType {
+    
     private var selectedIndexPath : IndexPath?
+    
     var bookList: Dynamic<[BookList]?> = Dynamic(nil)
+    var dataSource: Dynamic<[BookList]?> = Dynamic(nil)
+    
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
     let bookListTags = ["Дизайн", "1C", "Разработка", "Тестирование", "Системный анализ", "Управление проектами", "Бухгалтерия"]
+    
+    var isSearching: Dynamic<Bool?> = Dynamic(false)
+    var searchText: Dynamic<String?> = Dynamic(nil)
     
     func numberOfTags() -> Int {
         return bookListTags.count
@@ -27,6 +34,7 @@ class BooksViewModel : BookListModelType {
             let books = response.compactMap { $0 }
             if !books.isEmpty {
                 self?.bookList.value = books
+                self?.dataSource.value = books
             } else {
                 print("Не удалось загрузить список книг")
             }

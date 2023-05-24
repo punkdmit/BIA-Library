@@ -140,8 +140,7 @@ struct NetworkDataFetcher: DataFetcher {
         guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
         networking.request(path: API.path, method: .get, operation: .reserveBook, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
             if error == nil {
-                // Перевести в модель ошибки
-//
+                
                 var message: String?
                 
                 if statusCode != 200 {

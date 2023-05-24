@@ -11,10 +11,12 @@ import Foundation
 class BookDetailViewModel  : ViewModelDetailType  {
     
     var pickedBook : Dynamic<BookInfo?> = Dynamic(nil)
+    var reservationError : Dynamic<String?> = Dynamic(nil)
     var bookId: String
     
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
-    var labels = ["Дизайн",  "Разработка", "1С"]
+    
+    var labels: [String]?
     
     init(bookId: String) {
         self.bookId = bookId
@@ -22,7 +24,7 @@ class BookDetailViewModel  : ViewModelDetailType  {
     }
     
     func numberOfRows() -> Int {
-        return labels.count
+        return labels?.count ?? 0
     }
     
     private func loadBookInfo(bookId : String) {
@@ -33,8 +35,12 @@ class BookDetailViewModel  : ViewModelDetailType  {
         }
     }
     
-    func reserveBook(bookId : String) {
-        //request for reserve
+    func reserveBook() {
+        fetcher.reserve(params: ["bookId" : bookId], response: { [weak self] statusCode, message in
+            if statusCode != 200 {
+                self?.reservationError.value = message
+            }
+        })
     }
 }
 

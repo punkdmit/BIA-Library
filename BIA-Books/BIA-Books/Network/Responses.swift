@@ -1,13 +1,14 @@
 import Foundation
 
-public struct BookList : Codable {
-    let id : String?
-    let name : String?
-    let author : String?
-    let language : String?
-    let description : String?
-    let status : String?
-    let image : String?
+public struct BookList: Codable {
+    let id: String?
+    let name: String?
+    let author: String?
+    let language: String?
+    let description: String?
+    let image: String?
+    let status: Bool?
+    let rate: String?
     
     private enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -17,23 +18,23 @@ public struct BookList : Codable {
         case description = "description"
         case status = "status"
         case image = "image"
+        case rate = "rate"
     }
 }
 
-public struct BookInfo : Codable {
+public struct BookInfo: Codable {
     let _id : String?
     let name : String?
     let author : String?
     let language :String?
     let description : String?
-    let status : String?
+    let status : Bool?
     let image : String?
-    let isReserved : Bool?
-    let expirationDate : Date?
-//    let year : String?
-//    let pages : String?
-//    let rate : String?
-//    let tags : [String]?
+    let year : String?
+    let pages : String?
+    let rate : String?
+    let tags : [String]?
+    //    let expirationDate : Date?
 }
 
 public struct UserInfo: Codable {

@@ -23,18 +23,30 @@ class AuthorizationViewController: UIViewController {
         return eyeButton
     }()
     
-    @IBAction func CheckEmpty(_ sender: Any) {
+    @IBAction func loginChanged(_ sender: Any) {
         updateLogInButton(isEmpty: loginTextField.text == "")
     }
     
     @IBAction func logInButtonPressed(_ sender: Any) {
-         viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
+        viewModel.userLogInButtonPressed(login: loginTextField.text ?? "", password: passwordTextField.text ?? "")
+        if viewModel.loginSuccess.value == false {
+            logInButton.isEnabled = false
+            logInButton.backgroundColor = BooksColor.entryButton
+            logInButton.titleLabel?.textColor = BooksColor.textSecondary
+        }
+//        resetForm()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         bindViewModel()
         viewModel.checkAccessToken()
+    }
+    
+    func resetForm() {
+        loginTextField.text = ""
+        passwordTextField.text = ""
     }
     
     func updateLogInButton(isEmpty: Bool) {
@@ -69,6 +81,7 @@ class AuthorizationViewController: UIViewController {
     }
     
     private func setUpView() {
+        logInButton.isEnabled = false
         logInButton.layer.cornerRadius = 5
         passwordTextField.isSecureTextEntry = true
         setupLoginTextField()
@@ -84,9 +97,7 @@ class AuthorizationViewController: UIViewController {
         })
         viewModel.loginSuccess.bind { value in
             if value {
-//              guard let vc = UIStoryboard.init(name: "BooksViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else {return}
-//              self.navigationController?.pushViewController(vc, animated: true)
-               let vc = TabBarController()
+                let vc = TabBarController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

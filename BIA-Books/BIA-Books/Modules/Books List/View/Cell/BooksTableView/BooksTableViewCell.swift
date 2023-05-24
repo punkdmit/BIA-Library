@@ -17,20 +17,26 @@ class BooksTableViewCell: UITableViewCell {
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var bookStatus: UILabel!
     
+    @IBOutlet var stars: [UIImageView]!
+    
     @IBOutlet weak var dateStack: UIStackView!
     @IBOutlet weak var languageStack: UIStackView!
     
-     var viewModel : BookListCellViewModel? {
-        willSet(viewModel) {
-            bookName.text = viewModel?.name
-            language.text = viewModel?.language
-            author.text = viewModel?.author
-        }
-    }
+    var viewModel : BookListCellViewModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUp()
+    }
+    
+    func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+        bookName.text = viewModel.name
+        bookCover.image = viewModel.image
+        language.text = viewModel.language
+        author.text = viewModel.author
+        setupStatus(status: viewModel.status )
+        showStars(count: convertFirstCharacterToInt(string: viewModel.rate ) ?? 0)
     }
     
     private func setUp() {
@@ -38,6 +44,35 @@ class BooksTableViewCell: UITableViewCell {
         dateStack.roundCornersForUILabels(radius: 6)
         languageStack.roundCornersForUILabels(radius: 6)
         self.noSelectionStyle()
-        
+        amountOfRates.text = ""
+    }
+    
+    func setupStatus(status: Bool) {
+        switch status {
+        case true:
+            dateStack.backgroundColor = BooksColor.textSecondary
+            bookStatus.text = "Недоступна"
+
+        case false:
+            dateStack.backgroundColor = BooksColor.accentSucces
+            bookStatus.text = "Свободна"
+        }
+    }
+    
+    func showStars(count: Int) {
+        for (index, starImageView) in stars.enumerated() {
+            if index <= count {
+                starImageView.image = UIImage(named: "starFill")
+            } else {
+                starImageView.image = UIImage(named: "star")
+            }
+        }
+    }
+    
+    func convertFirstCharacterToInt(string: String) -> Int? {
+        guard let firstCharacter = string.first else {
+            return nil
+        }
+        return Int(String(firstCharacter))
     }
 }
