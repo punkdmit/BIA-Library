@@ -36,7 +36,6 @@ class BookListCellViewModel {
     var image: UIImage? {
         guard let imageData = book.image,
         let dataDecoded = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) else { return nil }
-        
         return UIImage(data: dataDecoded)
     }
     

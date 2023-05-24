@@ -44,6 +44,7 @@ class BookDetailViewController: UIViewController, UIGestureRecognizerDelegate, U
         customBackButton()
         detailCardView.aplyShadow(cornerRadius: 12)
         bookRequestButton.roundedCornerButton(radius: 6)
+        bookCover.roundedCornerButton(radius: 6)
         setTextView(textView: descriptionTextView)
     }
  

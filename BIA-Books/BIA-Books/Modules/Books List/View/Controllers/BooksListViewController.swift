@@ -108,7 +108,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             guard let viewModel = viewModel else {
                 return UITableViewCell()
             }
-            if let dataSource = viewModel.dataSource.value {
+            if let dataSource = viewModel.bookList.value {
                 let book = dataSource[indexPath.row]
                 cell.viewModel = BookListCellViewModel(book: book)
                 cell.bindViewModel()
@@ -117,7 +117,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         case true:
           guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? SearchResultTableViewCell else {return UITableViewCell()}
-            guard let bookList = viewModel?.bookList.value else {
+            guard let bookList = viewModel?.dataSource.value else {
                 return UITableViewCell()
             }
             let book = bookList[indexPath.row]

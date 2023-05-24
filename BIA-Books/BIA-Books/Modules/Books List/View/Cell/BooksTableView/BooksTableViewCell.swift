@@ -44,6 +44,7 @@ class BooksTableViewCell: UITableViewCell {
         dateStack.roundCornersForUILabels(radius: 6)
         languageStack.roundCornersForUILabels(radius: 6)
         self.noSelectionStyle()
+        bookCover.roundedCornerButton(radius: 6)
         amountOfRates.text = ""
     }
     

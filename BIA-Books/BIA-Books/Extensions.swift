@@ -41,3 +41,9 @@ extension UIButton  {
         self.layer.cornerCurve = .continuous
     }
 }
+extension UIImageView  {
+    func roundedCornerButton(radius : CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = .continuous
+    }
+}
