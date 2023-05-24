@@ -80,6 +80,8 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         booksTableView.delegate = self
         booksTableView.dataSource = self
         booksTableView.register(UINib(nibName: "BooksTableViewCell", bundle: nil), forCellReuseIdentifier: "bookCell")
+        booksTableView.register(UINib(nibName: "SearchResultTableViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
+
     }
     
     private func setUpCollectionView() {
@@ -97,23 +99,50 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
-            return UITableViewCell()
-        }
-        guard let viewModel = viewModel else {
-            return UITableViewCell()
-        }
-        if let dataSource = viewModel.dataSource.value {
-            let book = dataSource[indexPath.row]
-            cell.viewModel = BookListCellViewModel(book: book)
-        } else {
-            guard let bookList = viewModel.bookList.value else {
+        
+        switch viewModel?.isSearching.value != false {
+        case false:
+           guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
+                return UITableViewCell()
+            }
+            guard let viewModel = viewModel else {
+                return UITableViewCell()
+            }
+            if let dataSource = viewModel.dataSource.value {
+                let book = dataSource[indexPath.row]
+                cell.viewModel = BookListCellViewModel(book: book)
+                cell.bindViewModel()
+            }
+            return cell
+            
+        case true:
+          guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? SearchResultTableViewCell else {return UITableViewCell()}
+            guard let bookList = viewModel?.bookList.value else {
                 return UITableViewCell()
             }
             let book = bookList[indexPath.row]
             cell.viewModel = BookListCellViewModel(book: book)
+            cell.bindViewModel()
+            return cell
         }
-        return cell
+        
+//        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
+//            return UITableViewCell()
+//        }
+//        guard let viewModel = viewModel else {
+//            return UITableViewCell()
+//        }
+//        if let dataSource = viewModel.dataSource.value {
+//            let book = dataSource[indexPath.row]
+//            cell.viewModel = BookListCellViewModel(book: book)
+//        } else {
+//            guard let bookList = viewModel.bookList.value else {
+//                return UITableViewCell()
+//            }
+//            let book = bookList[indexPath.row]
+//            cell.viewModel = BookListCellViewModel(book: book)
+//        }
+//        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -16,7 +16,7 @@ class BookDetailViewModel  : ViewModelDetailType  {
     
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
     
-    var labels = ["Дизайн",  "Разработка", "1С"]
+    var labels: [String]?
     
     init(bookId: String) {
         self.bookId = bookId
@@ -24,7 +24,7 @@ class BookDetailViewModel  : ViewModelDetailType  {
     }
     
     func numberOfRows() -> Int {
-        return labels.count
+        return labels?.count ?? 0
     }
     
     private func loadBookInfo(bookId : String) {
