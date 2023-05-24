@@ -15,6 +15,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
     @IBOutlet weak var whenSearchingLabelStack: UIStackView!
     @IBOutlet weak var whenSearchingLabel: UILabel!
     
+    @IBOutlet weak var emptyDataSourceStack: UIStackView!
+    
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         setSegment(index: sender.selectedSegmentIndex)
     }
@@ -30,19 +32,19 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
         tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
         tableView.dataSource = self
         tableView.delegate = self
-        
-//        self.view.addSubview(searchController.searchBar)
 
         setupNavigationControllerTitle()
         setupSearchController()
-        setupNavigationControllerSortImage()
+//        setupNavigationControllerSortImage()
         setSegment(index: 0)
     }
     
     func bindViewModel() {
-        viewModel?.dataSource.bind { [weak self] _ in
+        viewModel?.dataSource.bind { [weak self] dataSource in
+            self?.emptyDataSourceStack.isHidden = !(dataSource?.isEmpty ?? true)
             self?.tableView.reloadData()
         }
+        
         viewModel?.reserveError.bind({ message in
             guard let message = message else { return }
             let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
@@ -52,39 +54,36 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
     }
     
     func setupNavigationControllerTitle() {
-        let label = UILabel()
-        label.text = "Моя полка"
-        label.font = UIFont(name: "Inter-Regular_Bold", size: 32)
-        label.sizeToFit()
-
-        let item = UIBarButtonItem(customView: label)
-        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        navigationItem.leftBarButtonItems = [spacer, item]
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.title = "Моя полка"
+        
+        let largeTitleAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: BooksColor.textPrimary
+        ]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = largeTitleAttributes
+//        let label = UILabel()
+//        label.text = "Моя полка"
+//        label.font = UIFont(name: "Inter-Regular_Bold", size: 32)
+//        label.sizeToFit()
+//
+//        let item = UIBarButtonItem(customView: label)
+//        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        navigationItem.leftBarButtonItems = [spacer, item]
     }
     
-    func setupNavigationControllerSortImage() {
-        let button = UIBarButtonItem(image: UIImage(named: "Slider"), style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItem = button
-        navigationItem.rightBarButtonItem?.tintColor = BooksColor.textPrimary
-    }
+//    func setupNavigationControllerSortImage() {
+//        let button = UIBarButtonItem(image: UIImage(named: "Slider"), style: .plain, target: self, action: nil)
+//        navigationItem.rightBarButtonItem = button
+//        navigationItem.rightBarButtonItem?.tintColor = BooksColor.textPrimary
+//    }
     
     func setupSearchController() {
-//        self.view.addSubview(searchController.searchBar)
-        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-
-//        searchController.searchBar.frame = CGRect(x: 0, y: view.bounds.height - searchController.searchBar.bounds.height, width: view.bounds.width, height: searchController.searchBar.bounds.height)
-//
-//        if #available(iOS 11.0, *) {
-//            searchController.searchBar.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-//        } else {
-//            searchController.searchBar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
-//        }
     }
     
     private func setSegment(index: Int) {

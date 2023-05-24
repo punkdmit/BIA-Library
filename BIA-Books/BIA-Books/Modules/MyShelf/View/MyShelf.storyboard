@@ -27,10 +27,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aSE-hE-zce">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="55"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-op-eMa">
-                                                <rect key="frame" x="16" y="8" width="361" height="32"/>
+                                                <rect key="frame" x="16" y="9" width="361" height="32"/>
                                                 <segments>
                                                     <segment title="Запросил"/>
                                                     <segment title="Читаю"/>
@@ -42,10 +42,10 @@
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
-                                        <edgeInsets key="layoutMargins" top="8" left="16" bottom="16" right="16"/>
+                                        <edgeInsets key="layoutMargins" top="9" left="16" bottom="16" right="16"/>
                                     </stackView>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JiO-qY-gyB">
-                                        <rect key="frame" x="0.0" y="55" width="393" height="8"/>
+                                        <rect key="frame" x="0.0" y="56" width="393" height="8"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64s-Zl-mMv">
                                                 <rect key="frame" x="16" y="8" width="361" height="0.0"/>
@@ -57,13 +57,38 @@
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="0.0" right="16"/>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1" verticalCompressionResistancePriority="1" restorationIdentifier="myShelfViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PcO-r0-Qq7">
-                                        <rect key="frame" x="0.0" y="55" width="393" height="704"/>
+                                        <rect key="frame" x="0.0" y="56" width="393" height="703"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CcY-5E-IP3">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                     </tableView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gJR-ez-b0y">
+                                <rect key="frame" x="88.666666666666686" y="390.33333333333331" width="216" height="152.66666666666669"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyInbox" translatesAutoresizingMaskIntoConstraints="NO" id="gJi-nR-C64">
+                                        <rect key="frame" x="0.0" y="0.0" width="216" height="88"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="88" id="8tR-CL-8ut"/>
+                                            <constraint firstAttribute="width" constant="216" id="YSx-Fn-NYC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pG7-04-Mqz">
+                                        <rect key="frame" x="51.999999999999986" y="112.00000000000001" width="112.00000000000001" height="40.666666666666671"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Список пуст..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1p-np-btR">
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="TextSecondary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Начать поиск" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcX-WB-AM4">
+                                                <rect key="frame" x="0.0" y="20.333333333333314" width="112" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="ActiveCell"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -71,12 +96,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="j0O-45-CmB" firstAttribute="leading" secondItem="VEN-a0-0SY" secondAttribute="leading" id="5O2-bP-EzD"/>
+                            <constraint firstItem="gJR-ez-b0y" firstAttribute="centerY" secondItem="PcO-r0-Qq7" secondAttribute="centerY" id="Osh-Gx-m9d"/>
                             <constraint firstItem="j0O-45-CmB" firstAttribute="bottom" secondItem="VEN-a0-0SY" secondAttribute="bottom" id="Pyy-E2-yMW"/>
                             <constraint firstItem="j0O-45-CmB" firstAttribute="trailing" secondItem="VEN-a0-0SY" secondAttribute="trailing" id="VGT-17-VVq"/>
                             <constraint firstItem="j0O-45-CmB" firstAttribute="top" secondItem="VEN-a0-0SY" secondAttribute="top" id="bN0-jW-wqO"/>
+                            <constraint firstItem="gJR-ez-b0y" firstAttribute="centerX" secondItem="PcO-r0-Qq7" secondAttribute="centerX" id="egV-0w-AIS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyDataSourceStack" destination="gJR-ez-b0y" id="6JJ-sc-ibm"/>
                         <outlet property="mySegmentControl" destination="eSG-op-eMa" id="Be0-sk-0aX"/>
                         <outlet property="mySegmentControlStack" destination="aSE-hE-zce" id="cTj-Cw-NdY"/>
                         <outlet property="tableView" destination="PcO-r0-Qq7" id="jZy-8H-uW4"/>
@@ -90,6 +118,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="EmptyInbox" width="216" height="90"/>
+        <namedColor name="ActiveCell">
+            <color red="0.18400000035762787" green="0.50199997425079346" blue="0.92900002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="TextPrimary">
             <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
