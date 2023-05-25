@@ -17,6 +17,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
     
     @IBOutlet weak var emptyDataSourceStack: UIStackView!
     
+    @IBOutlet weak var startSearchingLabel: UILabel!
+    
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         setSegment(index: sender.selectedSegmentIndex)
     }
@@ -35,8 +37,8 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
 
         setupNavigationControllerTitle()
         setupSearchController()
-//        setupNavigationControllerSortImage()
         setSegment(index: 0)
+        setupView()
     }
     
     func bindViewModel() {
@@ -53,6 +55,10 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
         })
     }
     
+    func setupView() {
+        addCancelRequestGestureRecognizer()
+    }
+    
     func setupNavigationControllerTitle() {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Моя полка"
@@ -61,14 +67,6 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
             .foregroundColor: BooksColor.textPrimary
         ]
         self.navigationController?.navigationBar.largeTitleTextAttributes = largeTitleAttributes
-//        let label = UILabel()
-//        label.text = "Моя полка"
-//        label.font = UIFont(name: "Inter-Regular_Bold", size: 32)
-//        label.sizeToFit()
-//
-//        let item = UIBarButtonItem(customView: label)
-//        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-//        navigationItem.leftBarButtonItems = [spacer, item]
     }
     
 //    func setupNavigationControllerSortImage() {
@@ -100,6 +98,21 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
         default:
             viewModel?.dataSource.value = []
         }
+    }
+    
+    private func addCancelRequestGestureRecognizer()  {
+        let startSearchingButton = UITapGestureRecognizer(target: self, action: #selector(self.startSearchingButtonPressed(tapGesture:)))
+        self.startSearchingLabel.addGestureRecognizer(startSearchingButton)
+    }
+    
+    @objc func startSearchingButtonPressed(tapGesture: UITapGestureRecognizer) {
+        guard let viewModel = viewModel else { return }
+        
+        let storyboard = UIStoryboard(name: "BooksViewController", bundle: nil)
+        guard let booksListViewController = storyboard.instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else { return }
+        booksListViewController.viewModel = BooksViewModel()
+        booksListViewController.bindViewModel()
+        self.navigationController?.pushViewController(booksListViewController, animated: true)
     }
 }
 

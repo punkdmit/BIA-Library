@@ -107,6 +107,7 @@
                         <outlet property="emptyDataSourceStack" destination="gJR-ez-b0y" id="6JJ-sc-ibm"/>
                         <outlet property="mySegmentControl" destination="eSG-op-eMa" id="Be0-sk-0aX"/>
                         <outlet property="mySegmentControlStack" destination="aSE-hE-zce" id="cTj-Cw-NdY"/>
+                        <outlet property="startSearchingLabel" destination="hcX-WB-AM4" id="1gW-yt-R7s"/>
                         <outlet property="tableView" destination="PcO-r0-Qq7" id="jZy-8H-uW4"/>
                         <outlet property="whenSearchingLabel" destination="64s-Zl-mMv" id="aPA-73-xwd"/>
                         <outlet property="whenSearchingLabelStack" destination="JiO-qY-gyB" id="AgI-76-7ZL"/>

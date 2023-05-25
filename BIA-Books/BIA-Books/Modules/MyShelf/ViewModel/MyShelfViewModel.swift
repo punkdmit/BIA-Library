@@ -35,7 +35,7 @@ class MyShelfViewModel {
                     }
                 }
                 
-                return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)
+                return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: $0?.status)
             }
             self?.dataSource.value = newBookList
             self?.allBooksDataSource.value = newBookList
@@ -54,7 +54,7 @@ class MyShelfViewModel {
                     }
                 }
                 
-                return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)
+                return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: $0?.status)
             }
             self?.dataSource.value = newBookList
             self?.allBooksDataSource.value = newBookList
@@ -73,7 +73,7 @@ class MyShelfViewModel {
                     }
                 }
                 
-                return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: nil)
+                return Book(bookId: $0?.id, bookImage: decodedImage, bookName: $0?.name ?? "", authorName: $0?.author, bookStatus: $0?.status)
             }
             self?.dataSource.value = newBookList
             self?.allBooksDataSource.value = newBookList
