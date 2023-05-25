@@ -106,13 +106,7 @@ class MyShelfViewController: UIViewController, UISearchBarDelegate, UINavigation
     }
     
     @objc func startSearchingButtonPressed(tapGesture: UITapGestureRecognizer) {
-        guard let viewModel = viewModel else { return }
-        
-        let storyboard = UIStoryboard(name: "BooksViewController", bundle: nil)
-        guard let booksListViewController = storyboard.instantiateViewController(withIdentifier: "BooksListViewController") as? BooksListViewController else { return }
-        booksListViewController.viewModel = BooksViewModel()
-        booksListViewController.bindViewModel()
-        self.navigationController?.pushViewController(booksListViewController, animated: true)
+        tabBarController?.selectedIndex = 0
     }
 }
 
