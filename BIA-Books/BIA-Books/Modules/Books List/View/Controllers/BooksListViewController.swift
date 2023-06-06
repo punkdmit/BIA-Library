@@ -10,16 +10,16 @@ import UIKit
 class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAdaptivePresentationControllerDelegate, UISheetPresentationControllerDelegate, UISearchBarDelegate {
     
     let searchController = UISearchController()
+    let reuseIdentifer = "BookListTags"
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
     private var selectedCellText: String?
-    @IBOutlet weak var collectionView: UICollectionView!
+    private var selectedCellIndex: IndexPath?
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTableView: UITableView!
     
-    let reuseIdentifer = "BookListTags"
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
@@ -81,7 +81,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         booksTableView.dataSource = self
         booksTableView.register(UINib(nibName: "BooksTableViewCell", bundle: nil), forCellReuseIdentifier: "bookCell")
         booksTableView.register(UINib(nibName: "SearchResultTableViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
-
+        
     }
     
     private func setUpCollectionView() {
@@ -102,7 +102,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         switch viewModel?.isSearching.value != false {
         case false:
-           guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
+            guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
                 return UITableViewCell()
             }
             guard let viewModel = viewModel else {
@@ -116,7 +116,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             return cell
             
         case true:
-          guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? SearchResultTableViewCell else {return UITableViewCell()}
+            guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? SearchResultTableViewCell else {return UITableViewCell()}
             guard let bookList = viewModel?.dataSource.value else {
                 return UITableViewCell()
             }
@@ -125,24 +125,6 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.bindViewModel()
             return cell
         }
-        
-//        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
-//            return UITableViewCell()
-//        }
-//        guard let viewModel = viewModel else {
-//            return UITableViewCell()
-//        }
-//        if let dataSource = viewModel.dataSource.value {
-//            let book = dataSource[indexPath.row]
-//            cell.viewModel = BookListCellViewModel(book: book)
-//        } else {
-//            guard let bookList = viewModel.bookList.value else {
-//                return UITableViewCell()
-//            }
-//            let book = bookList[indexPath.row]
-//            cell.viewModel = BookListCellViewModel(book: book)
-//        }
-//        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -174,11 +156,18 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? BookListCollectionViewCell, selectedCell != cell else { return }
         
-        selectedCell?.set(isSelected: false)
-        cell.set(isSelected: true)
-        selectedCell = cell
-        selectedCellText = cell.tagName.text
-        
+        if selectedCellIndex == indexPath {
+            cell.set(isSelected: false)
+            selectedCellIndex = nil
+        } else {
+            if let selectedCellIndex = selectedCellIndex {
+                let previousCell = collectionView.cellForItem(at: selectedCellIndex) as? BookListCollectionViewCell
+                previousCell?.set(isSelected: false)
+            }
+            cell.set(isSelected: true)
+            selectedCellIndex = indexPath
+            selectedCellText = cell.tagName.text
+        }
     }
     
     func bindViewModel() {
