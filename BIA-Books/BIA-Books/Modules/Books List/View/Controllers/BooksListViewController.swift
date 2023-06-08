@@ -13,7 +13,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     let reuseIdentifer = "BookListTags"
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
-    private var selectedCellText: String?
+    private var selectedTag: String?
     private var selectedCellIndex: IndexPath?
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -146,7 +146,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         let label = viewModel?.bookListTags[indexPath.row]
         cell.tagName?.text = label
         
-        if selectedCellText == label {
+        if selectedTag == label {
             selectedCell = cell
             selectedCell?.set(isSelected: true)
         }
@@ -154,19 +154,30 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? BookListCollectionViewCell, selectedCell != cell else { return }
         
-        if selectedCellIndex == indexPath {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BookListCollectionViewCell else { return }
+
+        if let selectedTag = cell.tagName?.text, self.selectedTag == selectedTag {
+            // Снять выделение, если тот же самый тег был выбран повторно
             cell.set(isSelected: false)
-            selectedCellIndex = nil
+            self.selectedTag = nil
+            viewModel?.resetFilter()
+            booksTableView.reloadData()
         } else {
+            // Установить выделение для выбранного тега
             if let selectedCellIndex = selectedCellIndex {
                 let previousCell = collectionView.cellForItem(at: selectedCellIndex) as? BookListCollectionViewCell
                 previousCell?.set(isSelected: false)
             }
             cell.set(isSelected: true)
             selectedCellIndex = indexPath
-            selectedCellText = cell.tagName.text
+            selectedTag = cell.tagName?.text
+            
+            // Фильтровать книги по выбранному тегу и обновить источник данных таблицы
+            if let selectedTag = selectedTag {
+                viewModel?.filterByTag(selectedTag)
+            }
+            booksTableView.reloadData()
         }
     }
     
