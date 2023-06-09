@@ -170,7 +170,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         if let selectedTag = cell.tagName?.text, self.selectedTag == selectedTag {
             cell.set(isSelected: false)
             self.selectedTag = nil
-            viewModel?.resetFilter()
+            viewModel?.filterByTag(nil)
             booksTableView.reloadData()
         } else {
             if let selectedCellIndex = selectedCellIndex {
@@ -208,10 +208,14 @@ extension BooksListViewController: UISearchResultsUpdating {
     
     private func filterContentForSearchText(_ searchText: String) {
         if searchText.isEmpty {
-            viewModel?.dataSource.value = viewModel?.bookList.value
+            viewModel?.filterByTag(selectedTag)
         } else {
-            viewModel?.dataSource.value = viewModel?.bookList.value?.filter {
-                return $0.name?.lowercased().contains(searchText.lowercased()) ?? false
+            viewModel?.dataSource.value = viewModel?.bookList.value?.filter { [weak self] in
+                if let selectedTag = self?.selectedTag {
+                    return ($0.name?.lowercased().contains(searchText.lowercased()) ?? false) && ($0.tags?.contains(selectedTag) ?? false)
+                } else {
+                    return $0.name?.lowercased().contains(searchText.lowercased()) ?? false
+                }
             }
         }
         booksTableView.reloadData()
