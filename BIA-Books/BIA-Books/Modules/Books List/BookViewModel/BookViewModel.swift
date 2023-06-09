@@ -46,7 +46,7 @@ class BooksViewModel : BookListModelType {
     }
     
     func resetFilter() {
-        dataSource.value = nil
+        dataSource.value = bookList.value
     }
     
     func selectRow(indexPath: IndexPath) {

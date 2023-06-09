@@ -108,7 +108,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             guard let viewModel = viewModel else {
                 return UITableViewCell()
             }
-            if let dataSource = viewModel.bookList.value {
+            if let dataSource = viewModel.dataSource.value {
                 let book = dataSource[indexPath.row]
                 cell.viewModel = BookListCellViewModel(book: book)
                 cell.bindViewModel()
@@ -128,12 +128,22 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewModel = viewModel else {return}
-        guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
-        guard let bookId = viewModel.bookList.value?[indexPath.row].id else {return}
-        vc.viewModel = BookDetailViewModel(bookId: bookId)
-        vc.bindViewModel()
-        self.navigationController?.pushViewController(vc, animated: true)
+        switch viewModel?.isSearching.value != false {
+        case false:
+            guard let viewModel = viewModel else {return}
+            guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
+            guard let bookId = viewModel.bookList.value?[indexPath.row].id else {return}
+            vc.viewModel = BookDetailViewModel(bookId: bookId)
+            vc.bindViewModel()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case true:
+            guard let viewModel = viewModel else {return}
+            guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
+            guard let bookId = viewModel.dataSource.value?[indexPath.row].id else {return}
+            vc.viewModel = BookDetailViewModel(bookId: bookId)
+            vc.bindViewModel()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -158,13 +168,11 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         guard let cell = collectionView.cellForItem(at: indexPath) as? BookListCollectionViewCell else { return }
 
         if let selectedTag = cell.tagName?.text, self.selectedTag == selectedTag {
-            // Снять выделение, если тот же самый тег был выбран повторно
             cell.set(isSelected: false)
             self.selectedTag = nil
             viewModel?.resetFilter()
             booksTableView.reloadData()
         } else {
-            // Установить выделение для выбранного тега
             if let selectedCellIndex = selectedCellIndex {
                 let previousCell = collectionView.cellForItem(at: selectedCellIndex) as? BookListCollectionViewCell
                 previousCell?.set(isSelected: false)
@@ -173,7 +181,6 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             selectedCellIndex = indexPath
             selectedTag = cell.tagName?.text
             
-            // Фильтровать книги по выбранному тегу и обновить источник данных таблицы
             if let selectedTag = selectedTag {
                 viewModel?.filterByTag(selectedTag)
             }
@@ -201,10 +208,10 @@ extension BooksListViewController: UISearchResultsUpdating {
     
     private func filterContentForSearchText(_ searchText: String) {
         if searchText.isEmpty {
-            viewModel?.dataSource.value = nil
+            viewModel?.dataSource.value = viewModel?.bookList.value
         } else {
-            viewModel?.dataSource.value = viewModel?.bookList.value?.filter { (book: BookList) -> Bool in
-                return book.name?.lowercased().contains(searchText.lowercased()) ?? false
+            viewModel?.dataSource.value = viewModel?.bookList.value?.filter {
+                return $0.name?.lowercased().contains(searchText.lowercased()) ?? false
             }
         }
         booksTableView.reloadData()
