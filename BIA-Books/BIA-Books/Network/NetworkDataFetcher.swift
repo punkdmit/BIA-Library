@@ -116,7 +116,7 @@ struct NetworkDataFetcher: DataFetcher {
     
     func cancelBookRequest(params: [String : String], response: @escaping ((Int) -> Void)) {
         guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-        networking.request(path: API.path, method: .get, operation: .cancelBookRequest, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
+        networking.request(path: API.path, method: .post, operation: .cancelBookRequest, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
             if error == nil {
                 response(statusCode)
             } else {
@@ -127,7 +127,7 @@ struct NetworkDataFetcher: DataFetcher {
     
     func cancelBookRent(params: [String : String], response: @escaping ((Int) -> Void)) {
         guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-        networking.request(path: API.path, method: .get, operation: .cancelBookRent, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
+        networking.request(path: API.path, method: .post, operation: .cancelBookRent, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
             if error == nil {
                 response(statusCode)
             } else {
@@ -138,7 +138,7 @@ struct NetworkDataFetcher: DataFetcher {
     
     func reserve(params: [String : String], response: @escaping ((Int, String?) -> Void)) {
         guard let bearerToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-        networking.request(path: API.path, method: .get, operation: .reserveBook, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
+        networking.request(path: API.path, method: .post, operation: .reserveBook, headers: ["Authorization" : "Bearer " + bearerToken], params: params , body: nil) { data, statusCode, error in
             if error == nil {
                 
                 var message: String?
