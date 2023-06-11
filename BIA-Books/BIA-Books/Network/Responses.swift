@@ -9,6 +9,7 @@ public struct BookList: Codable {
     let image: String?
     let status: Bool?
     let rate: String?
+    let tags : [String]?
     
     private enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -19,6 +20,7 @@ public struct BookList: Codable {
         case status = "status"
         case image = "image"
         case rate = "rate"
+        case tags = "tags"
     }
 }
 

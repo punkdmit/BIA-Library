@@ -17,6 +17,7 @@ class SearchResultTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.noSelectionStyle()
         // Initialization code
     }
 

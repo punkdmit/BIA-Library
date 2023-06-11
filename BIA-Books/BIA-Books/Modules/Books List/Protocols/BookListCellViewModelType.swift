@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol BookListCellViewModelType  {
     var _id : String {get}
     var name : String {get}

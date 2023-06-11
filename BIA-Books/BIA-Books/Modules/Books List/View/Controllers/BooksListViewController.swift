@@ -10,16 +10,16 @@ import UIKit
 class BooksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAdaptivePresentationControllerDelegate, UISheetPresentationControllerDelegate, UISearchBarDelegate {
     
     let searchController = UISearchController()
+    let reuseIdentifer = "BookListTags"
     var viewModel : BooksViewModel?
     private var selectedCell: BookListCollectionViewCell?
-    private var selectedCellText: String?
-    @IBOutlet weak var collectionView: UICollectionView!
+    private var selectedTag: String?
+    private var selectedCellIndex: IndexPath?
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTableView: UITableView!
     
-    let reuseIdentifer = "BookListTags"
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
@@ -81,7 +81,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         booksTableView.dataSource = self
         booksTableView.register(UINib(nibName: "BooksTableViewCell", bundle: nil), forCellReuseIdentifier: "bookCell")
         booksTableView.register(UINib(nibName: "SearchResultTableViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
-
+        
     }
     
     private func setUpCollectionView() {
@@ -102,13 +102,13 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         switch viewModel?.isSearching.value != false {
         case false:
-           guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
+            guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
                 return UITableViewCell()
             }
             guard let viewModel = viewModel else {
                 return UITableViewCell()
             }
-            if let dataSource = viewModel.bookList.value {
+            if let dataSource = viewModel.dataSource.value {
                 let book = dataSource[indexPath.row]
                 cell.viewModel = BookListCellViewModel(book: book)
                 cell.bindViewModel()
@@ -116,7 +116,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             return cell
             
         case true:
-          guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? SearchResultTableViewCell else {return UITableViewCell()}
+            guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? SearchResultTableViewCell else {return UITableViewCell()}
             guard let bookList = viewModel?.dataSource.value else {
                 return UITableViewCell()
             }
@@ -125,33 +125,25 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.bindViewModel()
             return cell
         }
-        
-//        guard let cell = booksTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BooksTableViewCell else {
-//            return UITableViewCell()
-//        }
-//        guard let viewModel = viewModel else {
-//            return UITableViewCell()
-//        }
-//        if let dataSource = viewModel.dataSource.value {
-//            let book = dataSource[indexPath.row]
-//            cell.viewModel = BookListCellViewModel(book: book)
-//        } else {
-//            guard let bookList = viewModel.bookList.value else {
-//                return UITableViewCell()
-//            }
-//            let book = bookList[indexPath.row]
-//            cell.viewModel = BookListCellViewModel(book: book)
-//        }
-//        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewModel = viewModel else {return}
-        guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
-        guard let bookId = viewModel.bookList.value?[indexPath.row].id else {return}
-        vc.viewModel = BookDetailViewModel(bookId: bookId)
-        vc.bindViewModel()
-        self.navigationController?.pushViewController(vc, animated: true)
+        switch viewModel?.isSearching.value != false {
+        case false:
+            guard let viewModel = viewModel else {return}
+            guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
+            guard let bookId = viewModel.bookList.value?[indexPath.row].id else {return}
+            vc.viewModel = BookDetailViewModel(bookId: bookId)
+            vc.bindViewModel()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case true:
+            guard let viewModel = viewModel else {return}
+            guard let vc = UIStoryboard.init(name: "BookDetailViewController", bundle: nil).instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {return}
+            guard let bookId = viewModel.dataSource.value?[indexPath.row].id else {return}
+            vc.viewModel = BookDetailViewModel(bookId: bookId)
+            vc.bindViewModel()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -164,7 +156,7 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
         let label = viewModel?.bookListTags[indexPath.row]
         cell.tagName?.text = label
         
-        if selectedCellText == label {
+        if selectedTag == label {
             selectedCell = cell
             selectedCell?.set(isSelected: true)
         }
@@ -172,13 +164,28 @@ class BooksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? BookListCollectionViewCell, selectedCell != cell else { return }
         
-        selectedCell?.set(isSelected: false)
-        cell.set(isSelected: true)
-        selectedCell = cell
-        selectedCellText = cell.tagName.text
-        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BookListCollectionViewCell else { return }
+
+        if let selectedTag = cell.tagName?.text, self.selectedTag == selectedTag {
+            cell.set(isSelected: false)
+            self.selectedTag = nil
+            viewModel?.filterByTag(nil)
+            booksTableView.reloadData()
+        } else {
+            if let selectedCellIndex = selectedCellIndex {
+                let previousCell = collectionView.cellForItem(at: selectedCellIndex) as? BookListCollectionViewCell
+                previousCell?.set(isSelected: false)
+            }
+            cell.set(isSelected: true)
+            selectedCellIndex = indexPath
+            selectedTag = cell.tagName?.text
+            
+            if let selectedTag = selectedTag {
+                viewModel?.filterByTag(selectedTag)
+            }
+            booksTableView.reloadData()
+        }
     }
     
     func bindViewModel() {
@@ -201,10 +208,14 @@ extension BooksListViewController: UISearchResultsUpdating {
     
     private func filterContentForSearchText(_ searchText: String) {
         if searchText.isEmpty {
-            viewModel?.dataSource.value = nil
+            viewModel?.filterByTag(selectedTag)
         } else {
-            viewModel?.dataSource.value = viewModel?.bookList.value?.filter { (book: BookList) -> Bool in
-                return book.name?.lowercased().contains(searchText.lowercased()) ?? false
+            viewModel?.dataSource.value = viewModel?.bookList.value?.filter { [weak self] in
+                if let selectedTag = self?.selectedTag {
+                    return ($0.name?.lowercased().contains(searchText.lowercased()) ?? false) && ($0.tags?.contains(selectedTag) ?? false)
+                } else {
+                    return $0.name?.lowercased().contains(searchText.lowercased()) ?? false
+                }
             }
         }
         booksTableView.reloadData()

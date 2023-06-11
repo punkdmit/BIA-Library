@@ -45,7 +45,20 @@ class BooksViewModel : BookListModelType {
         return nil
     }
     
+    func resetFilter() {
+        filterByTag(nil)
+    }
+    
     func selectRow(indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
+    }
+    func filterByTag(_ tag: String?) {
+        dataSource.value = bookList.value?.filter {
+            if let tag = tag {
+                return $0.tags?.contains(tag) ?? false
+            } else {
+                return true
+            }
+        }
     }
 }

@@ -34,7 +34,7 @@ class AuthorizationViewController: UIViewController {
             logInButton.backgroundColor = BooksColor.entryButton
             logInButton.titleLabel?.textColor = BooksColor.textSecondary
         }
-//        resetForm()
+        resetForm()
     }
     
     override func viewDidLoad() {
