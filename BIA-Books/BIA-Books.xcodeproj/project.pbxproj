@@ -220,8 +220,8 @@
 				F88DC27E29B75A8D00FAA936 /* TabBar */,
 				F8E413F529BB2DE800477727 /* MyShelf */,
 				F8260C9B29AF939A00AC3B9C /* Profile */,
-				5EF50D9F29C4756A00085757 /* Book Detail */,
-				5E2C260D29B6840F00C28830 /* Books List */,
+				5EF50D9F29C4756A00085757 /* BookDetail */,
+				5E2C260D29B6840F00C28830 /* BooksList */,
 				5E299E43299E73CE002D9E6E /* Authorization */,
 			);
 			path = Modules;
@@ -279,14 +279,14 @@
 			path = DataBinding;
 			sourceTree = "<group>";
 		};
-		5E2C260D29B6840F00C28830 /* Books List */ = {
+		5E2C260D29B6840F00C28830 /* BooksList */ = {
 			isa = PBXGroup;
 			children = (
 				5E0ABC802A03C6A600BEBF9A /* Protocols */,
 				5E2C261629B684D300C28830 /* View */,
 				5E2C261529B684C300C28830 /* BookViewModel */,
 			);
-			path = "Books List";
+			path = BooksList;
 			sourceTree = "<group>";
 		};
 		5E2C261529B684C300C28830 /* BookViewModel */ = {
@@ -374,13 +374,13 @@
 			path = StoryBoards;
 			sourceTree = "<group>";
 		};
-		5EF50D9F29C4756A00085757 /* Book Detail */ = {
+		5EF50D9F29C4756A00085757 /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
 				5EF50DA129C4758100085757 /* ViewModel */,
 				5EF50DA029C4757B00085757 /* View */,
 			);
-			path = "Book Detail";
+			path = BookDetail;
 			sourceTree = "<group>";
 		};
 		5EF50DA029C4757B00085757 /* View */ = {
@@ -475,70 +475,22 @@
 			children = (
 				F8B35AD429C35C400054EDB3 /* SearchBar */,
 				F8E4140B29BB654600477727 /* BookCard */,
-				F8E4141029BB670A00477727 /* Model */,
-				F8E4140C29BB65E800477727 /* View */,
-				F8E4140329BB3CCE00477727 /* ViewModel */,
+				F8E4141129BB671F00477727 /* Book.swift */,
+				F8B760FD29BF63F8004811B4 /* MyShelfViewModel.swift */,
+				F8E4140429BB5BD200477727 /* MyShelfViewController.swift */,
+				F8E413F829BB2E5C00477727 /* MyShelf.storyboard */,
 			);
 			path = MyShelf;
-			sourceTree = "<group>";
-		};
-		F8E413FD29BB37AE00477727 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F8E4140A29BB5C5900477727 /* Cell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F8E4140329BB3CCE00477727 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F8B760FD29BF63F8004811B4 /* MyShelfViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F8E4140A29BB5C5900477727 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */,
-				F8E4140729BB5C5500477727 /* RequestedBookCardCell.xib */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		F8E4140B29BB654600477727 /* BookCard */ = {
 			isa = PBXGroup;
 			children = (
-				F8E4140D29BB660F00477727 /* ViewModel */,
-				F8E413FD29BB37AE00477727 /* View */,
+				F8E4140E29BB664A00477727 /* BookCardViewModel.swift */,
+				F8E4140629BB5C5500477727 /* RequestedBookCardCell.swift */,
+				F8E4140729BB5C5500477727 /* RequestedBookCardCell.xib */,
 			);
 			path = BookCard;
-			sourceTree = "<group>";
-		};
-		F8E4140C29BB65E800477727 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F8E4140429BB5BD200477727 /* MyShelfViewController.swift */,
-				F8E413F829BB2E5C00477727 /* MyShelf.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F8E4140D29BB660F00477727 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F8E4140E29BB664A00477727 /* BookCardViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F8E4141029BB670A00477727 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F8E4141129BB671F00477727 /* Book.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
